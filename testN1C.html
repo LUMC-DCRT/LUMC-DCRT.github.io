@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decision Tree</title>
+    <style>
+        .question { display: none; }
+    </style>
+</head>
+<body>
+    <div id="question1" class="question">
+        <p>Is the variant description correct and conform to the HGVS nomenclature?</p>
+        <p>You can check the variant description using <a href="https://variantvalidator.org/" target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/" target="_blank">Mutalyzer</a>.</p>
+        <button onclick="showResult('Please check with referring clinician or patient (family) to receive correct variant description. Eligibility: unable to assess')">No</button>
+        <button onclick="showQuestion('question2')">Yes</button>
+    </div>
+    <div id="question2" class="question">
+        <p>Is there already an ASO developed?</p>
+        <p>Please consider that for a developed ASO, there should be enough functional evidence available. That is restoration on RNA, protein level as well as functional read-outs. ASOs that are in clinical application are considered as enough functional evidence.</p>
+        <button onclick="showResult('Variant is eligible. Eligibility: YES')">Yes</button>
+        <button onclick="showQuestion('question3')">No</button>
+    </div>
+    <div id="question3" class="question">
+        <p>What is the inheritance pattern?</p>
+        <button onclick="showResult('Eligibility: YES')">Autosomal dominant</button>
+        <button onclick="showResult('Eligibility: YES')">Autosomal recessive</button>
+        <button onclick="showResult('Eligibility: YES')">X-linked dominant</button>
+        <button onclick="showResult('Eligibility: YES')">X-linked recessive</button>
+        <button onclick="showResult('Mitochondrially inherited disorders cannot be analyzed using these guidelines. Eligibility: unable to assess')">Mitochondrial</button>
+    </div>
+    <div id="result" class="question">
+        <p>Your suggested action is: <span id="role"></span></p>
+    </div>
+    <script>
+        function showQuestion(id) {
+            var questions = document.getElementsByClassName('question');
+            for (var i = 0; i < questions.length; i++) {
+                questions[i].style.display = 'none';
+            }
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function showResult(result) {
+            showQuestion('result');
+            document.getElementById('role').innerText = result;
+        }
+
+        // Start with the first question
+        showQuestion('question1');
+    </script>
+</body>
+</html>
