@@ -31,6 +31,9 @@
             font-size: 16px;
             cursor: pointer;
         }
+        .navigation {
+            margin-top: 20px;
+        }
         a {
             color: blue;
             text-decoration: none;
@@ -47,7 +50,9 @@
         <p>You can check the variant description using <a href="https://variantvalidator.org/" target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/" target="_blank">Mutalyzer</a>.</p>
         <button onclick="showResult('Please check with referring clinician or patient (family) to receive correct variant description. Eligibility: unable to assess')">No</button>
         <button onclick="showQuestion('question2', 'question1')">Yes</button>
-        <button onclick="showQuestion('start')">Back to Start</button>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
     </div>
     <div id="question2" class="container question">
         <p>What is the inheritance pattern of the disorder or specific for this variant?</p>
@@ -56,12 +61,16 @@
         <button onclick="showResult('Eligibility: YES')">X-linked dominant</button>
         <button onclick="showResult('Eligibility: YES')">X-linked recessive</button>
         <button onclick="showResult('Mitochondrially inherited disorders cannot be analyzed using these guidelines. Eligibility: unable to assess')">Mitochondrial</button>
-        <button onclick="showQuestion('question1')">Back</button>
-        <button onclick="showQuestion('start')">Back to Start</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question1')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
     </div>
     <div id="result" class="container question">
         <p>Your suggested action is: <span id="role"></span></p>
-        <button onclick="showQuestion('start')">Back to Start</button>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
     </div>
     <script>
         let previousQuestion = '';
@@ -82,8 +91,10 @@
             document.getElementById('role').innerText = result;
         }
 
-        // Start with the start page
-        showQuestion('start');
+        // Start with the start page only
+        document.addEventListener("DOMContentLoaded", function() {
+            showQuestion('start');
+        });
     </script>
 </body>
 </html>
