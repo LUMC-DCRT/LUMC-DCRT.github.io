@@ -34,6 +34,11 @@
         .navigation {
             margin-top: 20px;
         }
+        .info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: gray;
+        }
         a {
             color: blue;
             text-decoration: none;
@@ -45,57 +50,123 @@
         <h1>N1C Variant Assessment Calculator</h1>
         <button onclick="showQuestion('question1')">Start</button>
     </div>
+
     <div id="question1" class="container question">
         <p>Is the variant description correct and conform to the HGVS nomenclature?</p>
-        <p>You can check the variant description using <a href="https://variantvalidator.org/" target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/" target="_blank">Mutalyzer</a>.</p>
-        <button onclick="showResult('Please check with referring clinician or patient (family) to receive correct variant description. Eligibility: unable to assess')">No</button>
-        <button onclick="showQuestion('question2', 'question1')">Yes</button>
+        <div class="info">For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/" target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/" target="_blank">Mutalyzer</a>.</div>
+        <button onclick="showResult('result1')">No</button>
+        <button onclick="showQuestion('question2')">Yes</button>
         <div class="navigation">
             <button onclick="showQuestion('start')">Back to Start</button>
         </div>
     </div>
+
     <div id="question2" class="container question">
-        <p>What is the inheritance pattern of the disorder or specific for this variant?</p>
-        <button onclick="showResult('Eligibility: YES')">Autosomal dominant</button>
-        <button onclick="showResult('Eligibility: YES')">Autosomal recessive</button>
-        <button onclick="showResult('Eligibility: YES')">X-linked dominant</button>
-        <button onclick="showResult('Eligibility: YES')">X-linked recessive</button>
-        <button onclick="showResult('Mitochondrially inherited disorders cannot be analyzed using these guidelines. Eligibility: unable to assess')">Mitochondrial</button>
+        <p>Is the variant of a type applicable to be evaluated with these guidelines?</p>
+        <div class="info">Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletion or duplication. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Section 0” of the N1C consensus guidelines for further explanations.</div>
+        <button onclick="showResult('result2')">No</button>
+        <button onclick="showQuestion('question3')">Yes</button>
         <div class="navigation">
             <button onclick="showQuestion('question1')">Back</button>
             <button onclick="showQuestion('start')">Back to Start</button>
         </div>
     </div>
-    <div id="result" class="container question">
-        <p>Your suggested action is: <span id="role"></span></p>
+
+    <div id="question3" class="container question">
+        <p>Is the variant a copy number variation and if yes, what type?</p>
+        <button onclick="showQuestion('question3a1')">Yes, copy number gain</button>
+        <button onclick="showResult('result3b')">Yes, copy number loss</button>
+        <button onclick="showQuestion('question4')">No</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question2')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="question3a1" class="container question">
+        <p>Is the disorder/gene associated with haploinsufficiency?</p>
+        <div class="info">For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search=" target="_blank">Dosage Sensitivity</a> curations from ClinGen.</div>
+        <button onclick="showQuestion('question3a1a')">No</button>
+        <button onclick="showQuestion('question3a1b')">Yes</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question3')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="question3a1a" class="container question">
+        <p>Is there already an ASO/RNAi/siRNA approach developed for this gene?</p>
+        <div class="info">Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</div>
+        <button onclick="showResult('result4a1a1')">Yes</button>
+        <button onclick="showResult('result4a1a2')">No</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question3a1')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="question3a1b" class="container question">
+        <p>Is there already an ASO/RNAi/siRNA approach developed for this gene?</p>
+        <div class="info">Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</div>
+        <button onclick="showResult('result4a1b1')">Yes</button>
+        <button onclick="showResult('result4a1b2')">No</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question3a1')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="question4" class="container question">
+        <p>What is the inheritance pattern of the disorder or specific for this variant?</p>
+        <div class="info">For guidance on how to determine the inheritance pattern, please read “Step 1” of the N1C consensus guidelines.</div>
+        <button onclick="showQuestion('question5a')">Autosomal dominant</button>
+        <button onclick="showQuestion('question5b')">Autosomal recessive</button>
+        <button onclick="showResult('result6')">Mitochondrial</button>
+        <button onclick="showResult('result7')">Unknown</button>
+        <div class="navigation">
+            <button onclick="showQuestion('question3')">Back</button>
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Add more questions and results as needed -->
+    <!-- Example Result Sections -->
+    <div id="result1" class="container question">
+        <p>Please check with referring clinician or patient (family) to receive correct variant description. Eligibility: unable to assess</p>
         <div class="navigation">
             <button onclick="showQuestion('start')">Back to Start</button>
         </div>
     </div>
-    <script>
-        let previousQuestion = '';
 
-        function showQuestion(current, previous = '') {
-            if (previous) {
-                previousQuestion = previous;
-            }
-            var questions = document.getElementsByClassName('question');
-            for (var i = 0; i < questions.length; i++) {
-                questions[i].style.display = 'none';
-            }
-            document.getElementById(current).style.display = 'block';
-            document.getElementById('start').style.display = current === 'start' ? 'block' : 'none';
-        }
+    <div id="result2" class="container question">
+        <p>Eligibility: unable to assess</p>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
 
-        function showResult(result) {
-            showQuestion('result');
-            document.getElementById('role').innerText = result;
-        }
+    <div id="result3b" class="container question">
+        <p>Consider variant for TANGO approach. Please review Section C in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
 
-        // Start with the start page only
-        document.addEventListener("DOMContentLoaded", function() {
-            showQuestion('start');
-        });
-    </script>
-</body>
-</html>
+    <div id="result4a1a1" class="container question">
+        <p>Eligibility: YES</p>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result4a1a2" class="container question">
+        <p>Eligibility: Probably (please check Table 4 in the N1C consensus guidelines)</p>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result4a1b1" class="container question">
+        <p>Eligibility: YES</p>
+        <div class="navigation">
+            <button onclick="showQuestion('start')">Back to
