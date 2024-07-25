@@ -84,6 +84,7 @@
                 questions[i].style.display = 'none';
             }
             document.getElementById(current).style.display = 'block';
+            document.getElementById('start').style.display = current === 'start' ? 'block' : 'none';
         }
 
         function showResult(result) {
