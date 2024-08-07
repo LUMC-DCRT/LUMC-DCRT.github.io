@@ -269,12 +269,12 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="intronic_variant_upstream"> Intronic variant >100 bp upstream of acceptor splice site</label>
-            <label><input type="checkbox" id="intronic_variant_downstream"> Intronic variant >50 bp downstream of donor splice site</label>
-            <label><input type="checkbox" id="intronic_variant_within"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_1"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_1"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_1"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="intronic_variant_upstream_1"> Intronic variant >100 bp upstream of acceptor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_downstream_1"> Intronic variant >50 bp downstream of donor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_within_1"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_1_1()">Next</button>
@@ -285,18 +285,18 @@
 
     <script>
         function evaluateQ8_1_1() {
-            const canonical_splicing_destroyed = document.getElementById('canonical_splicing_destroyed').checked;
-            const canonical_splicing_weakened = document.getElementById('canonical_splicing_weakened').checked;
-            const variant_within_5bp = document.getElementById('variant_within_5bp').checked;
-            const intronic_variant_upstream = document.getElementById('intronic_variant_upstream').checked;
-            const intronic_variant_downstream = document.getElementById('intronic_variant_downstream').checked;
-            const intronic_variant_within = document.getElementById('intronic_variant_within').checked;
+            const canonical_splicing_destroyed_1 = document.getElementById('canonical_splicing_destroyed_1').checked;
+            const canonical_splicing_weakened_1 = document.getElementById('canonical_splicing_weakened_1').checked;
+            const variant_within_5bp_1 = document.getElementById('variant_within_5bp_1').checked;
+            const intronic_variant_upstream_1 = document.getElementById('intronic_variant_upstream_1').checked;
+            const intronic_variant_downstream_1 = document.getElementById('intronic_variant_downstream_1').checked;
+            const intronic_variant_within_1 = document.getElementById('intronic_variant_within_1').checked;
 
-            if (intronic_variant_upstream || intronic_variant_downstream) {
+            if (intronic_variant_upstream_1 || intronic_variant_downstream_1) {
                 showPage('q9_1_1_1');
-            } else if (canonical_splicing_weakened && (intronic_variant_upstream || intronic_variant_downstream || intronic_variant_within)) {
+            } else if (canonical_splicing_weakened_1 && (intronic_variant_upstream_1 || intronic_variant_downstream_1 || intronic_variant_within_1)) {
                 showPage('q9_1_1_2');
-            } else if (canonical_splicing_destroyed || variant_within_5bp) {
+            } else if (canonical_splicing_destroyed_1 || variant_within_5bp_1) {
                 showPage('q9_1_1_3');
             }
         }
@@ -424,11 +424,11 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed_1"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened_1"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp_1"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="variant_within_6to15bp_1"> Variant within 6 to 15 bp of canonical splice site</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_2"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_2"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_2"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6to15bp_2"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="none_2"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_1_1_2_1()">Next</button>
@@ -439,17 +439,17 @@
 
     <script>
         function evaluateQ8_1_1_2_1() {
-            const canonical_splicing_destroyed_1 = document.getElementById('canonical_splicing_destroyed_1').checked;
-            const canonical_splicing_weakened_1 = document.getElementById('canonical_splicing_weakened_1').checked;
-            const variant_within_5bp_1 = document.getElementById('variant_within_5bp_1').checked;
-            const variant_within_6to15bp_1 = document.getElementById('variant_within_6to15bp').checked;
-            const none = document.getElementById('none').checked;
+            const canonical_splicing_destroyed_2 = document.getElementById('canonical_splicing_destroyed_2').checked;
+            const canonical_splicing_weakened_2 = document.getElementById('canonical_splicing_weakened_2').checked;
+            const variant_within_5bp_2 = document.getElementById('variant_within_5bp_2').checked;
+            const variant_within_6to15bp_2 = document.getElementById('variant_within_6to15bp_2').checked;
+            const none_2 = document.getElementById('none_1').checked;
 
-            if (canonical_splicing_destroyed_1 || variant_within_5bp) {
+            if (canonical_splicing_destroyed_2 || variant_within_5bp_2) {
                 showPage('q9_1_1_3');
-            } else if (canonical_splicing_weakened_1 || variant_within_6to15bp) {
+            } else if (canonical_splicing_weakened_2 || variant_within_6to15bp_2) {
                 showPage('q9_1_1_2');
-            } else if (none) {
+            } else if (none_2) {
                 showPage('q9_1_1_1');
             }
         }
@@ -508,15 +508,15 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed_2"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened_2"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp_2"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="variant_within_6to15bp_2"> Variant within 6 to 15 bp of canonical splice site</label>
-            <label><input type="checkbox" id="amino_acid_function_unknown"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
-            <label><input type="checkbox" id="amino_acid_gof_dn"> Change in amino acid sequence causes GoF or DN effect</label>
-            <label><input type="checkbox" id="amino_acid_complete_lof"> Change in amino acid sequence causes complete loss of function</label>
-            <label><input type="checkbox" id="amino_acid_partial_lof"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
-            <label><input type="checkbox" id="amino_acid_benign"> Change on protein/amino acid level known to be benign</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_3"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_3"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_3"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6to15bp_3"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="amino_acid_function_unknown_3"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
+            <label><input type="checkbox" id="amino_acid_gof_dn_3"> Change in amino acid sequence causes GoF or DN effect</label>
+            <label><input type="checkbox" id="amino_acid_complete_lof_3"> Change in amino acid sequence causes complete loss of function</label>
+            <label><input type="checkbox" id="amino_acid_partial_lof_3"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
+            <label><input type="checkbox" id="amino_acid_benign_3"> Change on protein/amino acid level known to be benign</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_1_1_3_1()">Next</button>
@@ -527,25 +527,25 @@
 
     <script>
         function evaluateQ8_1_1_3_1() {
-            const canonical_splicing_destroyed_2 = document.getElementById('canonical_splicing_destroyed_2').checked;
-            const canonical_splicing_weakened_2 = document.getElementById('canonical_splicing_weakened_2').checked;
-            const variant_within_5bp_2 = document.getElementById('variant_within_5bp_2').checked;
-            const variant_within_6to15bp_2 = document.getElementById('variant_within_6to15bp_2').checked;
-            const amino_acid_function_unknown = document.getElementById('amino_acid_function_unknown').checked;
-            const amino_acid_gof_dn = document.getElementById('amino_acid_gof_dn').checked;
-            const amino_acid_complete_lof = document.getElementById('amino_acid_complete_lof').checked;
-            const amino_acid_partial_lof = document.getElementById('amino_acid_partial_lof').checked;
-            const amino_acid_benign = document.getElementById('amino_acid_benign').checked;
+            const canonical_splicing_destroyed_3 = document.getElementById('canonical_splicing_destroyed_3').checked;
+            const canonical_splicing_weakened_3 = document.getElementById('canonical_splicing_weakened_3').checked;
+            const variant_within_5bp_3 = document.getElementById('variant_within_5bp_3').checked;
+            const variant_within_6to15bp_3 = document.getElementById('variant_within_6to15bp_3').checked;
+            const amino_acid_function_unknown_3 = document.getElementById('amino_acid_function_unknown_3').checked;
+            const amino_acid_gof_dn_3 = document.getElementById('amino_acid_gof_dn_3').checked;
+            const amino_acid_complete_lof_3 = document.getElementById('amino_acid_complete_lof_3').checked;
+            const amino_acid_partial_lof_3 = document.getElementById('amino_acid_partial_lof_3').checked;
+            const amino_acid_benign_3 = document.getElementById('amino_acid_benign_3').checked;
 
-            if (canonical_splicing_destroyed_2 || variant_within_5bp_2 || amino_acid_complete_lof) {
+            if (canonical_splicing_destroyed_3 || variant_within_5bp_3 || amino_acid_complete_lof_3) {
                 showPage('q9_1_1_3');
-            } else if (canonical_splicing_weakened_2 || variant_within_6to15bp_2 || amino_acid_partial_lof) {
+            } else if (canonical_splicing_weakened_3 || variant_within_6to15bp_3 || amino_acid_partial_lof_3) {
                 showPage('q9_1_1_2');
-            } else if (amino_acid_benign) {
+            } else if (amino_acid_benign_3) {
                 showPage('q9_1_1_1');
-            } else if (amino_acid_function_unknown) {
+            } else if (amino_acid_function_unknown_3) {
                 showPage('a8_1_1_3_1_1');
-            } else if (amino_acid_gof_dn) {
+            } else if (amino_acid_gof_dn_3) {
                 showPage('q9_1_1_4');
             }
         }
@@ -603,20 +603,7 @@
         </div>
     </div>
 
-    <div id="q8_1_1_3_2" class="container">
-        <h2>The variant cannot be assessed for splice modulation. Under certain circumstances, the variant can be considered for exon skipping or a TANGO approach </h2>
-        <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
-            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
-        </div>
-        <div class="navigation-buttons">
-            <button onclick="goBack()">Back</button>
-            <button onclick="showPage('startPage')">Back to Start</button>
-        </div>
-    </div>
-
-
-    <!— Q7.1.1.4 Nonsense and frameshift variants and exon skipping evaluation -->
+    <!-- Q7.1.1.4 Nonsense and frameshift variants and exon skipping evaluation -->
     <div id="q7_1_1_4" class="container">
         <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines.</h2>
         <p>Do any of the following criteria apply to the exon: a) Exon is first coding exon, b) Exon is last coding exon, c) Exon is out of frame, d) Skipping the exon will generate a STOP codon, e) Gene contains only one coding exon.</p>
@@ -639,16 +626,16 @@
     <div id="q8_1_3" class="container">
         <h2>Please tick all boxes that apply. Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</h2>
         <div class="checkboxes">
-            <label><input type="checkbox" id="loss_10_percent"> Exon skipping results in the loss of >10% of the coding region</label>
-            <label><input type="checkbox" id="loss_only_domain"> Exon skipping results in the loss of the only functional domain</label>
-            <label><input type="checkbox" id="loss_important_domain"> Exon skipping results in the loss of an important functional domain or relevant amino acids</label>
-            <label><input type="checkbox" id="loss_one_domain"> Exon skipping results in the loss of one functional domain</label>
-            <label><input type="checkbox" id="loss_multiple_domains"> Exon skipping results in the loss of multiple functional domains</label>
-            <label><input type="checkbox" id="loss_repeat_domains"> Exon skipping results in the loss of one or multiple repeat domains</label>
-            <label><input type="checkbox" id="mutational_hotspot"> Exon contains mutational hotspot</label>
-            <label><input type="checkbox" id="pathogenic"> Exon skipping shown to be pathogenic</label>
-            <label><input type="checkbox" id="in_frame_deletions"> Functional evidence of in-frame deletions shown to be pathogenic</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="loss_10_percent_4"> Exon skipping results in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="loss_only_domain_4"> Exon skipping results in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="loss_important_domain_4"> Exon skipping results in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="loss_one_domain_4"> Exon skipping results in the loss of one functional domain</label>
+            <label><input type="checkbox" id="loss_multiple_domains_4"> Exon skipping results in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="loss_repeat_domains_4"> Exon skipping results in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot_4"> Exon contains mutational hotspot</label>
+            <label><input type="checkbox" id="pathogenic_4"> Exon skipping shown to be pathogenic</label>
+            <label><input type="checkbox" id="in_frame_deletions_4"> Functional evidence of in-frame deletions shown to be pathogenic</label>
+            <label><input type="checkbox" id="none_4"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_1_3()">Next</button>
@@ -658,24 +645,24 @@
 
         <script>
             function evaluateQ8_1_3() {
-                const loss_10_percent = document.getElementById('loss_10_percent').checked;
-                const loss_only_domain = document.getElementById('loss_only_domain').checked;
-                const loss_important_domain = document.getElementById('loss_important_domain').checked;
-                const loss_one_domain = document.getElementById('loss_one_domain').checked;
-                const loss_multiple_domains = document.getElementById('loss_multiple_domains').checked;
-                const loss_repeat_domains = document.getElementById('loss_repeat_domains').checked;
-                const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
-                const pathogenic = document.getElementById('pathogenic').checked;
-                const in_frame_deletions = document.getElementById('in_frame_deletions').checked;
-                const none = document.getElementById('none').checked;
+                const loss_10_percent_4 = document.getElementById('loss_10_percent_4').checked;
+                const loss_only_domain_4 = document.getElementById('loss_only_domain_4').checked;
+                const loss_important_domain_4 = document.getElementById('loss_important_domain_4').checked;
+                const loss_one_domain_4 = document.getElementById('loss_one_domain_4').checked;
+                const loss_multiple_domains_4 = document.getElementById('loss_multiple_domains_4').checked;
+                const loss_repeat_domains_4 = document.getElementById('loss_repeat_domains_4').checked;
+                const mutational_hotspot_4 = document.getElementById('mutational_hotspot_4').checked;
+                const pathogenic_4 = document.getElementById('pathogenic_4').checked;
+                const in_frame_deletions_4 = document.getElementById('in_frame_deletions_4').checked;
+                const none_4 = document.getElementById('none_4').checked;
 
-                if (loss_only_domain || loss_important_domain || loss_multiple_domains || pathogenic || mutational_hotspot || in_frame_deletions) {
+                if (loss_only_domain_4 || loss_important_domain_4 || loss_multiple_domains_4 || pathogenic_4 || mutational_hotspot_4 || in_frame_deletions_4) {
                     showPage('a8_1_3_1');
-                } else if (loss_10_percent || loss_one_domain) {
+                } else if (loss_10_percent_4 || loss_one_domain_4) {
                     showPage('q8_1_3_1');
-                } else if (loss_repeat_domains) {
+                } else if (loss_repeat_domains_4) {
                     showPage('a8_1_3_2');
-                } else if (none) {
+                } else if (none_4) {
                     showPage('q8_1_3_2');
                 }
             }
@@ -790,16 +777,16 @@
         <h2>Q9.1.1.5: Please tick all boxes that apply.</h2>
         <p>Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="loss_10_percent"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
-            <label><input type="checkbox" id="loss_only_functional_domain"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
-            <label><input type="checkbox" id="loss_important_functional_domain"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
-            <label><input type="checkbox" id="loss_one_functional_domain"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
-            <label><input type="checkbox" id="loss_multiple_functional_domains"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
-            <label><input type="checkbox" id="loss_repeat_domains"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
-            <label><input type="checkbox" id="mutational_hotspot"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
-            <label><input type="checkbox" id="shown_pathogenic"> Loss of both exons combined shown to be pathogenic</label>
-            <label><input type="checkbox" id="evidence_pathogenic"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="loss_10_percent_5"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="loss_only_functional_domain_5"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="loss_important_functional_domain_5"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="loss_one_functional_domain_5"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
+            <label><input type="checkbox" id="loss_multiple_functional_domains_5"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="loss_repeat_domains_5"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot_5"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
+            <label><input type="checkbox" id="shown_pathogenic_5"> Loss of both exons combined shown to be pathogenic</label>
+            <label><input type="checkbox" id="evidence_pathogenic_5"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
+            <label><input type="checkbox" id="none_5"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ9_1_1_5()">Next</button>
@@ -810,24 +797,24 @@
 
     <script>
         function evaluateQ9_1_1_5() {
-            const loss_10_percent = document.getElementById('loss_10_percent').checked;
-            const loss_only_functional_domain = document.getElementById('loss_only_functional_domain').checked;
-            const loss_important_functional_domain = document.getElementById('loss_important_functional_domain').checked;
-            const loss_one_functional_domain = document.getElementById('loss_one_functional_domain').checked;
-            const loss_multiple_functional_domains = document.getElementById('loss_multiple_functional_domains').checked;
-            const loss_repeat_domains = document.getElementById('loss_repeat_domains').checked;
-            const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
-            const shown_pathogenic = document.getElementById('shown_pathogenic').checked;
-            const evidence_pathogenic = document.getElementById('evidence_pathogenic').checked;
-            const none = document.getElementById('none').checked;
+            const loss_10_percent_5 = document.getElementById('loss_10_percent_5').checked;
+            const loss_only_functional_domain_5 = document.getElementById('loss_only_functional_domain_5').checked;
+            const loss_important_functional_domain_5 = document.getElementById('loss_important_functional_domain_5').checked;
+            const loss_one_functional_domain_5 = document.getElementById('loss_one_functional_domain_5').checked;
+            const loss_multiple_functional_domains_5 = document.getElementById('loss_multiple_functional_domains_5').checked;
+            const loss_repeat_domains_5 = document.getElementById('loss_repeat_domains_5').checked;
+            const mutational_hotspot_5 = document.getElementById('mutational_hotspot_5').checked;
+            const shown_pathogenic_5 = document.getElementById('shown_pathogenic_5').checked;
+            const evidence_pathogenic_5 = document.getElementById('evidence_pathogenic_5').checked;
+            const none_5 = document.getElementById('none_5').checked;
 
-            if (loss_only_functional_domain || loss_important_functional_domain || loss_multiple_functional_domains || shown_pathogenic || mutational_hotspot || evidence_pathogenic) {
+            if (loss_only_functional_domain_5 || loss_important_functional_domain_5 || loss_multiple_functional_domains_5 || shown_pathogenic_5 || mutational_hotspot_5 || evidence_pathogenic_5) {
                 showPage('a8_1_3_1');
-            } else if ((loss_10_percent && loss_one_functional_domain) || loss_10_percent || loss_one_functional_domain) {
+            } else if ((loss_10_percent_5 && loss_one_functional_domain_5) || loss_10_percent_5 || loss_one_functional_domain_5) {
                 showPage('q8_1_3_1');
-            } else if (loss_repeat_domains) {
+            } else if (loss_repeat_domains_5) {
                 showPage('a8_1_3_2');
-            } else if (none) {
+            } else if (none_5) {
                 showPage('q8_1_3_2');
             }
         }
@@ -993,12 +980,12 @@
         <h2>Please tick all that apply</h2>
         <p>Please see “Section C” in the N1C consensus guidelines for further information.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="loss_one_allele"> Loss of one allele tolerated</label>
-            <label><input type="checkbox" id="complete_loss_function"> Complete loss of function (e.g. both alleles) tolerated</label>
-            <label><input type="checkbox" id="haploinsufficiency"> Gene associated with haploinsufficiency</label>
-            <label><input type="checkbox" id="hypomorphic_alleles"> Hypomorphic alleles are a cause of disease</label>
-            <label><input type="checkbox" id="intolerant_reduction"> Intolerant to reduction (a very strict control of gene dosage)</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="loss_one_allele_1"> Loss of one allele tolerated</label>
+            <label><input type="checkbox" id="complete_loss_function_1"> Complete loss of function (e.g. both alleles) tolerated</label>
+            <label><input type="checkbox" id="haploinsufficiency_1"> Gene associated with haploinsufficiency</label>
+            <label><input type="checkbox" id="hypomorphic_alleles_1"> Hypomorphic alleles are a cause of disease</label>
+            <label><input type="checkbox" id="intolerant_reduction_1"> Intolerant to reduction (a very strict control of gene dosage)</label>
+            <label><input type="checkbox" id="none_1"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ7_1_2_2()">Next</button>
@@ -1008,20 +995,20 @@
 
         <script>
             function evaluateQ7_1_2_2() {
-                const loss_one_allele = document.getElementById('loss_one_allele').checked;
-                const complete_loss_function = document.getElementById('complete_loss_function').checked;
-                const haploinsufficiency = document.getElementById('haploinsufficiency').checked;
-                const hypomorphic_alleles = document.getElementById('hypomorphic_alleles').checked;
-                const intolerant_reduction = document.getElementById('intolerant_reduction').checked;
-                const none = document.getElementById('none').checked;
+                const loss_one_allele_6 = document.getElementById('loss_one_allele_6').checked;
+                const complete_loss_function_6 = document.getElementById('complete_loss_function_6').checked;
+                const haploinsufficiency_6 = document.getElementById('haploinsufficiency_6').checked;
+                const hypomorphic_alleles_6 = document.getElementById('hypomorphic_alleles_6').checked;
+                const intolerant_reduction_6 = document.getElementById('intolerant_reduction_6').checked;
+                const none_6 = document.getElementById('none').checked;
 
-                if (intolerant_reduction) {
+                if (intolerant_reduction_6) {
                     showPage('a7_1_2_2_1');
-                } else if (none) {
+                } else if (none_6) {
                     showPage('a7_1_2_2_2');
-                } else if (loss_one_allele || complete_loss_function) {
+                } else if (loss_one_allele_6 || complete_loss_function_6) {
                     showPage('q7_1_2_2_1');
-                } else if (haploinsufficiency || hypomorphic_alleles) {
+                } else if (haploinsufficiency_6 || hypomorphic_alleles_6) {
                     showPage('q7_1_2_2_2');
                 }
             }
@@ -1118,12 +1105,12 @@
         <h2>Please tick all that apply</h2>
         <p>Please see “Section C” in the N1C consensus guidelines for further information.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="loss_one_allele"> Loss of one allele tolerated</label>
-            <label><input type="checkbox" id="complete_loss_function"> Complete loss of function (e.g. both alleles) tolerated</label>
-            <label><input type="checkbox" id="haploinsufficiency"> Gene associated with haploinsufficiency</label>
-            <label><input type="checkbox" id="hypomorphic_alleles"> Hypomorphic alleles are a cause of disease</label>
-            <label><input type="checkbox" id="intolerant_reduction"> Intolerant to reduction (a very strict control of gene dosage)</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="loss_one_allele_7"> Loss of one allele tolerated</label>
+            <label><input type="checkbox" id="complete_loss_function_7"> Complete loss of function (e.g. both alleles) tolerated</label>
+            <label><input type="checkbox" id="haploinsufficiency_7"> Gene associated with haploinsufficiency</label>
+            <label><input type="checkbox" id="hypomorphic_alleles_7"> Hypomorphic alleles are a cause of disease</label>
+            <label><input type="checkbox" id="intolerant_reduction_7"> Intolerant to reduction (a very strict control of gene dosage)</label>
+            <label><input type="checkbox" id="none_7"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ6_1_3_2_1()">Next</button>
@@ -1134,20 +1121,20 @@
 
     <script>
         function evaluateQ6_1_3_2_1() {
-            const loss_one_allele = document.getElementById('loss_one_allele').checked;
-            const complete_loss_function = document.getElementById('complete_loss_function').checked;
-            const haploinsufficiency = document.getElementById('haploinsufficiency').checked;
-            const hypomorphic_alleles = document.getElementById('hypomorphic_alleles').checked;
-            const intolerant_reduction = document.getElementById('intolerant_reduction').checked;
-            const none = document.getElementById('none').checked;
+            const loss_one_allele_7 = document.getElementById('loss_one_allele_7').checked;
+            const complete_loss_function_7 = document.getElementById('complete_loss_function_7').checked;
+            const haploinsufficiency_7 = document.getElementById('haploinsufficiency_7').checked;
+            const hypomorphic_alleles_7 = document.getElementById('hypomorphic_alleles_7').checked;
+            const intolerant_reduction_7 = document.getElementById('intolerant_reduction_7').checked;
+            const none_7 = document.getElementById('none').checked;
 
-            if (intolerant_reduction) {
+            if (intolerant_reduction_7) {
                 showPage('a7_1_3_2_1');
-            } else if (none) {
+            } else if (none_7) {
                 showPage('a7_1_3_2_2');
-            } else if (loss_one_allele || complete_loss_function) {
+            } else if (loss_one_allele_7 || complete_loss_function_7) {
                 showPage('q7_1_3_2_1');
-            } else if (haploinsufficiency || hypomorphic_alleles) {
+            } else if (haploinsufficiency_7 || hypomorphic_alleles_7) {
                 showPage('q7_1_3_2_2');
             }
         }
@@ -1290,12 +1277,12 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed_3"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened_3"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp_3"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="intronic_variant_upstream"> Intronic variant >100 bp upstream of acceptor splice site</label>
-            <label><input type="checkbox" id="intronic_variant_downstream"> Intronic variant >50 bp downstream of donor splice site</label>
-            <label><input type="checkbox" id="intronic_variant_within"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_8"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_8"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_8"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="intronic_variant_upstream_8"> Intronic variant >100 bp upstream of acceptor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_downstream_8"> Intronic variant >50 bp downstream of donor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_within_8"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_2_1()">Next</button>
@@ -1306,18 +1293,18 @@
 
     <script>
         function evaluateQ8_2_1() {
-            const canonical_splicing_destroyed_3 = document.getElementById('canonical_splicing_destroyed_3').checked;
-            const canonical_splicing_weakened_3 = document.getElementById('canonical_splicing_weakened_3').checked;
-            const variant_within_5bp_3 = document.getElementById('variant_within_5bp_3').checked;
-            const intronic_variant_upstream = document.getElementById('intronic_variant_upstream').checked;
-            const intronic_variant_downstream = document.getElementById('intronic_variant_downstream').checked;
-            const intronic_variant_within = document.getElementById('intronic_variant_within').checked;
+            const canonical_splicing_destroyed_8 = document.getElementById('canonical_splicing_destroyed_8').checked;
+            const canonical_splicing_weakened_8 = document.getElementById('canonical_splicing_weakened_8').checked;
+            const variant_within_5bp_8 = document.getElementById('variant_within_5bp_8').checked;
+            const intronic_variant_upstream_8 = document.getElementById('intronic_variant_upstream_8').checked;
+            const intronic_variant_downstream_8 = document.getElementById('intronic_variant_downstream_8').checked;
+            const intronic_variant_within_8 = document.getElementById('intronic_variant_within_8').checked;
 
-            if (intronic_variant_upstream || intronic_variant_downstream) {
+            if (intronic_variant_upstream_8 || intronic_variant_downstream_8) {
                 showPage('q9_2_1_1');
-            } else if (canonical_splicing_weakened_3 && (intronic_variant_upstream || intronic_variant_downstream || intronic_variant_within)) {
+            } else if (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8)) {
                 showPage('q9_2_1_2');
-            } else if (canonical_splicing_destroyed_3 || variant_within_5bp) {
+            } else if (canonical_splicing_destroyed_ || variant_within_5bp_8) {
                 showPage('q9_2_1_3');
             }
         }
@@ -1421,11 +1408,11 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed_4"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened_4"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp_4"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="variant_within_6_15bp_4"> Variant within 6 to 15 bp of canonical splice site</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_9"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_9"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_9"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6_15bp_9"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="none_9"> None</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_2_1_2_1()">Next</button>
@@ -1436,17 +1423,17 @@
 
     <script>
         function evaluateQ8_2_1_2_1() {
-            const canonical_splicing_destroyed_4 = document.getElementById('canonical_splicing_destroyed_4').checked;
-            const canonical_splicing_weakened_4 = document.getElementById('canonical_splicing_weakened_4').checked;
-            const variant_within_5bp_4 = document.getElementById('variant_within_5bp_4').checked;
-            const variant_within_6_15bp_4 = document.getElementById('variant_within_6_15bp_4').checked;
-            const none = document.getElementById('none').checked;
+            const canonical_splicing_destroyed_9 = document.getElementById('canonical_splicing_destroyed_9').checked;
+            const canonical_splicing_weakened_9 = document.getElementById('canonical_splicing_weakened_9').checked;
+            const variant_within_5bp_9 = document.getElementById('variant_within_5bp_9').checked;
+            const variant_within_6_15bp_9 = document.getElementById('variant_within_6_15bp_9').checked;
+            const none_9 = document.getElementById('none_9').checked;
 
-            if (canonical_splicing_destroyed_4 || variant_within_5bp_4) {
+            if (canonical_splicing_destroyed_9 || variant_within_5bp_9) {
                 showPage('q9_2_1_3');
-            } else if (canonical_splicing_weakened_4 || variant_within_6_15bp_4) {
+            } else if (canonical_splicing_weakened_9 || variant_within_6_15bp_9) {
                 showPage('q9_2_1_2');
-            } else if (none) {
+            } else if (none_9) {
                 showPage('q9_2_1_1');
             }
         }
@@ -1503,15 +1490,15 @@
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
         <div class="checkboxes">
-            <label><input type="checkbox" id="canonical_splicing_destroyed_5"> Canonical splicing is destroyed</label>
-            <label><input type="checkbox" id="canonical_splicing_weakened_5"> Canonical splicing is weakened</label>
-            <label><input type="checkbox" id="variant_within_5bp_5"> Variant within 5 bp of canonical splice site</label>
-            <label><input type="checkbox" id="variant_within_6_15bp_5"> Variant within 6 to 15 bp of canonical splice site</label>
-            <label><input type="checkbox" id="effect_not_known"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
-            <label><input type="checkbox" id="change_gof_dn"> Change in amino acid sequence causes GoF or DN effect</label>
-            <label><input type="checkbox" id="complete_loss_function"> Change in amino acid sequence causes complete loss of function</label>
-            <label><input type="checkbox" id="partial_loss_function"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
-            <label><input type="checkbox" id="known_benign"> Change on protein/amino acid level known to be benign</label>
+            <label><input type="checkbox" id="canonical_splicing_destroyed_10"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_10"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_10"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6_15bp_10"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="effect_not_known_10"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
+            <label><input type="checkbox" id="change_gof_dn_10"> Change in amino acid sequence causes GoF or DN effect</label>
+            <label><input type="checkbox" id="complete_loss_function_10"> Change in amino acid sequence causes complete loss of function</label>
+            <label><input type="checkbox" id="partial_loss_function_10"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
+            <label><input type="checkbox" id="known_benign_10"> Change on protein/amino acid level known to be benign</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_2_1_3_1()">Next</button>
@@ -1522,25 +1509,25 @@
 
     <script>
         function evaluateQ8_2_1_3_1() {
-            const canonical_splicing_destroyed_5 = document.getElementById('canonical_splicing_destroyed_5').checked;
-            const canonical_splicing_weakened_5 = document.getElementById('canonical_splicing_weakened_5').checked;
-            const variant_within_5bp_5 = document.getElementById('variant_within_5bp_5').checked;
+            const canonical_splicing_destroyed_10 = document.getElementById('canonical_splicing_destroyed_10').checked;
+            const canonical_splicing_weakened_10 = document.getElementById('canonical_splicing_weakened_10').checked;
+            const variant_within_5bp_10 = document.getElementById('variant_within_5bp_10').checked;
             const variant_within_6_15bp_5 = document.getElementById('variant_within_6_15bp_5').checked;
-            const effect_not_known = document.getElementById('effect_not_known').checked;
-            const change_gof_dn = document.getElementById('change_gof_dn').checked;
-            const complete_loss_function = document.getElementById('complete_loss_function').checked;
-            const partial_loss_function = document.getElementById('partial_loss_function').checked;
-            const known_benign = document.getElementById('known_benign').checked;
+            const effect_not_known_10 = document.getElementById('effect_not_known_10').checked;
+            const change_gof_dn_10 = document.getElementById('change_gof_dn_10').checked;
+            const complete_loss_function_10 = document.getElementById('complete_loss_function_10').checked;
+            const partial_loss_function_10 = document.getElementById('partial_loss_function_10').checked;
+            const known_benign_10 = document.getElementById('known_benign_10').checked;
 
-            if (canonical_splicing_destroyed_5 || variant_within_5bp_5 || complete_loss_function) {
+            if (canonical_splicing_destroyed_10 || variant_within_5bp_10 || complete_loss_function_10) {
                 showPage('q9_2_1_3');
-            } else if (canonical_splicing_weakened_5 || variant_within_6_15bp_5 || partial_loss_function) {
+            } else if (canonical_splicing_weakened_10 || variant_within_6_15bp_10 || partial_loss_function_10) {
                 showPage('q9_2_1_2');
-            } else if (known_benign) {
+            } else if (known_benign_10) {
                 showPage('q9_2_1_1');
-            } else if (effect_not_known) {
+            } else if (effect_not_known_10) {
                 showPage('a8_2_1_3_1');
-            } else if (change_gof_dn) {
+            } else if (change_gof_dn_10) {
                 showPage('q9_2_1_4');
             }
         }
@@ -1648,15 +1635,15 @@
     <div id="q9_2_1_5" class="container">
         <h2>Please tick all boxes that apply. Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</h2>
         <div class="checkboxes">
-            <label><input type="checkbox" id="loss_10_percent"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
-            <label><input type="checkbox" id="only_functional_domain"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
-            <label><input type="checkbox" id="important_functional_domain"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
-            <label><input type="checkbox" id="one_functional_domain"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
-            <label><input type="checkbox" id="multiple_functional_domains"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
-            <label><input type="checkbox" id="repeat_domains"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
-            <label><input type="checkbox" id="mutational_hotspot"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
-            <label><input type="checkbox" id="pathogenic_loss"> Loss of both exons combined shown to be pathogenic</label>
-            <label><input type="checkbox" id="pathogenic_inframe"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
+            <label><input type="checkbox" id="loss_10_percent_11"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="only_functional_domain_11"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="important_functional_domain_11"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="one_functional_domain_11"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
+            <label><input type="checkbox" id="multiple_functional_domains_11"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="repeat_domains_11"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot_11"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
+            <label><input type="checkbox" id="pathogenic_loss_11"> Loss of both exons combined shown to be pathogenic</label>
+            <label><input type="checkbox" id="pathogenic_inframe_11"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
             <label><input type="checkbox" id="none"> None</label>
         </div>
         <div class="navigation-buttons">
@@ -1668,26 +1655,26 @@
 
     <script>
         function evaluateQ9_2_1_5() {
-            const loss_10_percent = document.getElementById('loss_10_percent').checked;
-            const only_functional_domain = document.getElementById('only_functional_domain').checked;
-            const important_functional_domain = document.getElementById('important_functional_domain').checked;
-            const one_functional_domain = document.getElementById('one_functional_domain').checked;
-            const multiple_functional_domains = document.getElementById('multiple_functional_domains').checked;
-            const repeat_domains = document.getElementById('repeat_domains').checked;
-            const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
-            const pathogenic_loss = document.getElementById('pathogenic_loss').checked;
-            const pathogenic_inframe = document.getElementById('pathogenic_inframe').checked;
-            const none = document.getElementById('none').checked;
+            const loss_10_percent_10 = document.getElementById('loss_10_percent_10').checked;
+            const only_functional_domain_10 = document.getElementById('only_functional_domain_10').checked;
+            const important_functional_domain_10 = document.getElementById('important_functional_domain_10').checked;
+            const one_functional_domain_10 = document.getElementById('one_functional_domain_10').checked;
+            const multiple_functional_domains_10 = document.getElementById('multiple_functional_domains_10').checked;
+            const repeat_domains_10 = document.getElementById('repeat_domains_10').checked;
+            const mutational_hotspot_10 = document.getElementById('mutational_hotspot_10').checked;
+            const pathogenic_loss_10 = document.getElementById('pathogenic_loss_10').checked;
+            const pathogenic_inframe_10 = document.getElementById('pathogenic_inframe_10').checked;
+            const none_10 = document.getElementById('none').checked;
 
-            if (only_functional_domain || important_functional_domain || multiple_functional_domains || pathogenic_loss || mutational_hotspot || pathogenic_inframe) {
+            if (only_functional_domain_10 || important_functional_domain_10 || multiple_functional_domains_10 || pathogenic_loss_10 || mutational_hotspot_10 || pathogenic_inframe_10) {
                 showPage('a8_1_3_1');
-            } else if (loss_10_percent || one_functional_domain) {
+            } else if (loss_10_percent_10 || one_functional_domain_10) {
                 showPage('q8_1_3_1');
-            } else if (loss_10_percent && one_functional_domain) {
+            } else if (loss_10_percent_10 && one_functional_domain_10) {
                 showPage('q8_1_3_1');
-            } else if (repeat_domains) {
+            } else if (repeat_domains_10) {
                 showPage('a8_1_3_2');
-            } else if (none) {
+            } else if (none_10) {
                 showPage('q8_1_3_2');
             }
         }
