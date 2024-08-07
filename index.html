@@ -1,210 +1,1917 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N1C Variant Eligibility Calculator</title>
     <style>
-        body {
+        body, html {
+            height: 100%;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f0f0f0;
         }
         .container {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .question {
             display: none;
+            flex-direction: column;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
         }
-        .question p {
-            font-weight: bold;
-        }
-        button {
-            margin: 5px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .navigation {
+        .buttons {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        .info {
-            margin-top: 10px;
-            font-size: 14px;
-            color: gray;
+        .buttons button {
+            margin: 5px;
+        }
+        #startPage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
         a {
             color: blue;
-            text-decoration: none;
+        }
+        .checkboxes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .checkboxes label {
+            margin: 5px;
         }
     </style>
 </head>
 <body>
-    <div id="start" class="container question">
+    <div id="startPage" class="container" style="display: flex;">
         <h1>N1C Variant Eligibility Calculator</h1>
-        <button onclick="showQuestion('question1')">Start</button>
+        <button onclick="showPage('q1')">Start</button>
     </div>
 
-    <div id="question1" class="container question">
-        <p>Is the variant description correct and conform to the HGVS nomenclature?</p>
-        <div class="info">For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/" target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/" target="_blank">Mutalyzer</a>.</div>
-        <button onclick="showResult('result1')">No</button>
-        <button onclick="showQuestion('question2')">Yes</button>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <!-- Question 1 -->
+    <div id="q1" class="container">
+        <h2>Is the variant description correct and conform with the HGVS nomenclature?</h2>
+        <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/">VariantValidator</a> or <a href="https://mutalyzer.nl/">Mutalyzer</a>.</p>
+        <div class="buttons">
+            <button onclick="showPage('a1')">No</button>
+            <button onclick="showPage('q2')">Yes</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question2" class="container question">
-        <p>Is the variant of a type applicable to be evaluated with these guidelines?</p>
-        <div class="info">Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletion or duplication. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Section 0” of the N1C consensus guidelines for further explanations.</div>
-        <button onclick="showResult('result2')">No</button>
-        <button onclick="showQuestion('question3')">Yes</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question1')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="a1" class="container">
+        <h2>Eligibility: unable to assess</h2>
+<p>Please check with the referring clinician or patient (family) to receive the correct variant description.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question3" class="container question">
-        <p>Is the variant a copy number variation and if yes, what type?</p>
-        <button onclick="showQuestion('question3a1')">Yes, copy number gain</button>
-        <button onclick="showResult('result3b')">Yes, copy number loss</button>
-        <button onclick="showQuestion('question4')">No</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question2')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    
+    <div id="q2" class="container">
+        <h2>Is the variant of a type applicable to be evaluated with these guidelines?</h2>
+        <p>Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletions or duplications. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Step 0” of the N1C consensus guidelines for further explanations.</p>
+        <div class="buttons">
+            <button onclick="showPage('a2')">No</button>
+            <button onclick="showPage('q3')">Yes</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question3a1" class="container question">
-        <p>Is the disorder/gene associated with haploinsufficiency?</p>
-        <div class="info">For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search=" target="_blank">Dosage Sensitivity</a> curations from ClinGen.</div>
-        <button onclick="showQuestion('question3a1a')">No</button>
-        <button onclick="showQuestion('question3a1b')">Yes</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question3')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="a2" class="container">
+        <h2>Eligibility: unable to assess</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question3a1a" class="container question">
-        <p>Is there already an ASO/RNAi/siRNA approach developed for this gene?</p>
-        <div class="info">Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</div>
-        <button onclick="showResult('result4a1a1')">Yes</button>
-        <button onclick="showResult('result4a1a2')">No</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question3a1')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="q3" class="container">
+        <h2>Is the variant a duplication or deletion of a whole gene (CNV)?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q3_1')">Yes gene duplication</button>
+            <button onclick="showPage('result3_2')">Yes gene deletion</button>
+            <button onclick="showPage('q4')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question3a1b" class="container question">
-        <p>Is there already an ASO/RNAi/siRNA approach developed for this gene?</p>
-        <div class="info">Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</div>
-        <button onclick="showResult('result4a1b1')">Yes</button>
-        <button onclick="showResult('result4a1b2')">No</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question3a1')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <!-- Question 3.1 -->
+    <div id="q3_1" class="container">
+        <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the disorder/gene associated with haploinsufficiency?</h2>
+        <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search=">ClinGen</a>.</p>
+
+        <div class="buttons">
+            <button onclick="showPage('q3_1_1')">No</button>
+            <button onclick="showPage('q3_1_2')">Yes</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+    <!-- Question 3.1.1 -->
+    <div id="q3_1_1" class="container">
+        <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('result3_1_1_yes')">Yes</button>
+            <button onclick="showPage('result3_1_1_no')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="question4" class="container question">
-        <p>What is the inheritance pattern of the disorder or specific for this variant?</p>
-        <div class="info">For guidance on how to determine the inheritance pattern, please read “Step 1” of the N1C consensus guidelines.</div>
-        <button onclick="showQuestion('question5a')">Autosomal dominant</button>
-        <button onclick="showQuestion('question5b')">Autosomal recessive</button>
-        <button onclick="showResult('result6')">Mitochondrial</button>
-        <button onclick="showResult('result7')">Unknown</button>
-        <div class="navigation">
-            <button onclick="showQuestion('question3')">Back</button>
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="result3_1_1_yes" class="container">
+        <h2>Eligibility: YES</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <!-- Add more questions and results as needed -->
-    <!-- Example Result Sections -->
-    <div id="result1" class="container question">
-        <p>Please check with referring clinician or patient (family) to receive correct variant description. Eligibility: unable to assess</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="result3_1_1_no" class="container">
+        <h2>Eligibility: Likely eligible</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result2" class="container question">
-        <p>Eligibility: unable to assess</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="q3_1_2" class="container">
+        <h2>Consider an allele-selective approach. Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('result3_1_2_yes')">Yes</button>
+            <button onclick="showPage('result3_1_2_no')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result3b" class="container question">
-        <p>Consider variant for TANGO approach. Please review Section C in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="result3_1_2_yes" class="container">
+        <h2>Eligibility: YES</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result4a1a1" class="container question">
-        <p>Eligibility: YES</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="result3_1_2_no" class="container">
+        <h2>Eligibility: Unlikely eligible </h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result4a1a2" class="container question">
-        <p>Eligibility: Probably (please check Table 4 in the N1C consensus guidelines)</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <!-- Result 3.2 -->
+    <div id="result3_2" class="container">
+        <h2>Consider variant for TANGO approach. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result4a1b1" class="container question">
-        <p>Eligibility: YES</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <!-- Question 4 -->
+    <div id="q4" class="container">
+        <h2>What is the inheritance pattern of this variant?</h2>
+        <p> For guidance on how to determine the inheritance pattern, please see “Step 1” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q5_1')">Autosomal dominant</button>
+            <button onclick="showPage('q5_2')">Autosomal recessive</button>
+            <button onclick="showPage('q5_3')">X-linked dominant</button>
+            <button onclick="showPage('q5_4')">X-linked recessive</button>
+            <button onclick="showPage('q5_5')">Mitochondrial</button>
+<button onclick="showPage('q5_6')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+    <!-- Question 5.1 Autosomal dominant -->
+    <div id="q5_1" class="container">
+        <h2>What is the pathomechanism of the variant under assessment?</h2>
+        <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q6_1_1')">Loss of function</button>
+            <button onclick="showPage('q6_1_2')">Gain of function</button>
+            <button onclick="showPage('q6_1_3')">Dominant negative</button>
+            <button onclick="showPage('q6_1_4')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result4a1b2" class="container question">
-        <p>Eligibility: Possibly (please check Table 4 in the N1C consensus guidelines)</p>
-        <div class="navigation">
-            <button onclick="showQuestion('start')">Back to Start</button>
+    <div id="q6_1_1" class="container">
+        <h2>What is the variant type?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
+            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
+            <button onclick="showPage('q7_1_1_3')">Missense</button>
+            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
+            <button onclick="showPage('q7_1_1_3')">Small in-frame indel</button>
+            <button onclick="showPage('q7_1_1_5')">Whole exon duplication</button>
+            <button onclick="showPage('q7_1_1_6')">Whole exon deletion</button>
+            <button onclick="showPage('q7_1_1_1')">Intronic</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Question 7.1.1.1 Intronic variants -->
+    <div id="q7_1_1_1" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_1_1')">Yes</button>
+            <button onclick="showPage('result7_1_1_1_2')">No</button>
+<button onclick="showPage('result7_1_1_1_3')">Not known</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q8.1.1: The variant can be assessed for splice-modulation ASO approaches -->
+    <div id="q8_1_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="intronic_variant_upstream"> Intronic variant >100 bp upstream of acceptor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_downstream"> Intronic variant >50 bp downstream of donor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_within"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_1_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
     <script>
-        function showQuestion(questionId) {
-            // Hide all elements with class "question"
-            var questions = document.getElementsByClassName("question");
-            for (var i = 0; i < questions.length; i++) {
-                questions[i].style.display = "none";
+        function evaluateQ8_1_1() {
+            const canonical_splicing_destroyed = document.getElementById('canonical_splicing_destroyed').checked;
+            const canonical_splicing_weakened = document.getElementById('canonical_splicing_weakened').checked;
+            const variant_within_5bp = document.getElementById('variant_within_5bp').checked;
+            const intronic_variant_upstream = document.getElementById('intronic_variant_upstream').checked;
+            const intronic_variant_downstream = document.getElementById('intronic_variant_downstream').checked;
+            const intronic_variant_within = document.getElementById('intronic_variant_within').checked;
+
+            if (intronic_variant_upstream || intronic_variant_downstream) {
+                showPage('q9_1_1_1');
+            } else if (canonical_splicing_weakened && (intronic_variant_upstream || intronic_variant_downstream || intronic_variant_within)) {
+                showPage('q9_1_1_2');
+            } else if (canonical_splicing_destroyed || variant_within_5bp) {
+                showPage('q9_1_1_3');
             }
-            // Show the specific question
-            document.getElementById(questionId).style.display = "block";
+        }
+    </script>
+
+    <!-- Q9.1.1.1: Has there already been an ASO developed for this variant? -->
+    <div id="q9_1_1_1" class="container">
+        <h2>Has there already been an ASO developed for this variant?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('result9_1_1_1_1')">Yes</button>
+            <button onclick="showPage('result9_1_1_1_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q9.1.1.2: Has there already been an ASO developed for this variant? -->
+    <div id="q9_1_1_2" class="container">
+        <h2>Has there already been an ASO developed for this variant?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('result9_1_1_2_1')">Yes</button>
+            <button onclick="showPage('result9_1_1_2_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q9.1.1.3: Variant is not eligible for splice-modulation -->
+    <div id="q9_1_1_3" class="container">
+        <h2>Variant is not eligible for splice-modulation.</h2>
+        <p>Under rare circumstances, the variant could be considered for exon skipping. Please see guidelines “Step 3” for more detailed information. Variant could also be considered for TANGO approaches. Please pick the next guideline:</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Results Q9.1.1.1 and Q9.1.1.2 -->
+    <div id="result9_1_1_1_1" class="container">
+        <h2>Eligibility: YES</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result9_1_1_1_2" class="container">
+        <h2>Eligibility: Likely eligible</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result9_1_1_2_1" class="container">
+        <h2>Eligibility: YES</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result9_1_1_2_2" class="container">
+        <h2>Eligibility: Unlikekly eligible</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+
+    <div id="result7_1_1_1_2" class="container">
+        <h2> Eligibility: Unable to assess.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+        <div id="result7_1_1_1_3" class="container">
+        <h2> The variant cannot be assessed for splice-modulation. Please obtain evidence for or against a splicing defect.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- TANGO approach -->
+    <div id="a8_1_1_3_2" class="container">
+        <h2>A8.1.1.3.2: TANGO</h2>
+        <p>Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q7.1.1.2: Synonymous variants -->
+    <div id="q7_1_1_2" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_1_1_2_1')">Yes</button>
+            <button onclick="showPage('result7_1_1_2_1')">No</button>
+            <button onclick="showPage('result7_1_1_2_2')">Not known</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q8.1.1.2.1: Synonymous variants -->
+    <div id="q8_1_1_2_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed_1"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_1"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_1"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6to15bp_1"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_1_1_2_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ8_1_1_2_1() {
+            const canonical_splicing_destroyed_1 = document.getElementById('canonical_splicing_destroyed_1').checked;
+            const canonical_splicing_weakened_1 = document.getElementById('canonical_splicing_weakened_1').checked;
+            const variant_within_5bp_1 = document.getElementById('variant_within_5bp_1').checked;
+            const variant_within_6to15bp_1 = document.getElementById('variant_within_6to15bp').checked;
+            const none = document.getElementById('none').checked;
+
+            if (canonical_splicing_destroyed_1 || variant_within_5bp) {
+                showPage('q9_1_1_3');
+            } else if (canonical_splicing_weakened_1 || variant_within_6to15bp) {
+                showPage('q9_1_1_2');
+            } else if (none) {
+                showPage('q9_1_1_1');
+            }
         }
 
-        function showResult(resultId) {
-            // Hide all elements with class "question"
-            var questions = document.getElementsByClassName("question");
-            for (var i = 0; i < questions.length; i++) {
-                questions[i].style.display = "none";
-            }
-            // Show the specific result
-            document.getElementById(resultId).style.display = "block";
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
         }
 
-        // Initially, show the start screen
-        document.addEventListener("DOMContentLoaded", function() {
-            showQuestion('start');
-        });
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
+
+        let historyStack = [];
+    </script>
+
+    <!-- result7_1_1_2_1 and result7_1_1_2_2 -->
+    <div id="result7_1_1_2_1" class="container">
+        <h2>The variant cannot be assessed for splice modulation. Eligibility: Unable to assess.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="result7_1_1_2_2" class="container">
+        <h2>Result: The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing effect.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q7.1.1.3: Missense variants or in-frame indels -->
+    <div id="q7_1_1_3" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. Functional evidence is required.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_1_1_3_1')">Yes</button>
+            <button onclick="showPage('q8_1_1_3_2')">No</button>
+            <button onclick="showPage('q8_1_1_3_3')">Not known</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q8.1.1.3.1: Missense and in-frame indels Splice-modulation ASO approaches -->
+    <div id="q8_1_1_3_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed_2"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_2"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_2"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6to15bp_2"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="amino_acid_function_unknown"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
+            <label><input type="checkbox" id="amino_acid_gof_dn"> Change in amino acid sequence causes GoF or DN effect</label>
+            <label><input type="checkbox" id="amino_acid_complete_lof"> Change in amino acid sequence causes complete loss of function</label>
+            <label><input type="checkbox" id="amino_acid_partial_lof"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
+            <label><input type="checkbox" id="amino_acid_benign"> Change on protein/amino acid level known to be benign</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_1_1_3_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ8_1_1_3_1() {
+            const canonical_splicing_destroyed_2 = document.getElementById('canonical_splicing_destroyed_2').checked;
+            const canonical_splicing_weakened_2 = document.getElementById('canonical_splicing_weakened_2').checked;
+            const variant_within_5bp_2 = document.getElementById('variant_within_5bp_2').checked;
+            const variant_within_6to15bp_2 = document.getElementById('variant_within_6to15bp_2').checked;
+            const amino_acid_function_unknown = document.getElementById('amino_acid_function_unknown').checked;
+            const amino_acid_gof_dn = document.getElementById('amino_acid_gof_dn').checked;
+            const amino_acid_complete_lof = document.getElementById('amino_acid_complete_lof').checked;
+            const amino_acid_partial_lof = document.getElementById('amino_acid_partial_lof').checked;
+            const amino_acid_benign = document.getElementById('amino_acid_benign').checked;
+
+            if (canonical_splicing_destroyed_2 || variant_within_5bp_2 || amino_acid_complete_lof) {
+                showPage('q9_1_1_3');
+            } else if (canonical_splicing_weakened_2 || variant_within_6to15bp_2 || amino_acid_partial_lof) {
+                showPage('q9_1_1_2');
+            } else if (amino_acid_benign) {
+                showPage('q9_1_1_1');
+            } else if (amino_acid_function_unknown) {
+                showPage('a8_1_1_3_1_1');
+            } else if (amino_acid_gof_dn) {
+                showPage('q9_1_1_4');
+            }
+        }
+
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
+
+        let historyStack = [];
+    </script>
+
+    <!-- Placeholder for Q9.1.1.4, A8.1.1.3.1.1 -->
+    <div id="q9_1_1_4" class="container">
+        <h2>Variant is not eligible for a splice-modulating approach but under certain circumstances can be assessed for an exon skipping approach.</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_1_3_1_1" class="container">
+        <h2>Variant cannot be assessed for splice-modulation until further evidence is available. Under certain circumstances, variant could be assessed for exon skipping or TANGO approaches.</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_1_3_2" class="container">
+        <h2>The variant cannot be assessed for splice modulation. The variant can be considered for exon skipping or a TANGO approach.</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_1_3_2" class="container">
+        <h2>The variant cannot be assessed for splice modulation. Under certain circumstances, the variant can be considered for exon skipping or a TANGO approach </h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+
+    <!— Q7.1.1.4 Nonsense and frameshift variants and exon skipping evaluation -->
+    <div id="q7_1_1_4" class="container">
+        <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines.</h2>
+        <p>Do any of the following criteria apply to the exon: a) Exon is first coding exon, b) Exon is last coding exon, c) Exon is out of frame, d) Skipping the exon will generate a STOP codon, e) Gene contains only one coding exon.</p>
+        <div class="buttons">
+            <button onclick="showPage('a7_1_1_4')">Yes</button>
+            <button onclick="showPage('q8_1_3')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_1_4" class="container">
+        <h2>Eligibility: Not eligible</h2>
+        <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+    </div>
+
+    <!-- Q8.1.3: Exon skipping assessment -->
+    <div id="q8_1_3" class="container">
+        <h2>Please tick all boxes that apply. Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</h2>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="loss_10_percent"> Exon skipping results in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="loss_only_domain"> Exon skipping results in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="loss_important_domain"> Exon skipping results in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="loss_one_domain"> Exon skipping results in the loss of one functional domain</label>
+            <label><input type="checkbox" id="loss_multiple_domains"> Exon skipping results in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="loss_repeat_domains"> Exon skipping results in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot"> Exon contains mutational hotspot</label>
+            <label><input type="checkbox" id="pathogenic"> Exon skipping shown to be pathogenic</label>
+            <label><input type="checkbox" id="in_frame_deletions"> Functional evidence of in-frame deletions shown to be pathogenic</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_1_3()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+
+        <script>
+            function evaluateQ8_1_3() {
+                const loss_10_percent = document.getElementById('loss_10_percent').checked;
+                const loss_only_domain = document.getElementById('loss_only_domain').checked;
+                const loss_important_domain = document.getElementById('loss_important_domain').checked;
+                const loss_one_domain = document.getElementById('loss_one_domain').checked;
+                const loss_multiple_domains = document.getElementById('loss_multiple_domains').checked;
+                const loss_repeat_domains = document.getElementById('loss_repeat_domains').checked;
+                const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
+                const pathogenic = document.getElementById('pathogenic').checked;
+                const in_frame_deletions = document.getElementById('in_frame_deletions').checked;
+                const none = document.getElementById('none').checked;
+
+                if (loss_only_domain || loss_important_domain || loss_multiple_domains || pathogenic || mutational_hotspot || in_frame_deletions) {
+                    showPage('a8_1_3_1');
+                } else if (loss_10_percent || loss_one_domain) {
+                    showPage('q8_1_3_1');
+                } else if (loss_repeat_domains) {
+                    showPage('a8_1_3_2');
+                } else if (none) {
+                    showPage('q8_1_3_2');
+                }
+            }
+        </script>
+    </div>
+
+    <div id="a8_1_3_1" class="container">
+        <h2>Eligibility: not eligible.</h2>
+        <p>Please note exceptions listed in “Section A” of the N1C consensus guidelines.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_3_2" class="container">
+        <h2>Special considerations apply for repeat domains.</h2>
+        <p>Please see “Section A” of the N1C consensus guidelines. Most suitable are in-frame exons that contain a single, full repeat of the tandem repeats and no additional domains. If an ASO has already been developed for this exon, we consider it eligible for exon skipping.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_3_1" class="container">
+        <h2>Is there already an exon skipping therapy available?</h2>
+        <p>Please check for the exon in general and not only the variant in question. A suggestion of a possible search term in Pubmed is: ABCA4 AND ((ASO) OR (AON) OR (antisense oligonucleotide)) AND (Exon 17). Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a8_1_3_1_1')">Yes</button>
+            <button onclick="showPage('a8_1_3_1_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_3_2" class="container">
+        <h2>Is there already an ASO exon skipping therapy available?</h2>
+        <p>Please check for the exon in general and not only the variant in question. A suggestion of a possible search term in Pubmed is: ABCA4 AND ((ASO) OR (AON) OR (antisense oligonucleotide)) AND (Exon 17). Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a8_1_3_1_1')">Yes</button>
+            <button onclick="showPage('a8_1_3_1_3')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_3_1_1" class="container">
+        <h2>Eligibility: Yes for exon skipping</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_3_1_2" class="container">
+        <h2>Eligibility: Unlikely for exon skipping</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_3_1_3" class="container">
+        <h2>Eligibility: Likely for exon skipping</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+<!-- Q7.1.1.5 and 6 Whole exon duplication and deletion -->
+    <div id="q7_1_1_5" class="container">
+        <h2>This variant is not eligible for splice modulation.</h2>
+        <p>If the deleted exon is in-frame, the variant is also not applicable to an exon skipping treatment. The variant can be considered for a TANGO approach in AD and possibly XLD disorders. If the variant is an out-of-frame exon deletion, check if any of the two adjacent exons could be skipped to get the transcript back into frame, then an exon skipping approach could be considered. If the deleted exon is the first or last coding exon, exon skipping is not a viable option (rare exceptions apply). Exon skipping might have to be allele-selective; please review “Section C” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_1_1_5_1')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_1_5_1" class="container">
+        <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines. Please keep in mind that the aim is to skip an adjacent exon to get the transcript back into frame. Do any of the following criteria apply to the exon? </h2>
+        <p> a) Exon is first coding exon, b) Exon is last coding exon, d) Skipping the exon will generate a STOP codon, c)Gene contains only the two coding exons (deleted one and the one to be skipped).</p>
+        <div class="buttons">
+            <button onclick="showPage('a8_1_1_5_1_1')">Yes</button>
+            <button onclick="showPage('q9_1_1_5')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_1_1_5_1_1" class="container">
+        <h2>Eligibility: Not eligible</h2>
+        <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_1_1_5" class="container">
+        <h2>Q9.1.1.5: Please tick all boxes that apply.</h2>
+        <p>Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="loss_10_percent"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="loss_only_functional_domain"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="loss_important_functional_domain"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="loss_one_functional_domain"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
+            <label><input type="checkbox" id="loss_multiple_functional_domains"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="loss_repeat_domains"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
+            <label><input type="checkbox" id="shown_pathogenic"> Loss of both exons combined shown to be pathogenic</label>
+            <label><input type="checkbox" id="evidence_pathogenic"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ9_1_1_5()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ9_1_1_5() {
+            const loss_10_percent = document.getElementById('loss_10_percent').checked;
+            const loss_only_functional_domain = document.getElementById('loss_only_functional_domain').checked;
+            const loss_important_functional_domain = document.getElementById('loss_important_functional_domain').checked;
+            const loss_one_functional_domain = document.getElementById('loss_one_functional_domain').checked;
+            const loss_multiple_functional_domains = document.getElementById('loss_multiple_functional_domains').checked;
+            const loss_repeat_domains = document.getElementById('loss_repeat_domains').checked;
+            const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
+            const shown_pathogenic = document.getElementById('shown_pathogenic').checked;
+            const evidence_pathogenic = document.getElementById('evidence_pathogenic').checked;
+            const none = document.getElementById('none').checked;
+
+            if (loss_only_functional_domain || loss_important_functional_domain || loss_multiple_functional_domains || shown_pathogenic || mutational_hotspot || evidence_pathogenic) {
+                showPage('a8_1_3_1');
+            } else if ((loss_10_percent && loss_one_functional_domain) || loss_10_percent || loss_one_functional_domain) {
+                showPage('q8_1_3_1');
+            } else if (loss_repeat_domains) {
+                showPage('a8_1_3_2');
+            } else if (none) {
+                showPage('q8_1_3_2');
+            }
+        }
+    </script>
+
+    <!-- A7.1.1.6: Exon duplication -->
+    <div id="a7_1_1_6" class="container">
+        <h2>This variant is not eligible for splice modulation.</h2>
+        <p>If an exon duplication leads to a loss of function in an AD disorder, a TANGO approach can be considered. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!—Q6.1.2: Decision for GoF variants -->
+    <div id="q6_1_2" class="container">
+        <h2>Gain of function variants can be analyzed using the assessment for splice modulation or for knockdown. In rare circumstances, an exon skipping approach can be employed. Review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+<button onclick="showPage('q7_1_2_2')">Knockdown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_2" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_2')">Yes</button>
+<button onclick="showPage('q7_3')">No</button>
+<button onclick="showPage('q7_4')">Not know</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_2" class="container">
+        <h2>What is the variant type?</h2>
+        <div class="buttons">
+            <button onclick="evaluateQ8_2('nonsense', 'frameshift')">Nonsense</button>
+            <button onclick="evaluateQ8_2('nonsense', 'frameshift')">Frameshift</button>
+            <button onclick="evaluateQ8_2('whole_exon', 'duplication_deletion')">Whole exon duplication or deletion</button>
+            <button onclick="evaluateQ8_2('missense', 'inframe_indel')">Missense</button>
+            <button onclick="evaluateQ8_2('missense', 'inframe_indel')">Small, in-frame indel</button>
+            <button onclick="evaluateQ8_2('synonymous')">Synonymous</button>
+            <button onclick="evaluateQ8_2('intronic')">Intronic</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+
+        <script>
+            function evaluateQ8_2(type1, type2) {
+                if (type1 === 'nonsense' || type1 === 'frameshift') {
+                    showPage('q9_2');
+                } else if (type1 === 'whole_exon' && type2 === 'duplication_deletion') {
+                    showPage('a8_2_1');
+                } else if (type1 === 'missense' || type2 === 'inframe_indel') {
+                    showPage('q8_1_1_3_1');
+                } else if (type1 === 'synonymous') {
+                    showPage('q8_1_1_2_1');
+                } else if (type1 === 'intronic') {
+                    showPage('q8_1_1');
+                }
+            }
+        </script>
+    </div>
+
+    <div id="q9_2" class="container">
+        <h2> Nonsense and frameshift variants leading to splice aberrations can be corrected with a splice-modulation ASO. By correcting splicing, the variants will cause a loss of function effect on protein level due to the amino acid changes. In such cases it is also less relevant whether canonical splicing is affected, as a reduction of the toxic GoF effect is the goal, however, attention to haploinsufficiency should be paid. Is the disorder associated with haploinsufficiency?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q10_2_1')">Yes</button>
+            <button onclick="showPage('q10_2_2')">No</button>
+        </div>
+    </div>
+
+    <div id="q10_2_1" class="container">
+        <h2>Is there already an ASO approach developed for this variant?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a10_2_1_1')">Yes</button>
+            <button onclick="showPage('a10_2_1_2')">No</button>
+        </div>
+    </div>
+
+    <div id="q10_2_2" class="container">
+        <h2>Q10.2.2: Is there already an ASO approach developed for this variant?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a10_2_1_1')">Yes</button>
+            <button onclick="showPage('a10_2_1_3')">No</button>
+        </div>
+    </div>
+
+    <div id="a10_2_1_1" class="container">
+        <h2>Variant is eligible for a knockdown approach.</h2>
+<div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+
+
+    <div id="a10_2_1_2" class="container">
+        <h2>Variant is unlikely eligible for a knockdown approach.</h2>
+        <p>Please consider an allele-selective knockdown.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a10_2_1_3" class="container">
+        <h2>Variant is likely eligible for a knockdown approach</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_2_1" class="container">
+        <h2> For whole exon deletions and duplications that cause a splicing effect and lead to a toxic GoF of a protein, multiple approaches are possible. Splicing can be corrected if the correction leads either a LoF of that transcript or a benign effect. Exon skipping can be used to correct the reading frame or to cause a downregulation of the transcript of a knockdown approach using siRNA/gapmer ASOs can be used. Please also check whether the gene is associated with haploinsufficiency. Please chose the guideline you want to follow:</h2>
+        <div class="buttons">
+            <button onclick="showPage('q8_1_1_5_1')">Exon skipping whole exon deletion</button>
+            <button onclick="showPage('a7_1_1_6')">Exon skipping whole exon duplication</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+    </div>
+
+    <div id="q7_3" class="container">
+        <h2>The variant cannot be assessed for splice modulation.</h2>
+        <p>The variant can be considered for a knockdown approach or in certain circumstances for exon skipping. Please choose preferred assessment:</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+        </div>
+    </div>
+
+    <div id="q7_4" class="container">
+        <h2>The variant cannot be assessed for splice modulation.</h2>
+        <p>The variant can be considered for a knockdown approach or in certain circumstances for exon skipping. Please choose preferred assessment:</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- q7_1_2_2: Knockdown approach -->
+    <div id="q7_1_2_2" class="container">
+        <h2>Please tick all that apply</h2>
+        <p>Please see “Section C” in the N1C consensus guidelines for further information.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="loss_one_allele"> Loss of one allele tolerated</label>
+            <label><input type="checkbox" id="complete_loss_function"> Complete loss of function (e.g. both alleles) tolerated</label>
+            <label><input type="checkbox" id="haploinsufficiency"> Gene associated with haploinsufficiency</label>
+            <label><input type="checkbox" id="hypomorphic_alleles"> Hypomorphic alleles are a cause of disease</label>
+            <label><input type="checkbox" id="intolerant_reduction"> Intolerant to reduction (a very strict control of gene dosage)</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ7_1_2_2()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+
+        <script>
+            function evaluateQ7_1_2_2() {
+                const loss_one_allele = document.getElementById('loss_one_allele').checked;
+                const complete_loss_function = document.getElementById('complete_loss_function').checked;
+                const haploinsufficiency = document.getElementById('haploinsufficiency').checked;
+                const hypomorphic_alleles = document.getElementById('hypomorphic_alleles').checked;
+                const intolerant_reduction = document.getElementById('intolerant_reduction').checked;
+                const none = document.getElementById('none').checked;
+
+                if (intolerant_reduction) {
+                    showPage('a7_1_2_2_1');
+                } else if (none) {
+                    showPage('a7_1_2_2_2');
+                } else if (loss_one_allele || complete_loss_function) {
+                    showPage('q7_1_2_2_1');
+                } else if (haploinsufficiency || hypomorphic_alleles) {
+                    showPage('q7_1_2_2_2');
+                }
+            }
+        </script>
+    </div>
+
+    <div id="a7_1_2_2_1" class="container">
+        <h2>Variant not eligible for knockdown approaches.</h2>
+        <p>The exon the variant is located in could be considered for exon skipping should it fulfill all criteria.</p>
+        <div class="navigation-buttons">
+            <button onclick="showPage('q7_1_1_4')">Go to Exon Skipping</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_2_2_2" class="container">
+        <h2>Eligibility: Unable to assess. </h2>
+        <p> More information needs to be obtained in order to make an assessment. Should there already be a knockdown approach available for this variant or any other variant in this gene with sufficient functional evidence, then the variant is eligible.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_1_2_2_1" class="container">
+        <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a7_1_2_2_1_1')">Yes</button>
+            <button onclick="showPage('a7_1_2_2_1_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_2_2_1_1" class="container">
+        <h2>Variant is eligible for a knockdown approach.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_2_2_1_2" class="container">
+        <h2>Variant is likely eligible for a knockdown approach.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_1_2_2_2" class="container">
+        <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
+        <p>Info: Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a7_1_2_2_2_1')">Yes</button>
+            <button onclick="showPage('a7_1_2_2_2_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_2_2_2_1" class="container">
+        <h2>Variant is eligible for knockdown approach.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_2_2_2_2" class="container">
+        <h2>Result: Variant is unlikely eligible for knockdown approach. Please consider an allele-selective knockdown.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+
+    <!-- A5.1.3: Dominant Negative Variants -->
+    <div id="q6_1_3" class="container">
+        <h2>Dominant negative variants can be analyzed using the assessment for splice modulation or for downregulation. Please choose your preferred assessment: </h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+            <button onclick="showPage('q6_1_3_2_1')">Knockdown</button>
+        </div>
+    </div>
+    <div id="q6_1_3_2_1" class="container">
+        <h2>Please tick all that apply</h2>
+        <p>Please see “Section C” in the N1C consensus guidelines for further information.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="loss_one_allele"> Loss of one allele tolerated</label>
+            <label><input type="checkbox" id="complete_loss_function"> Complete loss of function (e.g. both alleles) tolerated</label>
+            <label><input type="checkbox" id="haploinsufficiency"> Gene associated with haploinsufficiency</label>
+            <label><input type="checkbox" id="hypomorphic_alleles"> Hypomorphic alleles are a cause of disease</label>
+            <label><input type="checkbox" id="intolerant_reduction"> Intolerant to reduction (a very strict control of gene dosage)</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ6_1_3_2_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ6_1_3_2_1() {
+            const loss_one_allele = document.getElementById('loss_one_allele').checked;
+            const complete_loss_function = document.getElementById('complete_loss_function').checked;
+            const haploinsufficiency = document.getElementById('haploinsufficiency').checked;
+            const hypomorphic_alleles = document.getElementById('hypomorphic_alleles').checked;
+            const intolerant_reduction = document.getElementById('intolerant_reduction').checked;
+            const none = document.getElementById('none').checked;
+
+            if (intolerant_reduction) {
+                showPage('a7_1_3_2_1');
+            } else if (none) {
+                showPage('a7_1_3_2_2');
+            } else if (loss_one_allele || complete_loss_function) {
+                showPage('q7_1_3_2_1');
+            } else if (haploinsufficiency || hypomorphic_alleles) {
+                showPage('q7_1_3_2_2');
+            }
+        }
+    </script>
+    <div id="a7_1_3_2_1" class="container">
+        <h2>Variant not eligible for knockdown approaches.</h2>
+        <p>The exon the variant is located in could be considered for exon skipping should it fulfill all criteria. Please be cautious regarding the effects as dominant negative effects can also appear with skipped exons.</p>
+        <div class="navigation-buttons">
+            <button onclick="showPage('q8_1_1_5_1')">Go to Exon Skipping</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_3_2_2" class="container">
+        <h2>Eligibility: Unable to assess. </h2>
+        <p> More information needs to be obtained in order to make an assessment. Should there already be a knockdown approach available for this variant or any other variant in this gene, the variant is eligible, otherwise the eligibility is “unable to assess”.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_1_3_2_1" class="container">
+        <h2>Has there already been a knockdown approach developed?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on ASO/siRNA availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a7_1_3_2_1_1')">Yes</button>
+            <button onclick="showPage('a7_1_3_2_1_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    
+    <div id="a7_1_3_2_1_1" class="container">
+        <h2>Variant is eligible for knockdown approach.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_3_2_1_2" class="container">
+        <h2>Variant is likely eligible for a knockdown approach. Please consider an allele-selective approach for this dominant negative variant.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    
+    <div id="q7_1_3_2_2" class="container">
+        <h2>Has there already been a knockdown approach developed?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on ASO/siRNA availability.>
+        <div class="buttons">
+            <button onclick="showPage('a7_1_3_2_2_1')">Yes</button>
+            <button onclick="showPage('a7_1_3_2_2_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+ 
+   <div id="a7_1_3_2_2_1" class="container">
+        <h2>Variant is eligible for knockdown approach.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_3_2_2_2" class="container">
+        <h2>Variant is unlikely eligible for knockdown approach. Please consider an allele-selective knockdown for this DN variant.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+   <!-- A5.1.4: Unknown Pathomechanism -->
+    <div id="q6_1_4" class="container">
+        <h2> Eligibility: unable to assess. </h2>
+        <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A4.2: Autosomal Recessive -->
+    <div id="q5_2" class="container">
+        <h2>What is the pathomechanism of the variant under assessment?</h2>
+        <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q6_2_1')">Loss of function</button>
+<button onclick="showPage('q6_2_2')">Gain of function</button>
+<button onclick="showPage('a5_2_3')">Not known</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q6.2.1: AR- Loss of function -->
+    <div id="q6_2_1" class="container">
+        <h2>What is the variant type?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
+            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
+            <button onclick="showPage('q7_2_1_3')">Missense</button>
+            <button onclick="showPage('q7_2_1_3')">Small, in-frame indel</button>
+            <button onclick="showPage('q7_2_1_2')">Synonymous</button>
+            <button onclick="showPage('q7_2_1_1')">Intronic</button>
+            <button onclick="showPage('q7_2_1_5')">Whole exon deletion</button>
+            <button onclick="showPage('a7_2_1_6')">Whole exon duplication</button>
+        </div>
+    </div>
+
+    <!-- Q7.2.1.1: Intronic Variants -->
+    <div id="q7_2_1_1" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_2_1')">Yes</button>
+            <button onclick="showPage('a7_2_1_1_2')">No</button>
+            <button onclick="showPage('a7_2_1_1_3')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_2_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed_3"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_3"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_3"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="intronic_variant_upstream"> Intronic variant >100 bp upstream of acceptor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_downstream"> Intronic variant >50 bp downstream of donor splice site</label>
+            <label><input type="checkbox" id="intronic_variant_within"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_2_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ8_2_1() {
+            const canonical_splicing_destroyed_3 = document.getElementById('canonical_splicing_destroyed_3').checked;
+            const canonical_splicing_weakened_3 = document.getElementById('canonical_splicing_weakened_3').checked;
+            const variant_within_5bp_3 = document.getElementById('variant_within_5bp_3').checked;
+            const intronic_variant_upstream = document.getElementById('intronic_variant_upstream').checked;
+            const intronic_variant_downstream = document.getElementById('intronic_variant_downstream').checked;
+            const intronic_variant_within = document.getElementById('intronic_variant_within').checked;
+
+            if (intronic_variant_upstream || intronic_variant_downstream) {
+                showPage('q9_2_1_1');
+            } else if (canonical_splicing_weakened_3 && (intronic_variant_upstream || intronic_variant_downstream || intronic_variant_within)) {
+                showPage('q9_2_1_2');
+            } else if (canonical_splicing_destroyed_3 || variant_within_5bp) {
+                showPage('q9_2_1_3');
+            }
+        }
+    </script>
+
+    <div id="q9_2_1_1" class="container">
+        <h2>Has there already been an ASO developed for this variant?</h2>
+        <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage('a9_2_1_1_1')">Yes</button>
+            <button onclick="showPage('a9_2_1_1_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_2_1_2" class="container">
+        <h2>Q9.2.1.2: Has there already been an ASO developed for this variant?</h2>
+        <p>Info: Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
+        <div class="buttons">
+            <button onclick="showPage(' q9_2_1_1_1')">Yes</button>
+            <button onclick="showPage(' q9_2_1_2_2')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_2_1_1_1" class="container">
+        <h2>Eligibility: Variant is eligible for splice-modulation.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a9_2_1_1_2" class="container">
+        <h2>Eligibility: Likely eligible for splice modulation</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="'a9_2_1_2_2'" class="container">
+        <h2>Eligibility: Unlikely eligible for splice modulation</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_2_1_3" class="container">
+        <h2>Variant is not eligible for splice-modulation.</h2>
+        <p>Under rare circumstances, the variant could be considered for exon skipping. Please see guidelines “Step 3” for more detailed information. Please review “Section A” for information on exon skipping.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_2_1_1_2" class="container">
+        <h2> Eligibility: Unable to assess.</h2>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_2_1_1_3" class="container">
+        <h2>Eligibility: Unable to assess</h2>
+        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing defect.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q7.2.1.2 AR synonymous variants-->
+    <div id="q7_2_1_2" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_2_1_2_1')">Yes</button>
+            <button onclick="showPage('a7_2_1_2_2')">No</button>
+            <button onclick="showPage('a7_2_1_2_3')">Not known</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_2_1_2_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed_4"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_4"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_4"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6_15bp_4"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_2_1_2_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ8_2_1_2_1() {
+            const canonical_splicing_destroyed_4 = document.getElementById('canonical_splicing_destroyed_4').checked;
+            const canonical_splicing_weakened_4 = document.getElementById('canonical_splicing_weakened_4').checked;
+            const variant_within_5bp_4 = document.getElementById('variant_within_5bp_4').checked;
+            const variant_within_6_15bp_4 = document.getElementById('variant_within_6_15bp_4').checked;
+            const none = document.getElementById('none').checked;
+
+            if (canonical_splicing_destroyed_4 || variant_within_5bp_4) {
+                showPage('q9_2_1_3');
+            } else if (canonical_splicing_weakened_4 || variant_within_6_15bp_4) {
+                showPage('q9_2_1_2');
+            } else if (none) {
+                showPage('q9_2_1_1');
+            }
+        }
+
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
+    </script>
+
+    <div id="a7_2_1_1_2" class="container">
+        <h2> Eligibility: Not eligible for splice modulation.</h2>
+        <p> The variant cannot be assessed for splice modulation.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_2_1_1_3" class="container">
+        <h2>Eligibility: Unable to assess. </h2>
+        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing defect.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q7.2.1.3: AR missense and in-frame indels-->
+    <div id="q7_2_1_3" class="container">
+        <h2>Is there functional evidence of a splicing effect?</h2>
+        <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_2_1_3_1')">Yes</button>
+            <button onclick="showPage('q7_2_1_3_2')">No</button>
+            <button onclick="showPage('q7_2_1_3_3')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_2_1_3_1" class="container">
+        <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
+        <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="canonical_splicing_destroyed_5"> Canonical splicing is destroyed</label>
+            <label><input type="checkbox" id="canonical_splicing_weakened_5"> Canonical splicing is weakened</label>
+            <label><input type="checkbox" id="variant_within_5bp_5"> Variant within 5 bp of canonical splice site</label>
+            <label><input type="checkbox" id="variant_within_6_15bp_5"> Variant within 6 to 15 bp of canonical splice site</label>
+            <label><input type="checkbox" id="effect_not_known"> Effect of amino acid change on protein function is not known (independent of the splice-altering effect)</label>
+            <label><input type="checkbox" id="change_gof_dn"> Change in amino acid sequence causes GoF or DN effect</label>
+            <label><input type="checkbox" id="complete_loss_function"> Change in amino acid sequence causes complete loss of function</label>
+            <label><input type="checkbox" id="partial_loss_function"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
+            <label><input type="checkbox" id="known_benign"> Change on protein/amino acid level known to be benign</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ8_2_1_3_1()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ8_2_1_3_1() {
+            const canonical_splicing_destroyed_5 = document.getElementById('canonical_splicing_destroyed_5').checked;
+            const canonical_splicing_weakened_5 = document.getElementById('canonical_splicing_weakened_5').checked;
+            const variant_within_5bp_5 = document.getElementById('variant_within_5bp_5').checked;
+            const variant_within_6_15bp_5 = document.getElementById('variant_within_6_15bp_5').checked;
+            const effect_not_known = document.getElementById('effect_not_known').checked;
+            const change_gof_dn = document.getElementById('change_gof_dn').checked;
+            const complete_loss_function = document.getElementById('complete_loss_function').checked;
+            const partial_loss_function = document.getElementById('partial_loss_function').checked;
+            const known_benign = document.getElementById('known_benign').checked;
+
+            if (canonical_splicing_destroyed_5 || variant_within_5bp_5 || complete_loss_function) {
+                showPage('q9_2_1_3');
+            } else if (canonical_splicing_weakened_5 || variant_within_6_15bp_5 || partial_loss_function) {
+                showPage('q9_2_1_2');
+            } else if (known_benign) {
+                showPage('q9_2_1_1');
+            } else if (effect_not_known) {
+                showPage('a8_2_1_3_1');
+            } else if (change_gof_dn) {
+                showPage('q9_2_1_4');
+            }
+        }
+
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
+    </script>
+
+    <div id="a8_2_1_3_1" class="container">
+        <h2> Eligibility: Unable to assess. </h2>
+        <p> Variant cannot be assessed for splice-modulation until further evidence is available. Under certain circumstances, the variant could be assessed for exon skipping.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_2_1_4" class="container">
+        <h2> Eligibility: Not eligible for splice modulation. </h2>
+        <p>Variant is not eligible for a splice-modulating approach but under certain circumstances can be assessed for exon skipping approaches.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_2_1_3_2" class="container">
+        <h2>Eligibility: Not eligible for splice modulation. </h2>
+        <p>The variant cannot be assessed for splice modulation. The variant can be considered for exon skipping.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_2_1_3_3" class="container">
+        <h2>Eligibility: Unable to assess. </h2>
+        <p> The variant cannot be assessed for splice modulation. Under certain circumstances, the variant can be considered for exon skipping. Please review “Section A” of the N1C consensus guidelines for further information.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- Q7.2.1.5: Exon duplication and deletion -->
+    <div id="q7_2_1_5" class="container">
+        <h2>This variant is not eligible for splice modulation.</h2>
+        <p>If the deleted exon is in-frame, the variant is also not applicable to an exon skipping treatment. If the variant is an out-of-frame exon deletion, please check if any of the two adjacent exons could be skipped to get the transcript back into frame, then an exon skipping approach could be considered. If the deleted exon is the first or last coding exon, exon skipping is not a viable option (rare exceptions apply). Please review “Section A” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q8_2_1_5_1')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_2_1_5_1" class="container">
+        <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines.</h2>
+        <p>Please keep in mind that the aim is to skip an adjacent exon to get the transcript back into frame. Do any of the following criteria apply to the exon?</p>
+        <p>a) Exon is first coding exon, b) Exon is last coding exon, d) Skipping the exon will generate a STOP codon, c)Gene contains only the two coding exon (deleted one and the one to be skipped). Each of these is a “not eligible” criterion. Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('a8_2_1_5_1_1')">Yes</button>
+            <button onclick="showPage('q9_2_1_5')">No</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a8_2_1_5_1_1" class="container">
+        <h2>Eligibility: Not eligible for exon skipping</h2>
+        <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q9_2_1_5" class="container">
+        <h2>Please tick all boxes that apply. Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</h2>
+        <div class="checkboxes">
+            <label><input type="checkbox" id="loss_10_percent"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
+            <label><input type="checkbox" id="only_functional_domain"> Exon skipping and deleted exon combined result in the loss of the only functional domain</label>
+            <label><input type="checkbox" id="important_functional_domain"> Exon skipping and deleted exon combined result in the loss of an important functional domain or relevant amino acids</label>
+            <label><input type="checkbox" id="one_functional_domain"> Exon skipping and deleted exon combined result in the loss of one functional domain</label>
+            <label><input type="checkbox" id="multiple_functional_domains"> Exon skipping and deleted exon combined result in the loss of multiple functional domains</label>
+            <label><input type="checkbox" id="repeat_domains"> Exon skipping and deleted exon combined result in the loss of one or multiple repeat domains</label>
+            <label><input type="checkbox" id="mutational_hotspot"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
+            <label><input type="checkbox" id="pathogenic_loss"> Loss of both exons combined shown to be pathogenic</label>
+            <label><input type="checkbox" id="pathogenic_inframe"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
+            <label><input type="checkbox" id="none"> None</label>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="evaluateQ9_2_1_5()">Next</button>
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        function evaluateQ9_2_1_5() {
+            const loss_10_percent = document.getElementById('loss_10_percent').checked;
+            const only_functional_domain = document.getElementById('only_functional_domain').checked;
+            const important_functional_domain = document.getElementById('important_functional_domain').checked;
+            const one_functional_domain = document.getElementById('one_functional_domain').checked;
+            const multiple_functional_domains = document.getElementById('multiple_functional_domains').checked;
+            const repeat_domains = document.getElementById('repeat_domains').checked;
+            const mutational_hotspot = document.getElementById('mutational_hotspot').checked;
+            const pathogenic_loss = document.getElementById('pathogenic_loss').checked;
+            const pathogenic_inframe = document.getElementById('pathogenic_inframe').checked;
+            const none = document.getElementById('none').checked;
+
+            if (only_functional_domain || important_functional_domain || multiple_functional_domains || pathogenic_loss || mutational_hotspot || pathogenic_inframe) {
+                showPage('a8_1_3_1');
+            } else if (loss_10_percent || one_functional_domain) {
+                showPage('q8_1_3_1');
+            } else if (loss_10_percent && one_functional_domain) {
+                showPage('q8_1_3_1');
+            } else if (repeat_domains) {
+                showPage('a8_1_3_2');
+            } else if (none) {
+                showPage('q8_1_3_2');
+            }
+        }
+
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
+    </script>
+    
+    <!-- A7.2.1.6: whole exon duplication - AR -->
+    <div id="a7_2_1_6" class="container">
+        <h2> Eligibility: not eligible.</h2>
+        <p> This variant cannot be corrected with an ASO approach.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A5.2.2: AR - Gain of function -->
+    <div id="q6_2_2" class="container">
+        <h2>Gain of function variants can be analyzed using the assessment for splice modulation or for knockdown.</h2>
+        <p>In rare circumstances, also an exon skipping approach can be employed. We recommend reviewing “Section A” of the N1C guidelines to identify in which GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment:</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+<button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A5.2.3: AR - Unknown Pathomechanism -->
+    <div id="a5_2_3" class="container">
+        <h2> Eligibility: unable to assess </h2>
+        <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A4.3: X-linked dominant -->
+    <div id="q5_3" class="container">
+        <h2>What is the pathomechanism of the variant under assessment?</h2>
+        <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q6_3_1')">Loss of function</button>
+<button onclick="showPage('q6_3_2')">Gain of function</button>
+<button onclick="showPage('q6_3_3')">Dominant negative</button>
+<button onclick="showPage('q6_3_4')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q6_3_1" class="container">
+        <h2>What is the variant type?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
+            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
+            <button onclick="showPage('q7_1_1_3')">Missense</button>
+            <button onclick="showPage('q7_1_1_3')">Small, in-frame indel</button>
+            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
+            <button onclick="showPage('q7_1_1_1')">Intronic</button>
+            <button onclick="showPage('q7_1_1_5')">Whole exon deletion</button>
+            <button onclick="showPage('a7_1_1_7')">Whole exon duplication</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a7_1_1_7" class="container">
+        <h2>Eligibility: Not eligible for splice modulation.</h2>
+        <p>If an exon duplication leads to a loss of function in an XLD disorder, a TANGO approach can be considered. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator. Please also note that for XLD disorders further considerations apply due to X-inactivation. A TANGO approach is definitely not possible in hemizygotes.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A5.3.2: Gain of function -->
+    <div id="q6_3_2" class="container">
+        <h2> Gain of function variants can be analyzed using the assessment for splice modulation or for knockdown. In rare circumstances, also an exon skipping approach can be employed. We recommend to review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment: </h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A5.3.3: Dominant negative -->
+    <div id="q6_3_3" class="container">
+        <h2>Dominant negative variants can be analyzed using the assessment for splice modulation or for downregulation. Please choose your preferred assessment:</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+            <button onclick="showPage('q6_1_3_2_1')">Knockdown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A5.3.4: Unknown Pathomechanism -->
+    <div id="q6_3_4" class="container">
+        <h2> Eligibility: unable to assess.</h2>
+        <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A4.4: X-linked recessive -->
+    <div id="q5_4" class="container">
+        <h2>What is the pathomechanism of the variant under assessment?</h2>
+        <p>Info: For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
+        <div class="buttons">
+            <button onclick="showPage('q7_4_1')">Loss of function</button>
+<button onclick="showPage('q7_4_2')">Gain of function</button>
+<button onclick="showPage('a5_4_3')">Unknown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_4_1" class="container">
+        <h2>Q7.4.1: What is the variant type?</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
+            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
+            <button onclick="showPage('q7_2_1_3')">Missense</button>
+            <button onclick="showPage('q7_2_1_3')">Small, in-frame indel</button>
+            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
+            <button onclick="showPage('q7_2_1_1')">Intronic</button>
+            <button onclick="showPage('q7_2_1_5')">Whole exon deletion</button>
+            <button onclick="showPage('a7_2_1_6')">Whole exon duplication</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q7_4_2" class="container">
+        <h2> Gain of function variants can be analyzed using the assessment for splice modulation or for knockdown. In rare circumstances, also an exon skipping approach can be employed. We recommend to review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment:</h2>
+        <div class="buttons">
+            <button onclick="showPage('q7_2')">Splicing</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="a5_4_3" class="container">
+        <h2> Eligibility: unable to assess.</h2>
+        <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+
+    <!-- A2.5: Mitochondrial -->
+    <div id="q5_5" class="container">
+        <h2>Eligibility: Unable to assess</h2>
+        <p>Mitochondrially inherited disorders cannot be analyzed using these guidelines. </p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <!-- A2.6: Unknown Inheritance -->
+    <div id="q5_6" class="container">
+        <h2>Eligibility: Unable to assess</h2>
+        <p>Please check with referring clinician or patient (family) on more information regarding the inheritance pattern.</p>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <script>
+        let historyStack = [];
+
+        function showPage(pageId) {
+            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            document.getElementById(pageId).style.display = 'flex';
+        }
+
+        function goBack() {
+            if (historyStack.length > 0) {
+                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+                let lastPage = historyStack.pop();
+                lastPage.style.display = 'flex';
+            }
+        }
     </script>
 </body>
-</html>
+</html
