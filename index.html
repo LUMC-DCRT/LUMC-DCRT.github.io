@@ -86,6 +86,7 @@
     </div>
 
     <div id="a1" class="container">
+        <p class="decision-path">Step 0</p>
         <h2>Eligibility: unable to assess</h2>
 <p>Please check with the referring clinician or patient (family) to receive the correct variant description.</p>
         <div class="navigation-buttons">
@@ -96,6 +97,7 @@
 
     
     <div id="q2" class="container">
+        <p class="decision-path">Step 0</p>
         <h2>Is the variant of a type applicable to be evaluated with these guidelines?</h2>
         <p>Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletions or duplications. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Step 0” of the N1C consensus guidelines for further explanations.</p>
         <div class="buttons">
@@ -109,6 +111,7 @@
     </div>
 
     <div id="a2" class="container">
+        <p class="decision-path">Step 0</p>
         <h2>Eligibility: unable to assess</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -116,7 +119,7 @@
         </div>
     </div>
 
-    <div id="q3" class="container">
+    <div id="q3" class="container"><p class="decision-path">Step 0 - CNVs</p>
         <h2>Is the variant a duplication or deletion of a whole gene (CNV)?</h2>
         <div class="buttons">
             <button onclick="showPage('q3_1')">Yes gene duplication</button>
@@ -131,6 +134,7 @@
 
     <!-- Question 3.1 -->
     <div id="q3_1" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the disorder/gene associated with haploinsufficiency?</h2>
         <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search=">ClinGen</a>.</p>
 
@@ -145,6 +149,7 @@
     </div>
     <!-- Question 3.1.1 -->
     <div id="q3_1_1" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -158,6 +163,7 @@
     </div>
 
     <div id="result3_1_1_yes" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: YES</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -166,6 +172,7 @@
     </div>
 
     <div id="result3_1_1_no" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: Likely eligible</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -174,6 +181,7 @@
     </div>
 
     <div id="q3_1_2" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Consider an allele-selective approach. Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -187,6 +195,7 @@
     </div>
 
     <div id="result3_1_2_yes" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: YES</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -195,6 +204,7 @@
     </div>
 
     <div id="result3_1_2_no" class="container">
+        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: Unlikely eligible </h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -204,7 +214,8 @@
 
     <!-- Result 3.2 -->
     <div id="result3_2" class="container">
-        <h2>Consider variant for TANGO approach. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</h2>
+        <p class="decision-path">Step 0 - CNV - Whole gene deletion</p>
+        <h2>Consider variant for TANGO approach. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator. Please note that TANGO approaches for whole gene deletions only apply if there is still a functional wild-type copy. In case there is already a TANGO approach available for this variant, then this variant is considered eligible.</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -213,6 +224,7 @@
 
     <!-- Question 4 -->
     <div id="q4" class="container">
+        <p class="decision-path">Step 1</p>
         <h2>What is the inheritance pattern of this variant?</h2>
         <p> For guidance on how to determine the inheritance pattern, please see “Step 1” of the N1C consensus guidelines.</p>
         <div class="buttons">
@@ -230,6 +242,7 @@
     </div>
     <!-- Question 5.1 Autosomal dominant -->
     <div id="q5_1" class="container">
+        <p class="decision-path">Autosomal dominant - Step 2</p>
         <h2>What is the pathomechanism of the variant under assessment?</h2>
         <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
         <div class="buttons">
@@ -245,6 +258,7 @@
     </div>
 
     <div id="q6_1_1" class="container">
+        <p class="decision-path">Autosomal dominant - Loss of function</p>
         <h2>What is the variant type?</h2>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Nonsense</button>
@@ -264,6 +278,7 @@
 
     <!-- Question 7.1.1.1 Intronic variants -->
     <div id="q7_1_1_1" class="container">
+        <p class="decision-path">Step 3 - Autosomal dominant - Loss of function - Intronic variant</p>
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
@@ -279,6 +294,7 @@
 
     <!-- Q8.1.1: The variant can be assessed for splice-modulation ASO approaches -->
     <div id="q8_1_1" class="container">
+         <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
@@ -317,6 +333,7 @@
 
     <!-- Q9.1.1.1: Has there already been an ASO developed for this variant? -->
     <div id="q9_1_1_1" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Has there already been an ASO developed for this variant?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -331,6 +348,7 @@
 
     <!-- Q9.1.1.2: Has there already been an ASO developed for this variant? -->
     <div id="q9_1_1_2" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Has there already been an ASO developed for this variant?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -345,6 +363,7 @@
 
     <!-- Q9.1.1.3: Variant is not eligible for splice-modulation -->
     <div id="q9_1_1_3" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Variant is not eligible for splice-modulation.</h2>
         <p>Under rare circumstances, the variant could be considered for exon skipping. Please see guidelines “Step 3” for more detailed information. Variant could also be considered for TANGO approaches. Please pick the next guideline:</p>
         <div class="buttons">
@@ -359,6 +378,7 @@
 
     <!-- Results Q9.1.1.1 and Q9.1.1.2 -->
     <div id="result9_1_1_1_1" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Eligibility: YES</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -367,6 +387,7 @@
     </div>
 
     <div id="result9_1_1_1_2" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Eligibility: Likely eligible</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -375,6 +396,7 @@
     </div>
 
     <div id="result9_1_1_2_1" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Eligibility: YES</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -383,6 +405,7 @@
     </div>
 
     <div id="result9_1_1_2_2" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2>Eligibility: Unlikekly eligible</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -392,6 +415,7 @@
 
 
     <div id="result7_1_1_1_2" class="container">
+        <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
         <h2> Eligibility: Unable to assess.</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -400,7 +424,9 @@
     </div>
 
         <div id="result7_1_1_1_3" class="container">
-        <h2> The variant cannot be assessed for splice-modulation. Please obtain evidence for or against a splicing defect.</h2>
+            <p class="decision-path">Step 3 - Intronic variant - splice evaluation</p>
+             <h2> Eligibility: Unable to assess.</h2>
+        <p>The variant cannot be assessed for splice-modulation. Please obtain evidence for or against a splicing effect.</p>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -409,8 +435,8 @@
 
     <!-- TANGO approach -->
     <div id="a8_1_1_3_2" class="container">
-        <h2>A8.1.1.3.2: TANGO</h2>
-        <p>Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
+        <p class="decision-path">Considerations for upregulation from the WT-allele</p>
+        <h2>Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -419,6 +445,7 @@
 
     <!-- Q7.1.1.2: Synonymous variants -->
     <div id="q7_1_1_2" class="container">
+        <p class="decision-path">Step 3 - Synonymous variant - splice evaluation</p>
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines.</p>
         <div class="buttons">
@@ -434,6 +461,7 @@
 
     <!-- Q8.1.1.2.1: Synonymous variants -->
     <div id="q8_1_1_2_1" class="container">
+        <p class="decision-path">Step 3 - Synonymous variant - splice evaluation</p>
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read “Step 3” of the N1C consensus guidelines.</p>
         <div class="checkboxes">
@@ -486,6 +514,7 @@
 
     <!-- result7_1_1_2_1 and result7_1_1_2_2 -->
     <div id="result7_1_1_2_1" class="container">
+        <p class="decision-path">Step 3 - Synonymous variant - splice evaluation</p>
         <h2>The variant cannot be assessed for splice modulation. Eligibility: Unable to assess.</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -494,7 +523,9 @@
     </div>
 
     <div id="result7_1_1_2_2" class="container">
-        <h2>Result: The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing effect.</h2>
+        <p class="decision-path">Step 3 - Synonymous variant - splice evaluation</p>
+        <h2>Eligibility: Unable to assess.</h2>
+        <p>The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing effect.</p>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -503,6 +534,7 @@
 
     <!-- Q7.1.1.3: Missense variants or in-frame indels -->
     <div id="q7_1_1_3" class="container">
+        <p class="decision-path">Step 3 - Missense variants or in-frame indels - splice evaluation</p>
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. Functional evidence is required.</p>
         <div class="buttons">
@@ -518,6 +550,7 @@
 
     <!-- Q8.1.1.3.1: Missense and in-frame indels Splice-modulation ASO approaches -->
     <div id="q8_1_1_3_1" class="container">
+        <p class="decision-path">Step 3 - Missense variants or in-frame indels - splice evaluation</p>
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
         <div class="checkboxes">
@@ -582,6 +615,7 @@
 
     <!-- Placeholder for Q9.1.1.4, A8.1.1.3.1.1 -->
     <div id="q9_1_1_4" class="container">
+        <p class="decision-path">Step 3 - Missense variants or in-frame indels - splice evaluation</p>
         <h2>Variant is not eligible for a splice-modulating approach but under certain circumstances can be assessed for an exon skipping approach.</h2>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
@@ -593,6 +627,7 @@
     </div>
 
     <div id="a8_1_1_3_1_1" class="container">
+        <p class="decision-path">Step 3 - Missense variants or in-frame indels - splice evaluation</p>
         <h2>Variant cannot be assessed for splice-modulation until further evidence is available. Under certain circumstances, variant could be assessed for exon skipping or TANGO approaches.</h2>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
@@ -605,6 +640,7 @@
     </div>
 
     <div id="q8_1_1_3_2" class="container">
+        <p class="decision-path">Step 3 - Missense variants or in-frame indels - splice evaluation</p>
         <h2>The variant cannot be assessed for splice modulation. The variant can be considered for exon skipping or a TANGO approach.</h2>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
@@ -618,8 +654,16 @@
 
     <!-- Q7.1.1.4 Nonsense and frameshift variants and exon skipping evaluation -->
     <div id="q7_1_1_4" class="container">
-        <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines.</h2>
-        <p>Do any of the following criteria apply to the exon: a) Exon is first coding exon, b) Exon is last coding exon, c) Exon is out of frame, d) Skipping the exon will generate a STOP codon, e) Gene contains only one coding exon.</p>
+    <p class="decision-path">Section A - exon skipping assessment</p>
+    <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines. Do any of the following criteria apply to the exon?</h2>
+    <!-- Ordered list with custom list style -->
+    <ol type="a">
+        <li>Exon is first coding exon</li>
+        <li>Exon is last coding exon</li>
+        <li>Exon is out of frame</li>
+        <li>Skipping the exon will generate a STOP codon</li>
+        <li>Gene contains only one coding exon</li>
+    </ol>
         <div class="buttons">
             <button onclick="showPage('a7_1_1_4')">Yes</button>
             <button onclick="showPage('q8_1_3')">No</button>
@@ -631,6 +675,7 @@
     </div>
 
     <div id="a7_1_1_4" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Eligibility: Not eligible</h2>
         <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
           <div class="navigation-buttons">
@@ -641,6 +686,7 @@
 
     <!-- Q8.1.3: Exon skipping assessment -->
     <div id="q8_1_3" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Please tick all boxes that apply. Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</h2>
         <div class="checkboxes">
             <label><input type="checkbox" id="loss_10_percent_4"> Exon skipping results in the loss of >10% of the coding region</label>
@@ -687,6 +733,7 @@
     </div>
 
     <div id="a8_1_3_1" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Eligibility: not eligible.</h2>
         <p>Please note exceptions listed in “Section A” of the N1C consensus guidelines.</p>
         <div class="navigation-buttons">
@@ -696,6 +743,7 @@
     </div>
 
     <div id="a8_1_3_2" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Special considerations apply for repeat domains.</h2>
         <p>Please see “Section A” of the N1C consensus guidelines. Most suitable are in-frame exons that contain a single, full repeat of the tandem repeats and no additional domains. If an ASO has already been developed for this exon, we consider it eligible for exon skipping.</p>
         <div class="navigation-buttons">
@@ -705,6 +753,7 @@
     </div>
 
     <div id="q8_1_3_1" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Is there already an exon skipping therapy available?</h2>
         <p>Please check for the exon in general and not only the variant in question. A suggestion of a possible search term in Pubmed is: ABCA4 AND ((ASO) OR (AON) OR (antisense oligonucleotide)) AND (Exon 17). Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -718,6 +767,7 @@
     </div>
 
     <div id="q8_1_3_2" class="container">
+        <p class="decision-path">Section A - exon skipping assessment</p>
         <h2>Is there already an ASO exon skipping therapy available?</h2>
         <p>Please check for the exon in general and not only the variant in question. A suggestion of a possible search term in Pubmed is: ABCA4 AND ((ASO) OR (AON) OR (antisense oligonucleotide)) AND (Exon 17). Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -731,7 +781,8 @@
     </div>
 
     <div id="a8_1_3_1_1" class="container">
-        <h2>Eligibility: Yes for exon skipping</h2>
+        <p class="decision-path">Section A - exon skipping assessment</p>
+        <h2>Eligibility: Eligible for exon skipping</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -739,7 +790,8 @@
     </div>
 
     <div id="a8_1_3_1_2" class="container">
-        <h2>Eligibility: Unlikely for exon skipping</h2>
+        <p class="decision-path">Section A - exon skipping assessment</p>
+        <h2>Eligibility: Unlikely eligible for exon skipping</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -747,7 +799,8 @@
     </div>
 
     <div id="a8_1_3_1_3" class="container">
-        <h2>Eligibility: Likely for exon skipping</h2>
+        <p class="decision-path">Step 4 - Section A - exon skipping assessment</p>
+        <h2>Eligibility: Likely eligible for exon skipping</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -756,6 +809,7 @@
 
 <!-- Q7.1.1.5 and 6 Whole exon duplication and deletion -->
     <div id="q7_1_1_5" class="container">
+        <p class="decision-path">Step 4 - Section 3 - whole exon duplication and deletion - splice evaluation</p>
         <h2>This variant is not eligible for splice modulation.</h2>
         <p>If the deleted exon is in-frame, the variant is also not applicable to an exon skipping treatment. The variant can be considered for a TANGO approach in AD and possibly XLD disorders. If the variant is an out-of-frame exon deletion, check if any of the two adjacent exons could be skipped to get the transcript back into frame, then an exon skipping approach could be considered. If the deleted exon is the first or last coding exon, exon skipping is not a viable option (rare exceptions apply). Exon skipping might have to be allele-selective; please review “Section C” of the N1C consensus guidelines.</p>
         <div class="buttons">
@@ -769,6 +823,7 @@
     </div>
 
     <div id="q8_1_1_5_1" class="container">
+        <p class="decision-path">Step 4 - Section A - exon skipping assessment for whole exon deletion variants</p>
         <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines. Please keep in mind that the aim is to skip an adjacent exon to get the transcript back into frame. Do any of the following criteria apply to the exon? </h2>
         <p> a) Exon is first coding exon, b) Exon is last coding exon, d) Skipping the exon will generate a STOP codon, c)Gene contains only the two coding exons (deleted one and the one to be skipped).</p>
         <div class="buttons">
@@ -782,6 +837,7 @@
     </div>
 
     <div id="a8_1_1_5_1_1" class="container">
+        <p class="decision-path">Step 4 - Section A - exon skipping assessment for whole exon deletion variants</p>
         <h2>Eligibility: Not eligible</h2>
         <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
         <div class="navigation-buttons">
@@ -791,7 +847,8 @@
     </div>
 
     <div id="q9_1_1_5" class="container">
-        <h2>Q9.1.1.5: Please tick all boxes that apply.</h2>
+        <p class="decision-path">Step 4 - Section A - exon skipping assessment for whole exon deletion variants</p>
+        <h2>Variant can be assessed for exon skipping. Please tick all boxes that apply.</h2>
         <p>Please also be aware of exceptions mentioned in “Section A” of the N1C consensus guidelines that are not all covered by this calculator.</p>
         <div class="checkboxes">
             <label><input type="checkbox" id="loss_10_percent_5"> Exon skipping and deleted exon combined result in the loss of >10% of the coding region</label>
@@ -839,8 +896,9 @@
 
     <!-- A7.1.1.6: Exon duplication -->
     <div id="a7_1_1_6" class="container">
+        <p class="decision-path">Step 3 - whole exon duplication - loss of function - splice evaluation</p>
         <h2>This variant is not eligible for splice modulation.</h2>
-        <p>If an exon duplication leads to a loss of function in an AD disorder, a TANGO approach can be considered. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
+        <p>If an exon duplication leads to a loss of function in a (autosomal) dominant disorder, a TANGO approach can be considered. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator.</p>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -852,7 +910,7 @@
         <h2>Gain of function variants can be analyzed using the assessment for splice modulation or for knockdown. In rare circumstances, an exon skipping approach can be employed. Review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach</h2>
         <div class="buttons">
             <button onclick="showPage('q7_2')">Splicing</button>
-<button onclick="showPage('q7_1_2_2')">Knockdown</button>
+            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1399,7 +1457,7 @@
 
     <div id="a7_2_1_1_3" class="container">
         <h2>Eligibility: Unable to assess</h2>
-        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing defect.</p>
+        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing effect.</p>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1481,7 +1539,7 @@
 
     <div id="a7_2_1_2_3" class="container">
         <h2>Eligibility: Unable to assess. </h2>
-        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing defect.</p>
+        <p> The variant cannot be assessed for splice modulation. Please obtain evidence for or against a splicing effect.</p>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
