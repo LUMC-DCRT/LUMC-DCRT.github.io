@@ -64,12 +64,18 @@
     position: absolute;
     bottom: 0;
 }
-        .big-button {
-    font-size: 15px; /* Increase the font size */
-    padding: 15px 30px; /* Increase padding for bigger button */
-    width: 200px; /* Set a specific width */
-    height: 60px; /* Set a specific height */
-    border-radius: 10px; /* Optional: round the corners */
+.large-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.large-buttons button {
+    margin: 5px;
+    font-size: 18px; /* Larger text size */
+    padding: 10px 20px; /* Larger padding */
+    cursor: pointer;
 }
     </style>
 </head>
@@ -88,8 +94,8 @@
           <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments. Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to aid with the assessment.</p>
          <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024</p>
         <div class="disclaimer">  
-        <div class="big-button">
-            <button onclick="showPage('q1')">Start Assessment</button>
+        <div class="large-buttons">
+        <button onclick="showPage('Q1')">Start Assessment</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
