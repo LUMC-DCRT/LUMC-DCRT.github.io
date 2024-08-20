@@ -1240,6 +1240,7 @@
 
     
     <div id="q6_1_3_2_1" class="container">
+        <p class="decision-path">Section B - Knockdown - dominant negative variant</p>
         <h2>Please tick all that apply</h2>
         <p>Please see “Section B” in the N1C consensus guidelines for further information.</p>
         <div class="checkboxes">
@@ -2011,23 +2012,43 @@
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
-
+    
     <script>
-        let historyStack = [];
+    // Global history stack
+    let historyStack = [];
 
-        function showPage(pageId) {
-            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+    // Function to show a specific page
+    function showPage(pageId) {
+        historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+        document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+        
+        // Reset checkboxes on the page
+        resetCheckboxes(pageId);
+
+        document.getElementById(pageId).style.display = 'flex';
+    }
+
+    // Function to reset all checkboxes on a page
+    function resetCheckboxes(pageId) {
+        const checkboxes = document.querySelectorAll(`#${pageId} input[type="checkbox"]`);
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    }
+
+    // Function to go back to the previous page
+    function goBack() {
+        if (historyStack.length > 0) {
             document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-            document.getElementById(pageId).style.display = 'flex';
-        }
+            let lastPage = historyStack.pop();
+            
+            // Reset checkboxes on the page
+            resetCheckboxes(lastPage.id);
 
-        function goBack() {
-            if (historyStack.length > 0) {
-                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-                let lastPage = historyStack.pop();
-                lastPage.style.display = 'flex';
-            }
+            lastPage.style.display = 'flex';
         }
-    </script>
+    }
+</script>
+
 </body>
 </html
