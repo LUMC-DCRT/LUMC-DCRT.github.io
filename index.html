@@ -1417,8 +1417,8 @@
         <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
         <div class="buttons">
             <button onclick="showPage('q6_2_1')">Loss of function</button>
-<button onclick="showPage('q6_2_2')">Gain of function</button>
-<button onclick="showPage('a5_2_3')">Unknown</button>
+            <button onclick="showPage('q6_2_2')">Gain of function</button>
+            <button onclick="showPage('a5_2_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1467,7 +1467,7 @@
             <label><input type="checkbox" id="variant_within_5bp_8"> Variant within 5 bp of canonical splice site</label>
             <label><input type="checkbox" id="intronic_variant_upstream_8"> Intronic variant >100 bp upstream of acceptor splice site</label>
             <label><input type="checkbox" id="intronic_variant_downstream_8"> Intronic variant >50 bp downstream of donor splice site</label>
-            <label><input type="checkbox" id="intronic_variant_within_8"> Intronic variant within -5 to -100 bp or +5 to +50 bp of the canonical splice sites</label>
+            <label><input type="checkbox" id="intronic_variant_within_8"> Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites</label>
         </div>
         <div class="navigation-buttons">
             <button onclick="evaluateQ8_2_1()">Next</button>
@@ -1489,7 +1489,7 @@
                 showPage('q9_2_1_1');
             } else if (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8)) {
                 showPage('q9_2_1_2');
-            } else if (canonical_splicing_destroyed_ || variant_within_5bp_8) {
+            } else if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
                 showPage('q9_2_1_3');
             }
         }
