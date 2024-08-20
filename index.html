@@ -56,27 +56,38 @@
             font-weight: bold;
             font-size: 14px;
         }
+        .footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
     </style>
 </head>
 <body>
     <div id="startPage" class="container" style="display: flex;">
         <h1>N1C Variant Eligibility Calculator</h1>
         <button onclick="showPage('infoPage')">Next</button>
-        <div class="copyright">
+         </div>
+        <footer class="footer">
             &copy; 2024 N=1 Collaborative. All rights reserved.
-        </div>
-    </div>
+         </footer>
 
      <!-- Information Page -->
     <div id="infoPage" class="container">
         <h2>Information Page</h2>
-          <p>This calculator complement the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments. Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to aid with the assessment.</p>
+          <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments. Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to aid with the assessment.</p>
          <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024 DOI </p>
         <div class="disclaimer">  
-        <p>Disclaimer: This tool is the work product of the N=1 Collaborative (the "N1C"). The N1C is not providing legal or regulatory advice for N=1 trials. This tool should not be construed as legal or regulatory advice for any particular purpose. These guidelines focus on the evaluation of eligibility of a genetic variant for ASO treatment only. To assess a patient case for ASO amenability, the disease, phenotype, and patient have to also be considered, which is beyond the scope of these guidelines. The information is based on the best available knowledge and practice at the time of publication. The N1C reserves the right to update, modify, or withdraw these practices at any time without prior notice. Users of this tool should exercise their own judgment and discretion in applying these practices to their specific situations. These guidelines reflect a general way of evaluating variants, but there are many exceptions to the rules.</p>
+        <h2>Disclaimer:</h2>
+        <p> This tool is the work product of the N=1 Collaborative (the "N1C"). The N1C is not providing legal or regulatory advice for N=1 trials. This tool should not be construed as legal or regulatory advice for any particular purpose. These guidelines focus on the evaluation of eligibility of a genetic variant for ASO treatment only. To assess a patient case for ASO amenability, the disease, phenotype, and patient have to also be considered, which is beyond the scope of these guidelines. The information is based on the best available knowledge and practice at the time of publication. The N1C reserves the right to update, modify, or withdraw these practices at any time without prior notice. Users of this tool should exercise their own judgment and discretion in applying these practices to their specific situations. These guidelines reflect a general way of evaluating variants, but there are many exceptions to the rules.</p>
        </div>
+        <div class="buttons">
+            <but <button onclick="showPage('q1')">Start</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="showPage('q1')">Start</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -86,7 +97,7 @@
     <div id="q1" class="container">
         <p class="decision-path">Step 0</p>
         <h2>Is the variant description correct and conform with the HGVS nomenclature?</h2>
-        <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/">VariantValidator</a> or <a href="https://mutalyzer.nl/">Mutalyzer</a>.</p>
+        <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/"target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/"target="_blank">Mutalyzer</a>.</p>
         <div class="buttons">
             <button onclick="showPage('a1')">No</button>
             <button onclick="showPage('q2')">Yes</button>
@@ -98,7 +109,7 @@
     </div>
 
     <div id="a1" class="container">
-        <p class="decision-path">Step 0</p>
+        <p class="decision-path">Step 0 - Variant check</p>
         <h2>Eligibility: unable to assess</h2>
 <p>Please check with the referring clinician or patient (family) to receive the correct variant description.</p>
         <div class="navigation-buttons">
@@ -109,7 +120,7 @@
 
     
     <div id="q2" class="container">
-        <p class="decision-path">Step 0</p>
+        <p class="decision-path">Step 0 - Variant check</p>
         <h2>Is the variant of a type applicable to be evaluated with these guidelines?</h2>
         <p>Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletions or duplications. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Step 0” of the N1C consensus guidelines for further explanations.</p>
         <div class="buttons">
@@ -123,7 +134,7 @@
     </div>
 
     <div id="a2" class="container">
-        <p class="decision-path">Step 0</p>
+        <p class="decision-path">Step 0 - Variant check</p>
         <h2>Eligibility: unable to assess</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -131,7 +142,7 @@
         </div>
     </div>
 
-    <div id="q3" class="container"><p class="decision-path">Step 0 - CNVs</p>
+    <div id="q3" class="container"><p class="decision-path">Step 0 - Variant check - CNVs</p>
         <h2>Is the variant a duplication or deletion of a whole gene (CNV)?</h2>
         <div class="buttons">
             <button onclick="showPage('q3_1')">Yes gene duplication</button>
@@ -146,7 +157,7 @@
 
     <!-- Question 3.1 -->
     <div id="q3_1" class="container">
-        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
+        <p class="decision-path">Step 0 - Variant check - CNV - Whole gene duplication</p>
         <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the disorder/gene associated with haploinsufficiency?</h2>
         <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search=">ClinGen</a>.</p>
 
@@ -161,7 +172,7 @@
     </div>
     <!-- Question 3.1.1 -->
     <div id="q3_1_1" class="container">
-        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
+        <p class="decision-path">Step 0 - Variant check - CNV - Whole gene duplication</p>
         <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -175,7 +186,7 @@
     </div>
 
     <div id="result3_1_1_yes" class="container">
-        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
+        <p class="decision-path">Step 0 - Variant check - CNV - Whole gene duplication</p>
         <h2>Eligibility: YES</h2>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -193,7 +204,7 @@
     </div>
 
     <div id="q3_1_2" class="container">
-        <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
+        <p class="decision-path">Step 0 - Variant check - CNV - Whole gene duplication</p>
         <h2>Consider an allele-selective approach. Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
@@ -296,7 +307,7 @@
         <div class="buttons">
             <button onclick="showPage('q8_1_1')">Yes</button>
             <button onclick="showPage('result7_1_1_1_2')">No</button>
-<button onclick="showPage('result7_1_1_1_3')">Not known</button>
+<button onclick="showPage('result7_1_1_1_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -463,7 +474,7 @@
         <div class="buttons">
             <button onclick="showPage('q8_1_1_2_1')">Yes</button>
             <button onclick="showPage('result7_1_1_2_1')">No</button>
-            <button onclick="showPage('result7_1_1_2_2')">Not known</button>
+            <button onclick="showPage('result7_1_1_2_2')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -552,7 +563,7 @@
         <div class="buttons">
             <button onclick="showPage('q8_1_1_3_1')">Yes</button>
             <button onclick="showPage('q8_1_1_3_2')">No</button>
-            <button onclick="showPage('q8_1_1_3_3')">Not known</button>
+            <button onclick="showPage('q8_1_1_3_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1401,7 +1412,7 @@
         <div class="buttons">
             <button onclick="showPage('q6_2_1')">Loss of function</button>
 <button onclick="showPage('q6_2_2')">Gain of function</button>
-<button onclick="showPage('a5_2_3')">Not known</button>
+<button onclick="showPage('a5_2_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1574,7 +1585,7 @@
         <div class="buttons">
             <button onclick="showPage('q8_2_1_2_1')">Yes</button>
             <button onclick="showPage('a7_2_1_2_2')">No</button>
-            <button onclick="showPage('a7_2_1_2_3')">Not known</button>
+            <button onclick="showPage('a7_2_1_2_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
