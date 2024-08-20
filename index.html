@@ -64,6 +64,13 @@
     position: absolute;
     bottom: 0;
 }
+        .big-button {
+    font-size: 20px; /* Increase the font size */
+    padding: 15px 30px; /* Increase padding for bigger button */
+    width: 200px; /* Set a specific width */
+    height: 60px; /* Set a specific height */
+    border-radius: 10px; /* Optional: round the corners */
+}
     </style>
 </head>
 <body>
@@ -79,18 +86,18 @@
     <div id="infoPage" class="container">
         <h2>Information Page</h2>
           <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments. Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to aid with the assessment.</p>
-         <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024 DOI </p>
+         <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024</p>
         <div class="disclaimer">  
-        <h2>Disclaimer:</h2>
-        <p> This tool is the work product of the N=1 Collaborative (the "N1C"). The N1C is not providing legal or regulatory advice for N=1 trials. This tool should not be construed as legal or regulatory advice for any particular purpose. These guidelines focus on the evaluation of eligibility of a genetic variant for ASO treatment only. To assess a patient case for ASO amenability, the disease, phenotype, and patient have to also be considered, which is beyond the scope of these guidelines. The information is based on the best available knowledge and practice at the time of publication. The N1C reserves the right to update, modify, or withdraw these practices at any time without prior notice. Users of this tool should exercise their own judgment and discretion in applying these practices to their specific situations. These guidelines reflect a general way of evaluating variants, but there are many exceptions to the rules.</p>
-       </div>
         <div class="buttons">
-            <button onclick="showPage('q1')">Start assessment</button>
+            <button class="big-button" onclick="showPage('q1')">Start Assessment</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
+             <h3>Disclaimer:</h3>
+        <p> This tool is the work product of the N=1 Collaborative (the "N1C"). The N1C is not providing legal or regulatory advice for N=1 trials. This tool should not be construed as legal or regulatory advice for any particular purpose. These guidelines focus on the evaluation of eligibility of a genetic variant for ASO treatment only. To assess a patient case for ASO amenability, the disease, phenotype, and patient have to also be considered, which is beyond the scope of these guidelines. The information is based on the best available knowledge and practice at the time of publication. The N1C reserves the right to update, modify, or withdraw these practices at any time without prior notice. Users of this tool should exercise their own judgment and discretion in applying these practices to their specific situations. These guidelines reflect a general way of evaluating variants, but there are many exceptions to the rules.</p>
+       </div>
     </div>
 
     <!-- Question 1 -->
