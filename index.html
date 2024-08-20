@@ -77,6 +77,17 @@
     padding: 10px 20px; /* Larger padding */
     cursor: pointer;
 }
+        .aligned-list {
+            list-style-type: disc; /* Bullet points */
+            list-style-position: inside;
+            padding-left: 0;
+            margin-left: 0;
+            text-align: left;
+        }
+
+        .aligned-list li {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -658,16 +669,17 @@
 
     <!-- Q7.1.1.4 Nonsense and frameshift variants and exon skipping evaluation -->
     <div id="q7_1_1_4" class="container">
-    <p class="decision-path">Section A - exon skipping assessment</p>
+    <p class="decision-path">Section A - Exon skipping assessment</p>
     <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines. Do any of the following criteria apply to the exon?</h2>
+        <p>Each of these criteria is a "not eligible" criterion.</p>
     <!-- Ordered list with custom list style -->
-    <ol type="a">
+  <ul class="aligned-list">
         <li>Exon is first coding exon</li>
         <li>Exon is last coding exon</li>
         <li>Exon is out of frame</li>
         <li>Skipping the exon will generate a STOP codon</li>
         <li>Gene contains only one coding exon</li>
-    </ol>
+    </ul>
         <div class="buttons">
             <button onclick="showPage('a7_1_1_4')">Yes</button>
             <button onclick="showPage('q8_1_3')">No</button>
@@ -828,7 +840,13 @@
     <div id="q8_1_1_5_1" class="container">
         <p class="decision-path">Step 4 - Section A - exon skipping assessment for whole exon deletion variants</p>
         <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines. Please keep in mind that the aim is to skip an adjacent exon to get the transcript back into frame. Do any of the following criteria apply to the exon? </h2>
-        <p> a) Exon is first coding exon, b) Exon is last coding exon, d) Skipping the exon will generate a STOP codon, c)Gene contains only the two coding exons (deleted one and the one to be skipped).</p>
+        <p>Each of these criteria is a "not eligible" criterion.</p>
+        <ul class="aligned-list">
+        <li>Exon is first coding exon</li>
+        <li>Exon is last coding exon</li>
+        <li>Skipping the exons will generate a STOP codon</li>
+        <li>Gene contains only the two coding exons (deleted one and the one to be skipped)</li>
+        </ul>
         <div class="buttons">
             <button onclick="showPage('a8_1_1_5_1_1')">Yes</button>
             <button onclick="showPage('q9_1_1_5')">No</button>
@@ -1756,7 +1774,14 @@
     <div id="q8_2_1_5_1" class="container">
         <h2>For exon skipping assessment, please review “Section A” of the N1C consensus guidelines.</h2>
         <p>Please keep in mind that the aim is to skip an adjacent exon to get the transcript back into frame. Do any of the following criteria apply to the exon?</p>
-        <p>a) Exon is first coding exon, b) Exon is last coding exon, d) Skipping the exon will generate a STOP codon, c)Gene contains only the two coding exon (deleted one and the one to be skipped). Each of these is a “not eligible” criterion. Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+        <p>Each of these is a “not eligible” criterion. Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+          <ul class="aligned-list">
+        <li>Exon is first coding exon</li>
+        <li>Exon is last coding exon</li>
+        <li>Exon is out of frame</li>
+        <li>Skipping both exons will generate a STOP codon</li>
+        <li>Gene contains only the two coding exon (deleted one and the one to be skipped).</li>
+        </ul>
         <div class="buttons">
             <button onclick="showPage('a8_2_1_5_1_1')">Yes</button>
             <button onclick="showPage('q9_2_1_5')">No</button>
