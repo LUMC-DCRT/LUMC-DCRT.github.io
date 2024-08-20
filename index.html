@@ -1684,7 +1684,7 @@
 
     <div id="q8_2_1_3_1" class="container">
         <h2>The variant can be assessed for splice-modulation ASO approaches. Please tick all boxes that apply.</h2>
-        <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
+        <p>To identify which boxes should be ticked, please carefully read "Step 3" of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
         <div class="checkboxes">
             <label><input type="checkbox" id="canonical_splicing_destroyed_10"> Canonical splicing is destroyed</label>
             <label><input type="checkbox" id="canonical_splicing_weakened_10"> Canonical splicing is weakened</label>
@@ -1725,20 +1725,6 @@
                 showPage('a8_2_1_3_1');
             } else if (change_gof_dn_10) {
                 showPage('q9_2_1_4');
-            }
-        }
-
-        function showPage(pageId) {
-            historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
-            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-            document.getElementById(pageId).style.display = 'flex';
-        }
-
-        function goBack() {
-            if (historyStack.length > 0) {
-                document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-                let lastPage = historyStack.pop();
-                lastPage.style.display = 'flex';
             }
         }
     </script>
