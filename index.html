@@ -155,7 +155,7 @@
         </div>
     </div>
 
-    <div id="q3" class="container"><p class="decision-path">Step 0 - Variant check - CNVs</p>
+    <div id="q3" class="container">
         <p class="decision-path">Step 0 - Variant check - CNVs</p>
         <h2>Is the variant a duplication or deletion of a whole gene (CNV)?</h2>
         <div class="buttons">
@@ -1411,6 +1411,10 @@
             <button onclick="showPage('q7_2_1_5')">Whole exon deletion</button>
             <button onclick="showPage('a7_2_1_6')">Whole exon duplication</button>
         </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
     </div>
 
     <!-- Q7.2.1.1: AR-Intronic Variants -->
@@ -1665,7 +1669,7 @@
             const canonical_splicing_destroyed_10 = document.getElementById('canonical_splicing_destroyed_10').checked;
             const canonical_splicing_weakened_10 = document.getElementById('canonical_splicing_weakened_10').checked;
             const variant_within_5bp_10 = document.getElementById('variant_within_5bp_10').checked;
-            const variant_within_6_15bp_5 = document.getElementById('variant_within_6_15bp_5').checked;
+            const variant_within_6_15bp_10 = document.getElementById('variant_within_6_15bp_10').checked;
             const effect_not_known_10 = document.getElementById('effect_not_known_10').checked;
             const change_gof_dn_10 = document.getElementById('change_gof_dn_10').checked;
             const complete_loss_function_10 = document.getElementById('complete_loss_function_10').checked;
