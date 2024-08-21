@@ -94,7 +94,11 @@
     <div id="startPage" class="container" style="display: flex;">
         <h1>N1C Variant Eligibility Calculator</h1>
         <button onclick="showPage('infoPage')">Start</button>
-         </div>
+        <div class="buttons">
+            <button onclick="showPage('disclaimer')">Disclaimer</button>
+        </div>
+    </div>
+    
         <footer class="footer">
             &copy; 2024 N=1 Collaborative. All rights reserved.
          </footer>
@@ -110,9 +114,6 @@
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
-        </div>
-        <div class="buttons">
-            <button onclick="showPage('disclaimer')">Disclaimer</button>
         </div>
     </div>
 
@@ -341,7 +342,7 @@
         <div class="buttons">
             <button onclick="showPage('q8_1_1')">Yes</button>
             <button onclick="showPage('result7_1_1_1_2')">No</button>
-<button onclick="showPage('result7_1_1_1_3')">Unknown</button>
+            <button onclick="showPage('result7_1_1_1_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -362,8 +363,10 @@
             <label><input type="checkbox" id="intronic_variant_downstream_1"> Intronic variant >50 bp downstream of donor splice site</label>
             <label><input type="checkbox" id="intronic_variant_within_1"> Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites</label>
         </div>
+        <div class="buttons">
+         <button onclick="evaluateQ8_1_1()">Next</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="evaluateQ8_1_1()">Next</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -528,8 +531,10 @@
             <label><input type="checkbox" id="variant_within_6to15bp_2"> Variant within 6 to 15 bp of canonical splice site</label>
             <label><input type="checkbox" id="none_2"> None</label>
         </div>
-        <div class="navigation-buttons">
+          <div class="buttons">
             <button onclick="evaluateQ8_1_1_2_1()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -726,8 +731,10 @@
             <label><input type="checkbox" id="in_frame_deletions_4"> Functional evidence of in-frame deletions shown to be pathogenic</label>
             <label><input type="checkbox" id="none_4"> None</label>
         </div>
-        <div class="navigation-buttons">
+        <div class="buttons">
             <button onclick="evaluateQ8_1_3()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -894,8 +901,10 @@
             <label><input type="checkbox" id="evidence_pathogenic_5"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
             <label><input type="checkbox" id="none_5"> None</label>
         </div>
+         <div class="buttons">
+          <button onclick="evaluateQ9_1_1_5()">Next</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="evaluateQ9_1_1_5()">Next</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1133,8 +1142,10 @@
             <label><input type="checkbox" id="intolerant_reduction_6"> Intolerant to reduction (very strict control of gene dosage)</label>
             <label><input type="checkbox" id="none_6"> None</label>
         </div>
-        <div class="navigation-buttons">
+        <div class="buttons">
             <button onclick="evaluateQ7_1_2_2()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1271,8 +1282,10 @@
             <label><input type="checkbox" id="intolerant_reduction_7"> Intolerant to reduction (very strict control of gene dosage)</label>
             <label><input type="checkbox" id="none_7"> None</label>
         </div>
+        <div class="buttons">
+        <button onclick="evaluateQ6_1_3_2_1()">Next</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="evaluateQ6_1_3_2_1()">Next</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1302,10 +1315,8 @@
         <p class="decision-path">Section B - Knockdown assessment - Autosomal/X-linked dominant - Dominant negative variant</p>
         <h2>Eligibility: Not eligible for knockdown approach.</h2>
         <p>The exon the variant is located in could be considered for exon skipping should it fulfill all criteria. Please be cautious as dominant negative effects can also appear with skipped exons.</p>
-        <div class="navigation-buttons">
+          <div class="buttons">
             <button onclick="showPage('q8_1_1_5_1')">Go to Exon Skipping</button>
-            <button onclick="goBack()">Back</button>
-            <button onclick="showPage('startPage')">Back to Start</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1466,8 +1477,10 @@
             <label><input type="checkbox" id="intronic_variant_downstream_8"> Intronic variant >50 bp downstream of donor splice site</label>
             <label><input type="checkbox" id="intronic_variant_within_8"> Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites</label>
         </div>
-        <div class="navigation-buttons">
+           <div class="buttons">
             <button onclick="evaluateQ8_2_1()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1606,8 +1619,10 @@
             <label><input type="checkbox" id="variant_within_6_15bp_9"> Variant within 6 to 15 bp of canonical splice site</label>
             <label><input type="checkbox" id="none_9"> None</label>
         </div>
-        <div class="navigation-buttons">
+         <div class="buttons">
             <button onclick="evaluateQ8_2_1_2_1()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1681,8 +1696,10 @@
             <label><input type="checkbox" id="partial_loss_function_10"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
             <label><input type="checkbox" id="known_benign_10"> Change on protein/amino acid level known to be benign</label>
         </div>
+          <div class="buttons">
+             <button onclick="evaluateQ8_2_1_3_1()">Next</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="evaluateQ8_2_1_3_1()">Next</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -1828,8 +1845,10 @@
             <label><input type="checkbox" id="pathogenic_inframe_11"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
             <label><input type="checkbox" id="none"> None</label>
         </div>
-        <div class="navigation-buttons">
+        <div class="buttons">
             <button onclick="evaluateQ9_2_1_5()">Next</button>
+        </div>
+        <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
