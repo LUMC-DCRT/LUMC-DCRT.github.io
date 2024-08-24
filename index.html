@@ -1529,18 +1529,15 @@
             const intronic_variant_downstream_8 = document.getElementById('intronic_variant_downstream_8').checked;
             const intronic_variant_within_8 = document.getElementById('intronic_variant_within_8').checked;
 
-            if (intronic_variant_upstream_8 || intronic_variant_downstream_8) {
-                showPage('q9_2_1_1');
-            } else if (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8)) {
-                showPage('q9_2_1_2');
-            } else if (intronic_variant_within_8) {
-                showPage('q9_2_1_2');
-            } else if (canonical_splicing_destroyed_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8)) {
-                showPage('q9_2_1_3');
-            } else if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
-                showPage('q9_2_1_3');
+
+             if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
+            showPage('q9_2_1_3');
+            } else if (canonical_splicing_weakened_8 || intronic_variant_within_8 || (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8))) {
+            showPage('q9_2_1_2');
+            } else if (intronic_variant_upstream_8 || intronic_variant_downstream_8) {
+            showPage('q9_2_1_1');
             }
-        }
+         }
     </script>
 
     <div id="q9_2_1_1" class="container">
