@@ -56,14 +56,14 @@
             font-weight: bold;
             font-size: 14px;
         }
-        .footer {
+    .footer {
+    position: sticky;
+    bottom: 0;
     background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
 }
+        
 .large-buttons {
     margin-top: 20px;
     display: center;
@@ -109,8 +109,8 @@
      <!-- Information Page -->
     <div id="infoPage" class="container">
         <h2>Information Page</h2>
-          <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments. Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to aid with the assessment.</p>
-         <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024</p>
+        <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments (LINK). Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to help you with the assessment. For understanding of how the assessments work, please also take a look at our training material (LINK). By using this calculator, you agree to our license and the conditions indicated in our disclaimer. The full code of the calculator is available on GitHub (LINK). If you have any questions about the calculator or suggestions for improvement, please reach out to Marlen Lauffer (marlen@n1collaborative.org). </p>
+        <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024 (LINK)</p>
         <div class="large-buttons">
         <button onclick="showPage('q1')">Start Assessment</button>
         </div>
@@ -389,12 +389,12 @@
             const intronic_variant_downstream_1 = document.getElementById('intronic_variant_downstream_1').checked;
             const intronic_variant_within_1 = document.getElementById('intronic_variant_within_1').checked;
 
-            if (intronic_variant_upstream_1 || intronic_variant_downstream_1) {
-                showPage('q9_1_1_1');
-            } else if (canonical_splicing_weakened_1 && (intronic_variant_upstream_1 || intronic_variant_downstream_1 || intronic_variant_within_1)) {
-                showPage('q9_1_1_2');
-            } else if (canonical_splicing_destroyed_1 || variant_within_5bp_1) {
+            if (canonical_splicing_destroyed_1 || variant_within_5bp_1) {
                 showPage('q9_1_1_3');
+            } else if (intronic_variant_within_1 || (canonical_splicing_weakened_1 && (intronic_variant_upstream_1 || intronic_variant_downstream_1 || intronic_variant_within_1))) {
+                showPage('q9_1_1_2');
+            } else  if (intronic_variant_upstream_1 || intronic_variant_downstream_1) {
+                showPage('q9_1_1_1');
             }
         }
     </script>
@@ -432,7 +432,7 @@
     <div id="q9_1_1_3" class="container">
         <p class="decision-path">Step 3 - Splice assessment </p>
         <h2>Eligibility: Not eligible for splice correction</h2>
-        <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>   
+        <p>For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>   
         <p>Under rare circumstances, the variant could be considered for exon skipping. Please see guidelines “Step 3” for more detailed information. Variant could also be considered for TANGO approaches. Please pick the next guideline:</p>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
@@ -446,8 +446,8 @@
 
     <!-- Results Q9.1.1.1 and Q9.1.1.2 -->
     <div id="result9_1_1_1_1" class="container">
-        <p class="decision-path">Step 3 - Splice assessment - Intronic variant</p>
-        <h2>Eligibility: Eligible for splice correction.</h2>
+        <p class="decision-path">Step 3 - Splice assessment </p>
+        <h2>Eligibility: Eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -456,7 +456,7 @@
     </div>
 
     <div id="result9_1_1_1_2" class="container">
-        <p class="decision-path">Step 3 - Splice assessment - Intronic variant</p>
+        <p class="decision-path">Step 3 - Splice assessment </p>
         <h2>Eligibility: Likely eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <div class="navigation-buttons">
@@ -466,7 +466,7 @@
     </div>
 
     <div id="result9_1_1_2_1" class="container">
-        <p class="decision-path">Step 3 - Splice assessment - Intronic variant</p>
+        <p class="decision-path">Step 3 - Splice assessment </p>
         <h2>Eligibility: Eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <div class="navigation-buttons">
@@ -476,9 +476,9 @@
     </div>
 
     <div id="result9_1_1_2_2" class="container">
-        <p class="decision-path">Step 3 - Splice assessment - Intronic variant</p>
+        <p class="decision-path">Step 3 - Splice assessment </p>
         <h2>Eligibility: Unlikely eligible for splice correction</h2>
-        <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <p> For further information, please see the <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -769,12 +769,12 @@
                 const in_frame_deletions_4 = document.getElementById('in_frame_deletions_4').checked;
                 const none_4 = document.getElementById('none_4').checked;
 
-                if (loss_only_domain_4 || loss_important_domain_4 || loss_multiple_domains_4 || pathogenic_4 || mutational_hotspot_4 || in_frame_deletions_4) {
+                if (loss_only_domain_4 || loss_important_domain_4 || (loss_10_percent_4 && loss_multiple_domains_4) || pathogenic_4 || mutational_hotspot_4 || in_frame_deletions_4) {
                     showPage('a8_1_3_1');
-                } else if (loss_10_percent_4 || loss_one_domain_4) {
-                    showPage('q8_1_3_1');
                 } else if (loss_repeat_domains_4) {
                     showPage('a8_1_3_2');
+                } else if (loss_10_percent_4 || loss_one_domain_4 || loss_multiple_domains_4) {
+                    showPage('q8_1_3_1');
                 } else if (none_4) {
                     showPage('q8_1_3_2');
                 }
@@ -945,12 +945,12 @@
             const evidence_pathogenic_5 = document.getElementById('evidence_pathogenic_5').checked;
             const none_5 = document.getElementById('none_5').checked;
 
-            if (loss_only_functional_domain_5 || loss_important_functional_domain_5 || loss_multiple_functional_domains_5 || shown_pathogenic_5 || mutational_hotspot_5 || evidence_pathogenic_5) {
+            if (loss_only_functional_domain_5 || loss_important_functional_domain_5 || (loss_10_percent_5 && loss_multiple_functional_domains_5) || shown_pathogenic_5 || mutational_hotspot_5 || evidence_pathogenic_5) {
                 showPage('a8_1_3_1');
-            } else if ((loss_10_percent_5 && loss_one_functional_domain_5) || loss_10_percent_5 || loss_one_functional_domain_5) {
-                showPage('q8_1_3_1');
             } else if (loss_repeat_domains_5) {
                 showPage('a8_1_3_2');
+            } else if ((loss_10_percent_5 && loss_one_functional_domain_5) || loss_10_percent_5 || loss_one_functional_domain_5) {
+                showPage('q8_1_3_1');
             } else if (none_5) {
                 showPage('q8_1_3_2');
             }
@@ -1000,35 +1000,19 @@
     <div id="q8_2" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Gain of function and dominant negative variants</p>
         <h2>What is the variant type?</h2>
-        <div class="buttons">
-            <button onclick="evaluateQ8_2('nonsense', 'frameshift')">Nonsense</button>
-            <button onclick="evaluateQ8_2('nonsense', 'frameshift')">Frameshift</button>
-            <button onclick="evaluateQ8_2('whole_exon', 'duplication_deletion')">Whole exon duplication or deletion</button>
-            <button onclick="evaluateQ8_2('missense', 'inframe_indel')">Missense</button>
-            <button onclick="evaluateQ8_2('missense', 'inframe_indel')">Small, in-frame indel</button>
-            <button onclick="evaluateQ8_2('synonymous')">Synonymous</button>
-            <button onclick="evaluateQ8_2('intronic')">Intronic</button>
+           <div class="buttons">
+            <button onclick="showPage('q9_2')">Nonsense</button>
+            <button onclick="showPage('q_2')">Frameshift</button>
+            <button onclick="showPage('a8_2_1')">Whole exon duplication or deletion</button>
+            <button onclick="showPage('q8_1_1_3_1')">Missense</button>
+            <button onclick="showPage('q8_1_1_3_1')">Small in-frame indel</button>
+            <button onclick="showPage('q8_1_1_2_1')">Synonymous</button>
+            <button onclick="showPage('q8_1_1')">Intronic</button>      
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
-        </div>
-
-        <script>
-            function evaluateQ8_2(type1, type2) {
-                if (type1 === 'nonsense' || type1 === 'frameshift') {
-                    showPage('q9_2');
-                } else if (type1 === 'whole_exon' && type2 === 'duplication_deletion') {
-                    showPage('a8_2_1');
-                } else if (type1 === 'missense' || type2 === 'inframe_indel') {
-                    showPage('q8_1_1_3_1');
-                } else if (type1 === 'synonymous') {
-                    showPage('q8_1_1_2_1');
-                } else if (type1 === 'intronic') {
-                    showPage('q8_1_1');
-                }
-            }
-        </script>
+        </div>  
     </div>
 
     <div id="q9_2" class="container">
@@ -1186,12 +1170,12 @@
 
                 if (intolerant_reduction_6) {
                     showPage('a7_1_2_2_1');
-                } else if (none_6) {
-                    showPage('a7_1_2_2_2');
                 } else if (loss_one_allele_6 || complete_loss_function_6) {
                     showPage('q7_1_2_2_1');
                 } else if (haploinsufficiency_6 || hypomorphic_alleles_6) {
                     showPage('q7_1_2_2_2');
+                } else if (none_6) {
+                    showPage('a7_1_2_2_2');
                 }
             }
         </script>
@@ -1530,7 +1514,7 @@
             const intronic_variant_within_8 = document.getElementById('intronic_variant_within_8').checked;
 
 
-             if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
+            if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
             showPage('q9_2_1_3');
             } else if (canonical_splicing_weakened_8 || intronic_variant_within_8 || (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8))) {
             showPage('q9_2_1_2');
@@ -1899,26 +1883,26 @@
 
     <script>
         function evaluateQ9_2_1_5() {
-            const loss_10_percent_10 = document.getElementById('loss_10_percent_10').checked;
-            const only_functional_domain_10 = document.getElementById('only_functional_domain_10').checked;
-            const important_functional_domain_10 = document.getElementById('important_functional_domain_10').checked;
-            const one_functional_domain_10 = document.getElementById('one_functional_domain_10').checked;
-            const multiple_functional_domains_10 = document.getElementById('multiple_functional_domains_10').checked;
-            const repeat_domains_10 = document.getElementById('repeat_domains_10').checked;
-            const mutational_hotspot_10 = document.getElementById('mutational_hotspot_10').checked;
-            const pathogenic_loss_10 = document.getElementById('pathogenic_loss_10').checked;
-            const pathogenic_inframe_10 = document.getElementById('pathogenic_inframe_10').checked;
+            const loss_10_percent_10 = document.getElementById('loss_10_percent_11').checked;
+            const only_functional_domain_10 = document.getElementById('only_functional_domain_11').checked;
+            const important_functional_domain_10 = document.getElementById('important_functional_domain_11').checked;
+            const one_functional_domain_10 = document.getElementById('one_functional_domain_11').checked;
+            const multiple_functional_domains_10 = document.getElementById('multiple_functional_domains_11').checked;
+            const repeat_domains_10 = document.getElementById('repeat_domains_11').checked;
+            const mutational_hotspot_10 = document.getElementById('mutational_hotspot_11').checked;
+            const pathogenic_loss_10 = document.getElementById('pathogenic_loss_11').checked;
+            const pathogenic_inframe_10 = document.getElementById('pathogenic_inframe_11').checked;
             const none_10 = document.getElementById('none').checked;
 
-            if (only_functional_domain_10 || important_functional_domain_10 || multiple_functional_domains_10 || pathogenic_loss_10 || mutational_hotspot_10 || pathogenic_inframe_10) {
+            if (only_functional_domain_11 || important_functional_domain_11 || (multiple_functional_domains_11 && loss_10_percent_11) || pathogenic_loss_11 || mutational_hotspot_11 || pathogenic_inframe_11) {
                 showPage('a8_1_3_1');
-            } else if (loss_10_percent_10 || one_functional_domain_10) {
-                showPage('q8_1_3_1');
-            } else if (loss_10_percent_10 && one_functional_domain_10) {
-                showPage('q8_1_3_1');
-            } else if (repeat_domains_10) {
+            } else if (repeat_domains_11) {
                 showPage('a8_1_3_2');
-            } else if (none_10) {
+            } else if (loss_10_percent_11 || one_functional_domain_11) {
+                showPage('q8_1_3_1');
+            } else if (loss_10_percent_11 && one_functional_domain_11) {
+                showPage('q8_1_3_1');
+            } else if (none_11) {
                 showPage('q8_1_3_2');
             }
         }
