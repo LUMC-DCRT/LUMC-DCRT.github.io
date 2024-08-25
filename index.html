@@ -13,6 +13,18 @@
             align-items: center;
             font-family: Arial, sans-serif;
         }
+        /* The wrapper takes up the full height of the screen and uses flexbox */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* The content section grows to fill available space, ensuring the footer stays at the bottom */
+        .content {
+            flex: 1;
+            padding: 20px; /* Adjust padding as needed */
+        }
+        
         .container {
             display: none;
             flex-direction: column;
@@ -56,13 +68,16 @@
             font-weight: bold;
             font-size: 14px;
         }
+    /* Footer styling */
     .footer {
-    position: sticky;
-    bottom: 0;
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
-}
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
         
 .large-buttons {
     margin-top: 20px;
@@ -109,8 +124,9 @@
      <!-- Information Page -->
     <div id="infoPage" class="container">
         <h2>Information Page</h2>
-        <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments (LINK). Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to help you with the assessment. For understanding of how the assessments work, please also take a look at our training material (LINK). By using this calculator, you agree to our license and the conditions indicated in our disclaimer. The full code of the calculator is available on GitHub (LINK). If you have any questions about the calculator or suggestions for improvement, please reach out to Marlen Lauffer (marlen@n1collaborative.org). </p>
+        <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments (LINK). Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to help you with the assessment. For understanding of how the assessments work, please also take a look at our training material (LINK). By using this calculator, you agree to our license and the conditions indicated in our disclaimer. The full code of the calculator is available on GitHub (LINK). </p>
         <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024 (LINK)</p>
+        <p>If you have any questions about the calculator or suggestions for improvement, please reach out to Marlen Lauffer (marlen@n1collaborative.org).</p>
         <div class="large-buttons">
         <button onclick="showPage('q1')">Start Assessment</button>
         </div>
