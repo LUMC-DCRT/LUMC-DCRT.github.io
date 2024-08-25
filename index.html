@@ -5,93 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>N1C Variant Eligibility Calculator</title>
     <style>
+  <head>
+    <style>
         body, html {
             height: 100%;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             font-family: Arial, sans-serif;
         }
-        /* The wrapper takes up the full height of the screen and uses flexbox */
+
+        /* Wrapper for the whole content */
         .wrapper {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
+
         /* The content section grows to fill available space, ensuring the footer stays at the bottom */
         .content {
             flex: 1;
             padding: 20px; /* Adjust padding as needed */
         }
-        
+
         .container {
             display: none;
             flex-direction: column;
             text-align: center;
             width: 80%;
             max-width: 800px;
+            margin: auto;
         }
+
         .buttons {
             margin-top: 20px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .buttons button {
             margin: 5px;
         }
+
         #startPage {
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1;
         }
+
         .navigation-buttons {
             display: flex;
             justify-content: center;
             margin-top: 20px;
         }
+
         a {
             color: blue;
         }
+
         .checkboxes {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .checkboxes label {
             margin: 5px;
         }
-          /* CSS for the decision-path text */
+
+        /* CSS for the decision-path text */
         .decision-path {
             margin-bottom: 20px;
             font-weight: bold;
             font-size: 14px;
         }
-    /* Footer styling */
-    .footer {
-        background-color: #f1f1f1;
-        text-align: center;
-        padding: 10px;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        box-sizing: border-box;
-    }
-        
-.large-buttons {
-    margin-top: 20px;
-    display: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
 
-.large-buttons button {
-    margin: 5px;
-    font-size: 20px; /* Larger text size */
-    padding: 10px 20px; /* Larger padding */
-    cursor: pointer;
-}
+        /* Footer styling */
+        .footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: auto;
+        }
+
+        .large-buttons {
+            margin-top: 20px;
+            display: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .large-buttons button {
+            margin: 5px;
+            font-size: 20px; /* Larger text size */
+            padding: 10px 20px; /* Larger padding */
+            cursor: pointer;
+        }
+
         .aligned-list {
             list-style-type: disc; /* Bullet points */
             list-style-position: inside;
@@ -106,20 +120,22 @@
     </style>
 </head>
 <body>
-    <div id="startPage" class="container" style="display: flex;">
-        <img src="N1C_logo.jpg" alt="N1C logo" style="max-width: 50%; height: auto; margin-bottom: 20px;">
-        <h1>N1C Variant Eligibility Calculator</h1>
-        <div class="large-buttons">
-        <button onclick="showPage('infoPage')">Start</button>
+    <div class="wrapper">
+        <div id="startPage" class="container" style="display: flex;">
+            <img src="N1C_logo.jpg" alt="N1C logo" style="max-width: 50%; height: auto; margin-bottom: 20px;">
+            <h1>N1C Variant Eligibility Calculator</h1>
+            <div class="large-buttons">
+                <button onclick="showPage('infoPage')">Start</button>
+            </div>
+            <div class="buttons">
+                <button onclick="showPage('disclaimer')">Disclaimer</button>
+            </div>
         </div>
-        <div class="buttons">
-            <button onclick="showPage('disclaimer')">Disclaimer</button>
-        </div>
-    </div>
-    
+
+        <!-- Footer -->
         <footer class="footer">
             &copy; 2024 N=1 Collaborative. All rights reserved.
-         </footer>
+        </footer>
 
      <!-- Information Page -->
     <div id="infoPage" class="container">
@@ -1744,6 +1760,7 @@
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
+ </div>
 
     <script>
         function evaluateQ8_2_1_3_1() {
