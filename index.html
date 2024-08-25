@@ -10,14 +10,16 @@
             padding: 0;
             font-family: Arial, sans-serif;
             height: 100%;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
+            overflow: hidden; /* Prevents scrolling */
+            display: flex;
+            flex-direction: column;
         }
 
         .wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            justify-content: space-between;
+            flex-grow: 1;
+            width: 100%;
         }
 
         .content {
@@ -27,8 +29,10 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            overflow: auto; /* Allows scrolling within the content if needed */
             box-sizing: border-box;
             width: 100%;
+
         }
 
         .container {
@@ -55,7 +59,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%; /* Ensure full-width alignment */
+            width: 100%;
         }
 
         .navigation-buttons {
@@ -92,8 +96,7 @@
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
-            margin-top: auto; /* Pushes the footer to the bottom of the page */
-            position: relative; /* Ensure footer stays at the bottom */
+            flex-shrink: 0;
         }
 
         .large-buttons {
@@ -235,7 +238,7 @@
     <div id="q3_1" class="container">
         <p class="decision-path">Step 0 - Variant check - CNVs - Whole gene duplication</p>
         <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the disorder/gene associated with haploinsufficiency?</h2>
-        <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search="" target="_blank">ClinGen</a>.</p>
+        <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search="target="_blank">ClinGen</a>.</p>
         <div class="buttons">
             <button onclick="showPage('q3_1_2')">Yes</button>
             <button onclick="showPage('q3_1_1')">No</button>
@@ -336,7 +339,7 @@
             <button onclick="showPage('q5_3')">X-linked dominant</button>
             <button onclick="showPage('q5_4')">X-linked recessive</button>
             <button onclick="showPage('q5_5')">Mitochondrial</button>
-<button onclick="showPage('q5_6')">Unknown</button>
+            <button onclick="showPage('q5_6')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1071,7 +1074,7 @@
     <div id="q9_2" class="container">
         <p class="decision-path">Step 3 - splice assessment - gain of function and dominant negative variants - Nonsense and frameshift variants</p>
         <h2> Nonsense and frameshift variants leading to splice aberrations and causing a GoF or DN effect can be corrected with a splice correction ASO. By correcting splicing, the variants will cause a loss of function effect on protein level due to the amino acid changes. In such cases, it is also less relevant whether canonical splicing is affected, as a reduction of the toxic GoF effect is the goal, however, attention to haploinsufficiency should be paid. Is the disorder associated with haploinsufficiency?</h2>
-        <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search="" target="_blank">ClinGen</a>.</p>
+        <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search="target="_blank">ClinGen</a>.</p>
         <p>Note that it is also possible to target these variants with a knockdown approach.</p>
         <div class="buttons">
             <button onclick="showPage('q10_2_1')">Yes</button>
@@ -1781,7 +1784,7 @@
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
- </div>
+
 
     <script>
         function evaluateQ8_2_1_3_1() {
@@ -2210,4 +2213,4 @@
             </footer>
     </div>
 </body>
-</html
+</html>
