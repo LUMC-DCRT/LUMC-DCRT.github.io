@@ -8,115 +8,117 @@
   <head>
     <style>
         body, html {
-          height: 100%;
-          margin: 0;
-        display: flex;
-        flex-direction: column;
-        font-family: Arial, sans-serif;
-    }
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%; /* Ensure the body and html take up the full height */
+}
 
-        /* Wrapper for the whole content */
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-        }
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
 
-        /* The content section grows to fill available space, ensuring the footer stays at the bottom */
-        .content {
-            flex: 1;
-            padding: 20px; /* Adjust padding as needed */
-        }
+.content {
+    flex: 1;
+    padding: 20px; /* Adjust padding as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
 
-        .container {
-            display: none;
-            flex-direction: column;
-            text-align: center;
-            width: 80%;
-            max-width: 800px;
-            margin: auto;
-        }
+.container {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+}
 
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-        .buttons button {
-            margin: 5px;
-        }
+.buttons button {
+    margin: 5px;
+}
 
-        #startPage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-        }
+#startPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
 
-        .navigation-buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
+.navigation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-        a {
-            color: blue;
-        }
+a {
+    color: blue;
+}
 
-        .checkboxes {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.checkboxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        .checkboxes label {
-            margin: 5px;
-        }
+.checkboxes label {
+    margin: 5px;
+}
 
-        /* CSS for the decision-path text */
-        .decision-path {
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
+/* CSS for the decision-path text */
+.decision-path {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
 
-        /* Footer styling */
-        .footer {
-            background-color: #f1f1f1;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
+/* Footer styling */
+.footer {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; /* Pushes the footer to the bottom of the page */
+}
 
-        .large-buttons {
-            margin-top: 20px;
-            display: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.large-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-        .large-buttons button {
-            margin: 5px;
-            font-size: 20px; /* Larger text size */
-            padding: 10px 20px; /* Larger padding */
-            cursor: pointer;
-        }
+.large-buttons button {
+    margin: 5px;
+    font-size: 20px; /* Larger text size */
+    padding: 10px 20px; /* Larger padding */
+    cursor: pointer;
+}
 
-        .aligned-list {
-            list-style-type: disc; /* Bullet points */
-            list-style-position: inside;
-            padding-left: 0;
-            margin-left: 0;
-            text-align: left;
-        }
+.aligned-list {
+    list-style-type: disc; /* Bullet points */
+    list-style-position: inside;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
+}
 
-        .aligned-list li {
-            margin-bottom: 10px;
-        }
+.aligned-list li {
+    margin-bottom: 10px;
+}
     </style>
 </head>
 <body>
