@@ -11,16 +11,13 @@
             font-family: Arial, sans-serif;
             height: 100%;
             overflow: hidden; /* Prevent scrolling */
-            display: flex;
-            flex-direction: column;
         }
 
         .wrapper {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            width: 100%;
-            justify-content: space-between;
+            justify-content: space-between; 
         }
 
         .content {
@@ -32,7 +29,6 @@
             padding: 20px;
             box-sizing: border-box;
             width: 100%; /* Ensure full-width alignment */
-            overflow-y: auto;
         }
 
         .container {
@@ -59,7 +55,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            flex-grow: 1;
         }
 
         .navigation-buttons {
@@ -91,19 +87,20 @@
 
         /* Footer styling */
         .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .large-buttons {
             background-color: #f1f1f1;
             text-align: center;
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
-            flex-shrink: 0; /* Prevents the footer from shrinking */
-        }
-
-        .large-buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
 
         .large-buttons button {
@@ -722,8 +719,24 @@
 
     <div id="q8_1_1_3_2" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Missense variants or in-frame indels</p>
-        <h2>The variant cannot be assessed for splice correction. The variant can be considered for exon skipping or a TANGO approach.</h2>
+        <h2>Eligibility: Not eligible for splice correction</h2>
+        <p>The variant cannot be assessed for splice correction. The variant can be considered for exon skipping or a TANGO approach.</p>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <div class="buttons">
+            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="goBack()">Back</button>
+            <button onclick="showPage('startPage')">Back to Start</button>
+        </div>
+    </div>
+
+    <div id="q8_1_1_3_3" class="container">
+        <p class="decision-path">Step 3 - Splice assessment - Missense variants or in-frame indels</p>
+        <h2>Eligibility: Unable to assess</h2>
+        <p>The variant cannot be assessed for splice correction. Please obtain evidence for or against a splicing effect.</p>
+        <p>Under certain circumstances, the variant can be considered for exon skipping or a TANGO approach.</p>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
             <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
@@ -1822,7 +1835,7 @@
     <div id="q7_2_1_3_2" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Missense variants and in-frame indels</p>
         <h2>Eligibility: Not eligible for splice correction </h2>
-        <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <p>For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <p>The variant is not eligible for splice correction. The variant can be considered for exon skipping.</p>
         <div class="buttons">
             <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
