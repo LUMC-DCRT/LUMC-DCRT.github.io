@@ -8,16 +8,19 @@
   <head>
     <style>
         body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+          height: 100%;
+          margin: 0;
+        display: flex;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+    }
 
         /* Wrapper for the whole content */
         .wrapper {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            width: 100%;
         }
 
         /* The content section grows to fill available space, ensuring the footer stays at the bottom */
@@ -85,11 +88,8 @@
             background-color: #f1f1f1;
             text-align: center;
             padding: 10px;
-            position: relative;
-            bottom: 0;
             width: 100%;
             box-sizing: border-box;
-            margin-top: auto;
         }
 
         .large-buttons {
@@ -132,10 +132,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            &copy; 2024 N=1 Collaborative. All rights reserved.
-        </footer>
 
      <!-- Information Page -->
     <div id="infoPage" class="container">
@@ -2144,6 +2140,12 @@
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
+
+    
+    <!-- Footer -->
+    <footer class="footer">
+          &copy; 2024 N=1 Collaborative. All rights reserved.
+    </footer>
     
     <script>
     // Global history stack
