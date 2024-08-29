@@ -146,8 +146,14 @@
         <p>This calculator complements the N1C Consensus guidelines for eligibility assessment of pathogenic variants to antisense oligonucleotide treatments (LINK). Please use the guidelines alongside this calculator. The calculator will direct you towards the relevant sections to read within the guidelines to help you with the assessment. For understanding of how the assessments work, please also take a look at our training material (LINK). By using this calculator, you agree to our license and the conditions indicated in our disclaimer. The full code of the calculator is available on GitHub (LINK). </p>
         <p>If you use this calculator, please cite our manuscript: Cheerie et al., 2024 (LINK)</p>
         <p>If you have any questions about the calculator or suggestions for improvement, please reach out to Marlen Lauffer (marlen@n1collaborative.org).</p>
+        
+        <!-- Input field for the user to enter their text -->
+        <input type="text" id="userText" placeholder="Enter your text here" style="margin-bottom: 20px;">
+        <button onclick="openNewTab()">Submit</button>
+        
+        
         <div class="large-buttons">
-        <button onclick="showPage('q1')">Start Assessment</button>
+            <button onclick="showPage('q1')">Start Assessment</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -172,7 +178,7 @@
         <h2>Is the variant description correct and conform with the HGVS nomenclature?</h2>
         <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/"target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/"target="_blank">Mutalyzer</a>.</p>
         <div class="buttons">
-            <button onclick="showPage('q2')">Yes</button>
+            <button onclick="onAnswer('q2')">Yes</button>
             <button onclick="showPage('a1')">No</button>
         </div>
         <div class="navigation-buttons">
@@ -2201,6 +2207,53 @@
             }
         }
     </script>
+
+    <script>
+        let answerLog = "";
+
+        function openNewTab() {
+            const userText = document.getElementById('userText').value;
+            const newTab = window.open('', '_blank');
+            
+            answerLog = `<p>${userText}</p>`; // Initialize the log with the user's text
+            newTab.document.write(`
+                <html>
+                <head><title>Question and Answer Log</title></head>
+                <body>
+                    <h1>Your Log</h1>
+                    <div id="log">${answerLog}</div>
+                </body>
+                </html>
+            `);
+            newTab.document.close();
+            window.newTab = newTab; // Save a reference to the new tab
+        }
+
+        function recordAnswer(question, answer) {
+            answerLog += `<p><strong>${question}</strong>: ${answer}</p>`;
+            
+            if (window.newTab && !window.newTab.closed) {
+                const logDiv = window.newTab.document.getElementById('log');
+                logDiv.innerHTML = answerLog;
+            }
+        }
+
+        function onAnswer(question, answer) {
+            // Record the answer
+            recordAnswer(question, answer);
+            
+            // Navigate to the next question
+            showPage('nextPageId');  // Replace 'nextPageId' with the actual ID of the next page
+        }
+
+        function showPage(pageId) {
+            // Implement your showPage function here
+        }
+
+        function goBack() {
+            // Implement your goBack function here
+        }
+    </script>    
 
             <!-- Footer -->
             <footer class="footer">
