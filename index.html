@@ -179,7 +179,7 @@
         <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/"target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/"target="_blank">Mutalyzer</a>.</p>
         <div class="buttons">
             <button onclick="onAnswer('Variant description HGVS conform?', 'Yes', 'q2')">Yes</button>
-            <button onclick="onAnswer('Variant description HGVS conform?', 'No', 'Variant unable to assess', 'a1')">No</button>
+            <button onclick="onAnswer('Variant description HGVS conform?', 'No', 'a1')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2219,10 +2219,10 @@
         const userText = document.getElementById('userText').value;
         const newTab = window.open('', '_blank');
 
-        const now = new Date();
-        const timestamp = now.toLocaleString();
+        const currentDateTime = new Date();
+        const formattedDateTime = currentDateTime.toLocaleString();
         
-        answerLog = `<p>${userText}</p>`; // Initialize the log with the user's text
+        answerLog = `<p>${userText}</p><p><strong>Date & Time:</strong> ${formattedDateTime}</p>`; // Initialize the log with the user's text and the date/time
         newTab.document.write(`
              <html>
             <head>
@@ -2238,7 +2238,7 @@
                 </style>
             </head>
             <body>
-                <h1>Variant Assessment for Variant:/h1>
+                <h1>Variant Assessment for Variant: </h1>
                 <div id="log">${answerLog}</div>
             </body>
             </html>
