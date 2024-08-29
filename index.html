@@ -177,7 +177,7 @@
         <h2>Is the variant description correct and conform with the HGVS nomenclature?</h2>
         <p>For guidance on how to check for HGVS conform nomenclature, please read “Step 0” of the N1C consensus guidelines. You can check the variant description using <a href="https://variantvalidator.org/"target="_blank">VariantValidator</a> or <a href="https://mutalyzer.nl/"target="_blank">Mutalyzer</a>.</p>
         <div class="buttons">
-            <button onclick="onAnswer('q2')">Yes</button>
+            <button onclick="onAnswer('HGVS conform?', 'Yes', 'q2')">Yes</button>
             <button onclick="showPage('a1')">No</button>
         </div>
         <div class="navigation-buttons">
@@ -2175,19 +2175,25 @@
             </footer>
     </div>
     
-    <script>
-    // Global history stack
+   <script>
+    // Global history stack and answer log
     let historyStack = [];
+    let answerLog = "";
 
     // Function to show a specific page
     function showPage(pageId) {
-        historyStack.push(document.querySelector('.container[style*="display: flex;"]'));
+        // Hide all pages
         document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+        
+        // Show the target page
+        const pageToShow = document.getElementById(pageId);
+        pageToShow.style.display = 'flex';
         
         // Reset checkboxes on the page
         resetCheckboxes(pageId);
 
-        document.getElementById(pageId).style.display = 'flex';
+        // Save to history stack
+        historyStack.push(pageToShow);
     }
 
     // Function to reset all checkboxes on a page
@@ -2200,63 +2206,48 @@
 
     // Function to go back to the previous page
     function goBack() {
-        if (historyStack.length > 0) {
-            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-            let lastPage = historyStack.pop();
-            
-            // Reset checkboxes on the page
-            resetCheckboxes(lastPage.id);
-
-            lastPage.style.display = 'flex';
-            }
+        if (historyStack.length > 1) {  // Check if there's a page to go back to
+            historyStack.pop(); // Remove the current page
+            let lastPage = historyStack.pop(); // Get the previous page
+            showPage(lastPage.id);  // Show the previous page
         }
-    </script>
-  
-    <script>
-        let answerLog = "";
+    }
 
-        function openNewTab() {
-            const userText = document.getElementById('userText').value;
-            const newTab = window.open('', '_blank');
-            
-            answerLog = `<p>${userText}</p>`; // Initialize the log with the user's text
-            newTab.document.write(`
-                <html>
-                <head><title>Question and Answer Log</title></head>
-                <body>
-                    <h1>Your Log</h1>
-                    <div id="log">${answerLog}</div>
-                </body>
-                </html>
-            `);
-            newTab.document.close();
-            window.newTab = newTab; // Save a reference to the new tab
-        }
+    // Function to open a new tab and log the user's input
+    function openNewTab() {
+        const userText = document.getElementById('userText').value;
+        const newTab = window.open('', '_blank');
+        
+        answerLog = `<p>${userText}</p>`; // Initialize the log with the user's text
+        newTab.document.write(`
+            <html>
+            <head><title>Question and Answer Log</title></head>
+            <body>
+                <h1>Your Log</h1>
+                <div id="log">${answerLog}</div>
+            </body>
+            </html>
+        `);
+        newTab.document.close();
+        window.newTab = newTab; // Save a reference to the new tab
+    }
 
-        function recordAnswer(question, answer) {
-            answerLog += `<p><strong>${question}</strong>: ${answer}</p>`;
-            
-            if (window.newTab && !window.newTab.closed) {
-                const logDiv = window.newTab.document.getElementById('log');
-                logDiv.innerHTML = answerLog;
-            }
+    // Function to record answers and update the log in the new tab
+    function recordAnswer(question, answer) {
+        answerLog += `<p><strong>${question}</strong>: ${answer}</p>`;
+        
+        if (window.newTab && !window.newTab.closed) {
+            const logDiv = window.newTab.document.getElementById('log');
+            logDiv.innerHTML = answerLog;
         }
+    }
 
-        function onAnswer(question, answer) {
-            // Record the answer
-            recordAnswer(question, answer);
-            
-            // Navigate to the next question
-            showPage('nextPageId');  // Replace 'nextPageId' with the actual ID of the next page
-        }
+    // Function to record an answer and navigate to the next page
+    function onAnswer(question, answer, nextPageId) {
+        recordAnswer(question, answer);
+        showPage(nextPageId);
+    }
+</script>
 
-        function showPage(pageId) {
-            // Implement your showPage function here
-        }
-
-        function goBack() {
-            // Implement your goBack function here
-        }
-    </script>    
 </body>
 </html>
