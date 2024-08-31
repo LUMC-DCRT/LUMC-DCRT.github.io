@@ -204,8 +204,8 @@
         <h2>Is the variant of a type applicable to be evaluated with these guidelines?</h2>
         <p>Variants applicable to these guidelines are restricted to single nucleotide variants, small indels, one or multi-exon deletions or duplications, and full gene deletions or duplications. Currently excluded are variants in non-coding genes, deletions/duplications spanning multiple genes (i.e., contiguous gene syndromes), imprinting defects/uniparental disomy, structural rearrangements (e.g., translocations), and aneuploidies. Please also see “Step 0” of the N1C consensus guidelines for further explanations.</p>
         <div class="buttons">
-            <button onclick="showPage('q3')">Yes</button>
-            <button onclick="showPage('a2')">No</button>
+            <button onclick="onAnswer('Variant applicable to guidelines?', 'Yes','q3')">Yes</button>
+            <button onclick="onAnswer('Variant applicable to guidelines?', 'No','a2')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -216,6 +216,7 @@
     <div id="a2" class="container">
         <p class="decision-path">Step 0 - Variant check</p>
         <h2>Eligibility: Unable to assess</h2>
+        <button onclick="recordFinalDecision('Eligibility: Unable to assess. Variant is not of type applicable to these guidelines.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -226,9 +227,9 @@
         <p class="decision-path">Step 0 - Variant check - CNVs</p>
         <h2>Is the variant a duplication or deletion of a whole gene (CNV)?</h2>
         <div class="buttons">
-            <button onclick="showPage('q3_1')">Yes gene duplication</button>
-            <button onclick="showPage('result3_2')">Yes gene deletion</button>
-            <button onclick="showPage('q4')">No</button>
+            <button onclick="onAnswer('Is the variant a CNV?', 'Yes, gene duplication', 'q3_1')">Yes, gene duplication</button>
+            <button onclick="onAnswer('Is the variant a CNV?', 'Yes, gene deletion', 'result3_2')">Yes, gene deletion</button>
+            <button onclick="onAnswer('Is the variant a CNV?', 'No','q4')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -239,11 +240,11 @@
     <!-- Question 3.1 -->
     <div id="q3_1" class="container">
         <p class="decision-path">Step 0 - Variant check - CNVs - Whole gene duplication</p>
-        <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the disorder/gene associated with haploinsufficiency?</h2>
+        <h2>Consider variant for knockdown approach. Please review “Section B” in the N1C consensus guidelines. Is the gene associated with haploinsufficiency?</h2>
         <p>For guidance on how to assess for haploinsufficiency and dosage sensitivity, please read “Step 2” of the N1C consensus guidelines or “Section B”. For a quick evaluation, we recommend using the Dosage Sensitivity curations from <a href="https://search.clinicalgenome.org/kb/gene-dosage?page=1&size=25&search="target="_blank">ClinGen</a>.</p>
         <div class="buttons">
-            <button onclick="showPage('q3_1_2')">Yes</button>
-            <button onclick="showPage('q3_1_1')">No</button>
+            <button onclick="onAnswer('Gene associated with haploinsufficiency?', 'Yes', 'q3_1_2')">Yes</button>
+            <button onclick="onAnswer('Gene associated with haploinsufficiency?', 'No', 'q3_1_1')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -257,8 +258,8 @@
         <h2>Is there already an ASO/RNAi/siRNA approach developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
-            <button onclick="showPage('result3_1_1_yes')">Yes</button>
-            <button onclick="showPage('result3_1_1_no')">No</button>
+            <button onclick="onAnswer('ASO already available?', 'Yes', 'result3_1_1_1')">Yes</button>
+            <button onclick="onAnswer('ASO already available?',' No', 'result3_1_1_2')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -266,20 +267,22 @@
         </div>
     </div>
 
-    <div id="result3_1_1_yes" class="container">
+    <div id="result3_1_1_1" class="container">
         <p class="decision-path">Step 0 - Variant check - CNV - Whole gene duplication</p>
         <h2>Eligibility: Eligible for a knockdown approach</h2>
         <p>For further information on the classification, please see the <a href="knockdown_table.jpg" target="_blank">classification table</a> for knockdown.</p>
+        <button onclick="recordFinalDecision('Eligibility: Eligible for a knockdown approach.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
     </div>
 
-    <div id="result3_1_1_no" class="container">
+    <div id="result3_1__1_2" class="container">
         <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
-        <h2>Eligibility: Likely eligible for a knockdown aproach</h2>
+        <h2>Eligibility: Likely eligible for a knockdown approach </h2>
         <p>For further information on the classification, please see the <a href="knockdown_table.jpg" target="_blank">classification table</a> for knockdown.</p>
+        <button onclick="recordFinalDecision('Eligibility: Likely eligible for a knockdown approach.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -291,8 +294,8 @@
         <h2>Consider an allele-selective approach. Is an ASO/RNAi/siRNA approach already developed for this gene?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
-            <button onclick="showPage('result3_1_2_yes')">Yes</button>
-            <button onclick="showPage('result3_1_2_no')">No</button>
+            <button onclick="onAnswer('ASO already available?', 'Yes', 'result3_1_2_yes')">Yes</button>
+            <button onclick="onAnswer('ASO already available?', 'No','result3_1_2_no')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -304,6 +307,7 @@
         <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: Eligible for a knockdown approach</h2>
         <p>For further information on the classification, please see the <a href="knockdown_table.jpg" target="_blank">classification table</a> for knockdown.</p>
+        <button onclick="recordFinalDecision('Eligibility: Eligible for a knockdown approach.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -314,6 +318,7 @@
         <p class="decision-path">Step 0 - CNV - Whole gene duplication</p>
         <h2>Eligibility: Unlikely eligible for a knockdown approach</h2>
         <p>For further information on the classification, please see the <a href="knockdown_table.jpg" target="_blank">classification table</a> for knockdown.</p>
+        <button onclick="recordFinalDecision('Eligibility: Unlikely eligible for a knockdown approach.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -324,6 +329,7 @@
     <div id="result3_2" class="container">
         <p class="decision-path">Step 0 - CNV - Whole gene deletion</p>
         <h2>Consider variant for TANGO approach. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator. Please note that TANGO approaches for whole gene deletions only apply if there is still a functional wild-type copy. In case there is already a TANGO approach available for this variant, then this variant is considered eligible.</h2>
+        <button onclick="recordFinalDecision('Consider variant for TANGO approach. Please review Section C in the guidelines.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -336,12 +342,12 @@
         <h2>What is the inheritance pattern of this variant?</h2>
         <p> For guidance on how to determine the inheritance pattern, please see “Step 1” of the N1C consensus guidelines.</p>
         <div class="buttons">
-            <button onclick="showPage('q5_1')">Autosomal dominant</button>
-            <button onclick="showPage('q5_2')">Autosomal recessive</button>
-            <button onclick="showPage('q5_3')">X-linked dominant</button>
-            <button onclick="showPage('q5_4')">X-linked recessive</button>
-            <button onclick="showPage('q5_5')">Mitochondrial</button>
-            <button onclick="showPage('q5_6')">Unknown</button>
+            <button onclick="onAnswer('Inheritance pattern:', 'Autosomal dominant', 'q5_1')">Autosomal dominant</button>
+            <button onclick="onAnswer('Inheritance pattern:', 'Autosomal recessive', 'q5_2')">Autosomal recessive</button>
+            <button onclick="onAnswer('Inheritance pattern:', 'X-linked dominant', 'q5_3')">X-linked dominant</button>
+            <button onclick="onAnswer('Inheritance pattern:', 'X-linked recessive', 'q5_4')">X-linked recessive</button>
+            <button onclick="onAnswer('Inheritance pattern:', 'Mitochondrial', 'q5_5')">Mitochondrial</button>
+            <button onclick="<button onclick="onAnswer('Inheritance pattern:', 'Unknown', 'q5_6')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -354,10 +360,10 @@
         <h2>What is the pathomechanism of the variant under assessment?</h2>
         <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
         <div class="buttons">
-            <button onclick="showPage('q6_1_1')">Loss of function</button>
-            <button onclick="showPage('q6_1_2')">Gain of function</button>
-            <button onclick="showPage('q6_1_3')">Dominant negative</button>
-            <button onclick="showPage('q6_1_4')">Unknown</button>
+            <button onclick="onAnswer('Pathomechanism of variant:', 'Loss of function', 'q6_1_1')">Loss of function</button>
+            <button onclick="onAnswer('Pathomechanism of variant:', 'Gain of function', 'q6_1_2')">Gain of function</button>
+            <button onclick="onAnswer('Pathomechanism of variant:', 'Dominant negative', 'q6_1_3')">Dominant negative</button>
+            <button onclick="onAnswer('Pathomechanism of variant:', 'Unknown', 'q6_1_4')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -369,14 +375,14 @@
         <p class="decision-path">Step 2 - Pathomechanism - Autosomal dominant - Loss of function</p>
         <h2>What is the variant type?</h2>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
-            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
-            <button onclick="showPage('q7_1_1_3')">Missense</button>
-            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
-            <button onclick="showPage('q7_1_1_3')">Small in-frame indel</button>
-            <button onclick="showPage('q7_1_1_5')">Whole exon duplication</button>
-            <button onclick="showPage('q7_1_1_6')">Whole exon deletion</button>
-            <button onclick="showPage('q7_1_1_1')">Intronic</button>
+            <button onclick="onAnswer('Variant type:', 'Nonsense variant', 'q7_1_1_4')">Nonsense</button>
+            <button onclick="onAnswer('Variant type:', 'Frameshift variant', 'q7_1_1_4')">Frameshift</button>
+            <button onclick="onAnswer('Variant type:', 'Missense variant', 'q7_1_1_3')">Missense</button>
+            <button onclick="onAnswer('Variant type:', 'Synonymous variant', 'q7_1_1_2')">Synonymous</button>
+            <button onclick="onAnswer('Variant type:', 'Small in-frame indel', 'q7_1_1_3')">Small in-frame indel</button>
+            <button onclick="onAnswer('Variant type:', 'Whole exon duplication', 'q7_1_1_5')">Whole exon duplication</button>
+            <button onclick="onAnswer('Variant type:', 'Whole exon deletion', 'q7_1_1_6')">Whole exon deletion</button>
+            <button onclick="onAnswer('Variant type:', 'Intronic', 'q7_1_1_1')">Intronic</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -390,9 +396,9 @@
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
-            <button onclick="showPage('q8_1_1')">Yes</button>
-            <button onclick="showPage('result7_1_1_1_2')">No</button>
-            <button onclick="showPage('result7_1_1_1_3')">Unknown</button>
+            <button onclick="onAnswer('Splicing effect?', 'Yes', 'q8_1_1')">Yes</button>
+            <button onclick="onAnswer('Splicing effect?', 'No', 'result7_1_1_1_2')">No</button>
+            <button onclick="onAnswer('Splicing effect?', 'Unknown', 'result7_1_1_1_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -431,6 +437,20 @@
             const intronic_variant_downstream_1 = document.getElementById('intronic_variant_downstream_1').checked;
             const intronic_variant_within_1 = document.getElementById('intronic_variant_within_1').checked;
 
+            // Create an array to store selected options
+            let selectedOptions = [];
+
+            // Check each condition and add corresponding option to the array
+            if (canonical_splicing_destroyed_1) selectedOptions.push("Canonical splicing is destroyed");
+            if (canonical_splicing_weakened_1) selectedOptions.push("Canonical splicing is weakened");
+            if (variant_within_5bp_1) selectedOptions.push("Variant within 5 bp of canonical splice site");
+            if (intronic_variant_upstream_1) selectedOptions.push("Intronic variant >100 bp upstream of acceptor splice site");
+            if (intronic_variant_downstream_1) selectedOptions.push("Intronic variant >50 bp downstream of donor splice site");
+            if (intronic_variant_within_1) selectedOptions.push("Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites");
+
+            // Log the selected options
+            recordAnswer("Q8.1.1 Selected Options", selectedOptions.join(", "));
+            
             if (canonical_splicing_destroyed_1 || variant_within_5bp_1) {
                 showPage('q9_1_1_3');
             } else if (intronic_variant_within_1 || (canonical_splicing_weakened_1 && (intronic_variant_upstream_1 || intronic_variant_downstream_1 || intronic_variant_within_1))) {
@@ -2267,7 +2287,7 @@
     // Function to record the final decision
         function recordFinalDecision(decision) {
             // Record the final decision in the log
-            recordAnswer('Final Decision', decision);
+            recordAnswer('Assessment outcome', decision);
             
             // Alert the user that the decision was recorded
             alert('Final decision recorded in log.');
