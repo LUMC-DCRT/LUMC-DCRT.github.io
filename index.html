@@ -191,6 +191,7 @@
         <p class="decision-path">Step 0 - Variant check</p>
         <h2>Eligibility: Unable to assess</h2>
         <p>Please check with the referring clinician or patient (family) to receive the correct variant description.</p>
+        <button onclick="recordFinalDecision('Eligibility: Unable to assess. The variant is not conform with the HGVS nomenclature.')">Finish</button>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2262,6 +2263,19 @@
         recordAnswer(question, answer);
         showPage(nextPageId);
     }
+
+    // Function to record the final decision
+        function recordFinalDecision(decision) {
+            // Record the final decision in the log
+            recordAnswer('Final Decision', decision);
+            
+            // Alert the user that the decision was recorded
+            alert('Final decision recorded in log.');
+
+            // Navigate back to the start page or any other page you prefer
+            showPage('startPage');
+        }
+   
 </script>
 
 </body>
