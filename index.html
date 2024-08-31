@@ -743,8 +743,10 @@
             <label><input type="checkbox" id="amino_acid_partial_lof_3"> Change in amino acid sequence causes partial loss of function/reduced protein function</label>
             <label><input type="checkbox" id="amino_acid_benign_3"> Change on protein/amino acid level known to be benign</label>
         </div>
+        <div class="buttons">
+             <button onclick="evaluateQ8_1_1_3_1()">Next</button>
+        </div>
         <div class="navigation-buttons">
-            <button onclick="evaluateQ8_1_1_3_1()">Next</button>
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
         </div>
@@ -871,8 +873,8 @@
         <li>Gene contains only one coding exon</li>
      </ul>
         <div class="buttons">
-            <button onclick="onAnswer(Does the exon fulfill one of the not eligible criteria?', 'Yes', 'a7_1_1_4')">Yes</button>
-            <button onclick="onAnswer(Does the exon fulfill one of the not eligible criteria?', 'No', 'q8_1_3')">No</button>
+            <button onclick="onAnswer('Does the exon fulfill one of the not eligible criteria?', 'Yes', 'a7_1_1_4')">Yes</button>
+            <button onclick="onAnswer('Does the exon fulfill one of the not eligible criteria?', 'No', 'q8_1_3')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
