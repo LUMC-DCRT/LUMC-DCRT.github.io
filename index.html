@@ -888,7 +888,7 @@
     <div id="a7_1_1_4" class="container">
         <p class="decision-path">Section A - Exon skipping assessment</p>
         <h2>Eligibility: Not eligible for exon skipping</h2>
-        <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
+        <p>Please check for exceptions described in “Section A” of the N1C consensus guidelines.</p>
         <p>For further information on the classification, please see the <a href="exon_skipping_table.jpg" target="_blank">classification table</a> for exon skipping.</p> 
         <div class="buttons">
              <button onclick="recordFinalDecision('Eligibility: Not eligible for exon skipping.')">Finish</button>
@@ -1344,8 +1344,8 @@
         <h2>Eligibility: Unable to assess</h2>
         <p>The variant can be considered for a knockdown approach or in certain circumstances for exon skipping. Please choose the preferred assessment:</p>
         <div class="buttons">
-            <button onclick="onAnswer('Eligiblity: Unable to assess for splice correction', 'Jump to exon skipping', 'q7_1_1_4')">Exon skipping</button>
-            <button onclick="onAnswer('Eligiblity: Unable to assess for splice correction', 'Jump to knockdown', 'q7_1_2_2')">Knockdown</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess for splice correction', 'Jump to exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess for splice correction', 'Jump to knockdown', 'q7_1_2_2')">Knockdown</button>
             <button onclick="recordFinalDecision('Eligibility: Unable to assess for splice correction.')">Finish</button>
         </div>
           <div class="navigation-buttons">
@@ -1359,8 +1359,8 @@
         <h2>Eligibility: Unable to assess</h2>
         <p>The variant can be considered for a knockdown approach or in certain circumstances for exon skipping. Please choose the preferred assessment:</p>
         <div class="buttons">
-            <button onclick="onAnswer('Eligiblity: Unable to assess for splice correction', 'Jump to exon skipping', 'q7_1_1_4')">Exon skipping</button>
-            <button onclick="onAnswer('Eligiblity: Unable to assess for splice correction', 'Jump to knockdown', 'q7_1_2_2')">Knockdown</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess for splice correction', 'Jump to exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess for splice correction', 'Jump to knockdown', 'q7_1_2_2')">Knockdown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1414,7 +1414,7 @@
                 
                 if (intolerant_reduction_6) {
                     showPage('a7_1_2_2_1');
-                } else if (loss_one_allele_6 || complete_loss_function_6) {
+                } else if (loss_one_allele_6 || 6) {
                     showPage('q7_1_2_2_1');
                 } else if (haploinsufficiency_6 || hypomorphic_alleles_6) {
                     showPage('q7_1_2_2_2');
@@ -1431,7 +1431,7 @@
         <p>For further information on the classification, please see the <a href="knockdown_table.jpg" target="_blank">classification table</a> for knockdown.</p>
         <p>The exon the variant is located in could be considered for exon skipping should it fulfill all criteria.</p>
         <div class="buttons">
-            <button onclick="onAnswer('Eligiblity: Not eligible for a knockdown approach', 'Jump to exon skipping', 'q7_1_1_4')">Go to Exon Skipping</button>
+            <button onclick="onAnswer('Eligibility: Not eligible for a knockdown approach', 'Jump to exon skipping', 'q7_1_1_4')">Go to Exon Skipping</button>
             <button onclick="recordFinalDecision('Eligibility: Not eligible for a knockdown approach.')">Finish</button>
         </div>
         <div class="navigation-buttons">
@@ -1811,6 +1811,8 @@
             const intronic_variant_downstream_8 = document.getElementById('intronic_variant_downstream_8').checked;
             const intronic_variant_within_8 = document.getElementById('intronic_variant_within_8').checked;
 
+            let selectedOptions = [];
+            
             if (canonical_splicing_destroyed_8) selectedOptions.push("Canonical splicing is destroyed");
             if (canonical_splicing_weakened_8) selectedOptions.push("Canonical splicing is weakened");
             if (canonical_splicing_not_weakened_8) selectedOptions.push("Canonical splicing is not weakened");
@@ -1819,7 +1821,7 @@
             if (intronic_variant_downstream_8) selectedOptions.push("Intronic variant >50 bp downstream of donor splice site");
             if (intronic_variant_within_8) selectedOptions.push("Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites");
 
-            // Log the selected options
+            
             // Replace the question label with your custom label
             const customLabel = "Variant characteristics";
             recordAnswer(customLabel, selectedOptions.join(", "));
@@ -2038,9 +2040,9 @@
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
-            <button onclick="onAnswer('Splice effect?', 'Yes', 'q8_2_1_3_1')">Yes</button>
-            <button onclick="onAnswer('Splice effect?', 'No', 'q7_2_1_3_2')">No</button>
-            <button onclick="onAnswer('Splice effect?', 'Unknown', 'q7_2_1_3_3')">Unknown</button>
+            <button onclick="onAnswer('Splicing effect?', 'Yes', 'q8_2_1_3_1')">Yes</button>
+            <button onclick="onAnswer('Splicing effect?', 'No', 'q7_2_1_3_2')">No</button>
+            <button onclick="onAnswer('Splicing effect?', 'Unknown', 'q7_2_1_3_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2085,7 +2087,25 @@
             const partial_loss_function_10 = document.getElementById('partial_loss_function_10').checked;
             const known_benign_10 = document.getElementById('known_benign_10').checked;
 
-            if (canonical_splicing_destroyed_10 || variant_within_5bp_10 || complete_loss_function_10) {
+
+            let selectedOptions = [];
+
+            if (canonical_splicing_destroyed_10) selectedOptions.push("Canonical splicing is destroyed");
+            if (canonical_splicing_weakened_10) selectedOptions.push("Canonical splicing is weakened");
+            if (variant_within_5bp_10) selectedOptions.push("Variant within 5 bp of canonical splice site");
+            if (variant_within_6to15bp_10) selectedOptions.push("Variant within 6 to 15 bp of canonical splice site");
+            if (effect_not_known_10) selectedOptions.push("Effect of amino acid change on protein function is not known (independent of the splice-altering effect)");
+            if (change_gof_dn_10) selectedOptions.push("Change in amino acid sequence causes GoF or DN effect");
+            if (complete_loss_function_10) selectedOptions.push("Change in amino acid sequence causes complete loss of function");
+            if (partial_loss_function_10) selectedOptions.push("Change in amino acid sequence causes partial loss of function/reduced protein function");
+            if (known_benign_10) selectedOptions.push("Change on protein/amino acid level known to be benign");
+
+            // Replace the question label with your custom label
+            const customLabel = "Variant characteristics";
+            recordAnswer(customLabel, selectedOptions.join(", "));
+
+            
+            if (canonical_splicing_destroyed_10 || variant_within_5bp_10 || 10) {
                 showPage('q9_2_1_3');
             } else if (canonical_splicing_weakened_10 || variant_within_6_15bp_10 || partial_loss_function_10) {
                 showPage('q9_2_1_2');
@@ -2150,7 +2170,7 @@
         <div class="buttons">
             <button onclick="onAnswer('Eligibility: Unable to assess.', 'Jump to: exon skipping', 'q7_1_1_4')">Exon skipping</button>
             <button onclick="onAnswer('Eligibility: Unable to assess.', 'Jump to: TANGO', 'a8_1_1_3_2')">TANGO</button>
-            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button> 
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button> 
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2186,8 +2206,8 @@
         <li>Gene contains only the two coding exon (deleted one and the one to be skipped).</li>
         </ul>
         <div class="buttons">
-            <button onclick="onAnswer('Not-eligible criterion for exon skipping?', 'Yes', 'a8_2_1_5_1_1')">Yes</button>
-            <button onclick="onAnswer('Not-eligible criterion for exon skipping?', 'No', 'q9_2_1_5')">No</button>
+            <button onclick="onAnswer('Does the exon fulfill one of the not eligible criteria?', 'Yes', 'a8_2_1_5_1_1')">Yes</button>
+            <button onclick="onAnswer('Does the exon fulfill one of the not eligible criteria?', 'No', 'q9_2_1_5')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2222,7 +2242,7 @@
             <label><input type="checkbox" id="mutational_hotspot_11"> Exon skipping exon or deleted exon combined contain mutational hotspot</label>
             <label><input type="checkbox" id="pathogenic_loss_11"> Loss of both exons combined shown to be pathogenic</label>
             <label><input type="checkbox" id="pathogenic_inframe_11"> Functional evidence of in-frame deletions in either exon shown to be pathogenic</label>
-            <label><input type="checkbox" id="none"> None</label>
+            <label><input type="checkbox" id="none_11"> None</label>
         </div>
         <div class="buttons">
             <button onclick="evaluateQ9_2_1_5()">Next</button>
@@ -2235,17 +2255,35 @@
 
     <script>
         function evaluateQ9_2_1_5() {
-            const loss_10_percent_10 = document.getElementById('loss_10_percent_11').checked;
-            const only_functional_domain_10 = document.getElementById('only_functional_domain_11').checked;
-            const important_functional_domain_10 = document.getElementById('important_functional_domain_11').checked;
-            const one_functional_domain_10 = document.getElementById('one_functional_domain_11').checked;
-            const multiple_functional_domains_10 = document.getElementById('multiple_functional_domains_11').checked;
-            const repeat_domains_10 = document.getElementById('repeat_domains_11').checked;
-            const mutational_hotspot_10 = document.getElementById('mutational_hotspot_11').checked;
-            const pathogenic_loss_10 = document.getElementById('pathogenic_loss_11').checked;
-            const pathogenic_inframe_10 = document.getElementById('pathogenic_inframe_11').checked;
-            const none_10 = document.getElementById('none').checked;
+            const loss_10_percent_11 = document.getElementById('loss_10_percent_11').checked;
+            const only_functional_domain_11 = document.getElementById('only_functional_domain_11').checked;
+            const important_functional_domain_11 = document.getElementById('important_functional_domain_11').checked;
+            const one_functional_domain_11 = document.getElementById('one_functional_domain_11').checked;
+            const multiple_functional_domains_11 = document.getElementById('multiple_functional_domains_11').checked;
+            const repeat_domains_11 = document.getElementById('repeat_domains_11').checked;
+            const mutational_hotspot_11 = document.getElementById('mutational_hotspot_11').checked;
+            const pathogenic_loss_11 = document.getElementById('pathogenic_loss_11').checked;
+            const pathogenic_inframe_11 = document.getElementById('pathogenic_inframe_11').checked;
+            const none_11 = document.getElementById('none_11').checked;
 
+            let selectedOptions = [];
+
+                if (loss_10_percent_11) selectedOptions.push("Exon skipping results in the loss of >10% of the coding region");
+                if (only_functional_domain_11) selectedOptions.push("Exon skipping results in the loss of the only functional domain");
+                if (important_functional_domain_11) selectedOptions.push("Exon skipping results in the loss of an important functional domain or relevant amino acids");
+                if (one_functional_domain_11) selectedOptions.push("Exon skipping results in the loss of one functional domain");
+                if (multiple_functional_domains_11) selectedOptions.push("Exon skipping results in the loss of multiple functional domains");
+                if (repeat_domains_11) selectedOptions.push("Exon skipping results in the loss of one or multiple repeat domains");
+                if (mutational_hotspot_11) selectedOptions.push("Exon contains mutational hotspot");
+                if (pathogenic_loss_11) selectedOptions.push("Exon skipping shown to be pathogenic");
+                if (pathogenic_inframe_11) selectedOptions.push("Functional evidence of in-frame deletions shown to be pathogenic");
+                if (none_11) selectedOptions.push("No specific characteristics. Small, in-frame exon without a known functional domain.");
+                
+                // Replace the question label with your custom label
+                const customLabel = "Exon properties";
+                recordAnswer(customLabel, selectedOptions.join(", "));
+
+            
             if (only_functional_domain_11 || important_functional_domain_11 || (multiple_functional_domains_11 && loss_10_percent_11) || pathogenic_loss_11 || mutational_hotspot_11 || pathogenic_inframe_11) {
                 showPage('a8_1_3_1');
             } else if (repeat_domains_11) {
