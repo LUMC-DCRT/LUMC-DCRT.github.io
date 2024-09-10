@@ -732,7 +732,7 @@
 
     <!-- Q8.1.1.3.1: Missense and in-frame indels Splice correction ASO approaches -->
     <div id="q8_1_1_3_1" class="container">
-        <p class="decision-path">Step 3 - Splice assessment - Missense variants or in-frame indels</p>
+        <p class="decision-path">Step 3 - Splice assessment - Gain of function - Missense variants or in-frame indels</p>
         <h2>The variant can be assessed for splice correction ASO approaches. Please tick all boxes that apply.</h2>
         <p>To identify which boxes should be ticked, please carefully read Step 3 of the N1C consensus guidelines. For missense variants and in-frame indels, please pay special attention to the effect of these variants on protein function independent of the splice-altering effect.</p>
         <div class="checkboxes">
@@ -817,11 +817,10 @@
     <div id="a8_1_1_3_1_1" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Missense variants or in-frame indels</p>
         <h2> Eligibility: Unable to assess </h2>
-        <p>The variant cannot be assessed for splice correction until further evidence is available. Under certain circumstances, variant could be assessed for exon skipping or TANGO approaches.</p>
+        <p>The variant cannot be assessed for splice correction until further evidence is available. Under certain circumstances, variant could be assessed for exon skipping.</p>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <div class="buttons">
             <button onclick="onAnswer('Eligibility: Unable to assess for splice correction.', 'Jump to exon skipping.', 'q7_1_1_4')">Exon skipping</button>
-            <button onclick="onAnswer('Eligibility: Unable to assess for splice correction.', 'Jump to TANGO.', 'a8_1_1_3_2')">TANGO</button>
             <button onclick="recordFinalDecision('Eligibility: Unable to assess for splice correction.')">Finish</button>
         </div>
         <div class="navigation-buttons">
@@ -1195,7 +1194,7 @@
     <!--Q6.1.2: Decision for GoF variants -->
     <div id="q6_1_2" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Autosomal dominant - Gain of function</p>
-        <h2>Gain of function variants can be analyzed using the assessment for splice correction or for knockdown. In rare circumstances, an exon skipping approach can be employed. Review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach</h2>
+        <h2>Gain of function variants can be analyzed using the assessment for splice correction or for knockdown. In rare circumstances, an exon skipping approach can be employed. Review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach. Please pick your assessment: </h2>
         <div class="buttons">
             <button onclick="onAnswer('GoF variant assessment for', 'Splicing', 'q7_2')">Splicing</button>
             <button onclick="onAnswer('GoF variant assessment for', 'Knockdown', 'q7_1_2_2')">Knockdown</button>
@@ -1211,7 +1210,7 @@
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
-            <button onclick="onAnswer('Splicing effect?', 'Yes','q8_2')">Yes</button>
+            <button onclick="onAnswer('Splicing effect?', 'Yes', 'q8_2')">Yes</button>
             <button onclick="onAnswer('Splicing effect?', 'No', 'q7_3')">No</button>
             <button onclick="onAnswer('Splicing effect?', 'Unknown', 'q7_4')">Unknown</button>
         </div>
