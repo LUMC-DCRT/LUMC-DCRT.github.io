@@ -360,7 +360,7 @@
             <button onclick="onAnswer('Inheritance pattern', 'X-linked dominant', 'q5_3')">X-linked dominant</button>
             <button onclick="onAnswer('Inheritance pattern', 'X-linked recessive', 'q5_4')">X-linked recessive</button>
             <button onclick="onAnswer('Inheritance pattern', 'Mitochondrial', 'q5_5')">Mitochondrial</button>
-            <button onclick="<button onclick="onAnswer('Inheritance pattern', 'Unknown', 'q5_6')">Unknown</button>
+            <button onclick="onAnswer('Inheritance pattern', 'Unknown', 'q5_6')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1811,7 +1811,19 @@
             const intronic_variant_downstream_8 = document.getElementById('intronic_variant_downstream_8').checked;
             const intronic_variant_within_8 = document.getElementById('intronic_variant_within_8').checked;
 
+            if (canonical_splicing_destroyed_8) selectedOptions.push("Canonical splicing is destroyed");
+            if (canonical_splicing_weakened_8) selectedOptions.push("Canonical splicing is weakened");
+            if (canonical_splicing_not_weakened_8) selectedOptions.push("Canonical splicing is not weakened");
+            if (variant_within_5bp_8) selectedOptions.push("Variant within 5 bp of canonical splice site");
+            if (intronic_variant_upstream_8) selectedOptions.push("Intronic variant >100 bp upstream of acceptor splice site");
+            if (intronic_variant_downstream_8) selectedOptions.push("Intronic variant >50 bp downstream of donor splice site");
+            if (intronic_variant_within_8) selectedOptions.push("Intronic variant within -6 to -100 bp or +6 to +50 bp of the canonical splice sites");
 
+            // Log the selected options
+            // Replace the question label with your custom label
+            const customLabel = "Variant characteristics";
+            recordAnswer(customLabel, selectedOptions.join(", "));
+            
             if (canonical_splicing_destroyed_8 || variant_within_5bp_8) {
             showPage('q9_2_1_3');
             } else if (canonical_splicing_weakened_8 || intronic_variant_within_8 || (canonical_splicing_weakened_8 && (intronic_variant_upstream_8 || intronic_variant_downstream_8 || intronic_variant_within_8))) {
@@ -1841,8 +1853,8 @@
         <h2>Has there already been an ASO developed for this variant?</h2>
         <p>Please follow the recommendations and criteria outlined in the N1C consensus guidelines for sufficient evidence on oligonucleotide availability.</p>
         <div class="buttons">
-            <button onclick="showPage('q9_2_1_1_1')">Yes</button>
-            <button onclick="showPage('q9_2_1_2_2')">No</button>
+            <button onclick="onAnswer('ASO already developed?', 'Yes', 'q9_2_1_1_1')">Yes</button>
+            <button onclick="onAnswer('ASO already developed?', 'No', 'q9_2_1_2_2')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1854,6 +1866,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Intronic variant</p>
         <h2>Eligibility: Eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <div class="buttons">
+        <button onclick="recordFinalDecision('Eligibility: Eligible for splice correction.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1864,6 +1879,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Intronic variant</p>
         <h2>Eligibility: Likely eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <div class="buttons">
+        <button onclick="recordFinalDecision('Eligibility: Likely eligible for splice correction.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1874,6 +1892,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Intronic variant</p>
         <h2>Eligibility: Unlikely eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <div class="buttons">
+        <button onclick="recordFinalDecision('Eligibility: Unlikely eligible for splice correction.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1886,7 +1907,8 @@
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <p>Under rare circumstances, the variant could be considered for exon skipping. Please see guidelines “Step 3” for more detailed information. Please review “Section A” for information on exon skipping.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Not eligible for splice correction.', 'Jump to: Exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1897,6 +1919,9 @@
     <div id="a7_2_1_1_2" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Intronic variant</p>
         <h2> Eligibility: Unable to assess</h2>
+        <div class="buttons">
+        <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1907,6 +1932,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Intronic variant</p>
         <h2>Eligibility: Unable to assess</h2>
         <p> The variant cannot be assessed for splice correction. Please obtain evidence for or against a splicing effect.</p>
+        <div class="buttons">
+        <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1919,9 +1947,9 @@
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
-            <button onclick="showPage('q8_2_1_2_1')">Yes</button>
-            <button onclick="showPage('a7_2_1_2_2')">No</button>
-            <button onclick="showPage('a7_2_1_2_3')">Unknown</button>
+            <button onclick="onAnswer('Splice effect?', 'Yes', 'q8_2_1_2_1')">Yes</button>
+            <button onclick="onAnswer('Splice effect?', 'No', 'a7_2_1_2_2')">No</button>
+            <button onclick="onAnswer('Splice effect?', 'Unknown', 'a7_2_1_2_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -1957,6 +1985,17 @@
             const variant_within_6_15bp_9 = document.getElementById('variant_within_6_15bp_9').checked;
             const none_9 = document.getElementById('none_9').checked;
 
+            let selectedOptions = [];
+
+            if (canonical_splicing_destroyed_9) selectedOptions.push("Canonical splicing is destroyed");
+            if (canonical_splicing_weakened_9) selectedOptions.push("Canonical splicing is weakened");
+            if (variant_within_5bp_9) selectedOptions.push("Variant within 5 bp of canonical splice site");
+            if (variant_within_6to15bp_9) selectedOptions.push("Variant within 6 to 15 bp of canonical splice site");
+            if (none_9) selectedOptions.push("Canonical splicing not affected, Variant more than 15 bp away from nearest canonical splice site");
+
+            const customLabel = "Variant characteristics";
+            recordAnswer(customLabel, selectedOptions.join(", "));
+ 
             if (canonical_splicing_destroyed_9 || variant_within_5bp_9) {
                 showPage('q9_2_1_3');
             } else if (canonical_splicing_weakened_9 || variant_within_6_15bp_9) {
@@ -1971,6 +2010,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Synonymous variant</p>
         <h2> Eligibility: Not eligible for splice correction</h2>
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1981,6 +2023,9 @@
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Synonymous variant</p>
         <h2>Eligibility: Unable to assess </h2>
         <p> The variant cannot be assessed for splice correction. Please obtain evidence for or against a splicing effect.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -1993,9 +2038,9 @@
         <h2>Is there functional evidence of a splicing effect?</h2>
         <p>For guidance on how to determine whether a variant affects splicing, please see “Step 3” of the N1C consensus guidelines. There should be functional evidence of a splicing effect based on e.g., RNAseq, cDNA data. Splice predictions are not considered sufficient evidence.</p>
         <div class="buttons">
-            <button onclick="showPage('q8_2_1_3_1')">Yes</button>
-            <button onclick="showPage('q7_2_1_3_2')">No</button>
-            <button onclick="showPage('q7_2_1_3_3')">Unknown</button>
+            <button onclick="onAnswer('Splice effect?', 'Yes', 'q8_2_1_3_1')">Yes</button>
+            <button onclick="onAnswer('Splice effect?', 'No', 'q7_2_1_3_2')">No</button>
+            <button onclick="onAnswer('Splice effect?', 'Unknown', 'q7_2_1_3_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2059,7 +2104,8 @@
         <h2> Eligibility: Unable to assess</h2>
         <p> Variant cannot be assessed for splice correction until further evidence is available. Under certain circumstances, the variant could be assessed for exon skipping.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess.', 'Jump to: Exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2073,7 +2119,8 @@
         <p> For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <p>Variant is not eligible for a splice correction approach but under certain circumstances can be assessed for exon skipping approaches.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Not eligible for splice correction.', 'Jump to: exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2087,7 +2134,8 @@
         <p>For further information, please see the  <a href="splice_correction_table.jpg" target="_blank">classification table</a> for splice correction.</p>  
         <p>The variant is not eligible for splice correction. The variant can be considered for exon skipping.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Not eligible for splice correction.', 'Jump to: exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2098,10 +2146,11 @@
     <div id="q7_2_1_3_3" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Missense variants and in-frame indels</p>
         <h2>Eligibility: Unable to assess</h2>
-        <p> The variant cannot be assessed for splice correction. Under certain circumstances, the variant can be considered for exon skipping. Please review “Section A” of the N1C consensus guidelines for further information.</p>
+        <p> The variant cannot be assessed for splice correction. Under certain circumstances, the variant can be considered for exon skipping or TANGO approaches. Please review “Section A” (exon skipping) or "Section C" (TANGO) of the N1C consensus guidelines for further information.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Exon skipping</button>
-            <button onclick="showPage('a8_1_1_3_2')">TANGO</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess.', 'Jump to: exon skipping', 'q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Unable to assess.', 'Jump to: TANGO', 'a8_1_1_3_2')">TANGO</button>
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button> 
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2112,10 +2161,11 @@
     <!-- Q7.2.1.5: Exon duplication and deletion -->
     <div id="q7_2_1_5" class="container">
         <p class="decision-path">Step 3 - Splice assessment - Autosomal recessive - Loss of function - Exon deletion</p>
-        <h2>This variant is not eligible for splice correction.</h2>
+        <h2>Eligibility: Not eligible for splice correction.</h2>
         <p>If the deleted exon is in-frame, the variant is also not applicable to an exon skipping treatment. If the variant is an out-of-frame exon deletion, please check if any of the two adjacent exons could be skipped to get the transcript back into frame, then an exon skipping approach could be considered. If the deleted exon is the first or last coding exon, exon skipping is not a viable option (rare exceptions apply). Please review “Section A” of the N1C consensus guidelines.</p>
         <div class="buttons">
-            <button onclick="showPage('q8_2_1_5_1')">Exon skipping</button>
+            <button onclick="onAnswer('Eligibility: Not eligible for splice correction.', 'Jump to: exon skipping', 'q8_2_1_5_1')">Exon skipping</button>
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction.')">Finish</button> 
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2136,8 +2186,8 @@
         <li>Gene contains only the two coding exon (deleted one and the one to be skipped).</li>
         </ul>
         <div class="buttons">
-            <button onclick="showPage('a8_2_1_5_1_1')">Yes</button>
-            <button onclick="showPage('q9_2_1_5')">No</button>
+            <button onclick="onAnswer('Not-eligible criterion for exon skipping?', 'Yes', 'a8_2_1_5_1_1')">Yes</button>
+            <button onclick="onAnswer('Not-eligible criterion for exon skipping?', 'No', 'q9_2_1_5')">No</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2150,6 +2200,9 @@
         <h2>Eligibility: Not eligible for exon skipping</h2>
         <p>Please check for exceptions as described in “Section A” of the N1C consensus guidelines.</p>
         <p>For further information on the classification, please see the <a href="exon_skipping_table.jpg" target="_blank">classification table</a> for exon skipping.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for exon skipping.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2210,8 +2263,11 @@
     <!-- A7.2.1.6: whole exon duplication - AR -->
     <div id="a7_2_1_6" class="container">
         <p class="decision-path">Step 2 - Autosomal recessive - Loss of function - Exon duplication</p>
-        <h2> Eligibility: Not eligible</h2>
+        <h2> Eligibility: Not eligible for ASO treatment</h2>
         <p> This variant cannot be corrected with an ASO approach.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for ASO treatment.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2224,9 +2280,9 @@
         <h2>Gain of function variants can be analyzed using the assessment for splice correction or for knockdown.</h2>
         <p>In rare circumstances, also an exon skipping approach can be employed. We recommend reviewing “Section A” of the N1C guidelines to identify in which GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment:</p>
         <div class="buttons">
-            <button onclick="showPage('q7_2')">Splicing</button>
-            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
-<button onclick="showPage('q7_1_1_4')">Exon skipping</button>
+            <button onclick="onAnswer('Jump to', 'Splicing', 'q7_2')">Splicing</button>
+            <button onclick="onAnswer('Jump to', 'Knockdown', 'q7_1_2_2')">Knockdown</button>
+            <button onclick="onAnswer('Jump to', 'Exon skipping', 'q7_1_1_4')">Exon skipping</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2239,6 +2295,9 @@
         <p class="decision-path">Step 2 - Autosomal recessive - Unknown pathomechanism</p>
         <h2> Eligibility: Unable to assess </h2>
         <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2251,10 +2310,10 @@
         <h2>What is the pathomechanism of the variant under assessment?</h2>
         <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
         <div class="buttons">
-            <button onclick="showPage('q6_3_1')">Loss of function</button>
-            <button onclick="showPage('q6_3_2')">Gain of function</button>
-            <button onclick="showPage('q6_3_3')">Dominant negative</button>
-            <button onclick="showPage('q6_3_4')">Unknown</button>
+            <button onclick="onAnswer('Pathomechanism', 'Loss of function', 'q6_3_1')">Loss of function</button>
+            <button onclick="onAnswer('Pathomechanism', 'Gain of function', 'q6_3_2')">Gain of function</button>
+            <button onclick="onAnswer('Pathomechanism', 'Dominant negative', 'q6_3_3')">Dominant negative</button>
+            <button onclick="onAnswer('Pathomechanism', 'Unknown', 'q6_3_4')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2266,14 +2325,14 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked dominant - Loss of function</p>
         <h2>What is the variant type?</h2>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
-            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
-            <button onclick="showPage('q7_1_1_3')">Missense</button>
-            <button onclick="showPage('q7_1_1_3')">Small, in-frame indel</button>
-            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
-            <button onclick="showPage('q7_1_1_1')">Intronic</button>
-            <button onclick="showPage('q7_1_1_5')">Whole exon deletion</button>
-            <button onclick="showPage('a7_1_1_7')">Whole exon duplication</button>
+            <button onclick="onAnswer('Variant type', 'Nonsense', 'q7_1_1_4')">Nonsense</button>
+            <button onclick="onAnswer('Variant type', 'Frameshift', 'q7_1_1_4')">Frameshift</button>
+            <button onclick="onAnswer('Variant type', 'Missense', 'q7_1_1_3')">Missense</button>
+            <button onclick="onAnswer('Variant type', 'Small, in-frame indel', 'q7_1_1_3')">Small, in-frame indel</button>
+            <button onclick="onAnswer('Variant type', 'Synonymous', 'q7_1_1_2')">Synonymous</button>
+            <button onclick="onAnswer('Variant type', 'Intronic', 'q7_1_1_1')">Intronic</button>
+            <button onclick="onAnswer('Variant type', 'Whole exon deletion', 'q7_1_1_5')">Whole exon deletion</button>
+            <button onclick="onAnswer('Variant type', 'Whole exon duplication', 'a7_1_1_7')">Whole exon duplication</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2285,6 +2344,9 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked dominant - Loss of function</p>
         <h2>Eligibility: Not eligible for splice correction and exon skipping</h2>
         <p>If an exon duplication leads to a loss of function in an XLD disorder, a TANGO approach can be considered. Please review “Section C” in the N1C consensus guidelines. For TANGO approaches, we recommend a manual assessment of the different strategies. These cannot be assessed using this calculator. Please also note that for XLD disorders further considerations apply due to X-inactivation. A TANGO approach is definitely not possible in hemizygotes.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Not eligible for splice correction and exon skipping.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2296,8 +2358,8 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked dominant - Gain of function</p>
         <h2> Gain of function variants can be analyzed using the assessment for splice correction or for knockdown. In rare circumstances, also an exon skipping approach can be employed. We recommend to review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment: </h2>
         <div class="buttons">
-            <button onclick="showPage('q7_2')">Splicing</button>
-            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+            <button onclick="onAnswer('Jump to', 'Splicing', 'q7_2')">Splicing</button>
+            <button onclick="onAnswer('Jump to', 'Knockdown', 'q7_1_2_2')">Knockdown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2310,8 +2372,8 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked dominant - Dominant negative</p>
         <h2>Dominant negative variants can be analyzed using the assessment for splice correction or for downregulation. Please choose your preferred assessment:</h2>
         <div class="buttons">
-            <button onclick="showPage('q7_2')">Splicing</button>
-            <button onclick="showPage('q6_1_3_2_1')">Knockdown</button>
+            <button onclick="onAnswer('Jump to', 'Splicing', 'q7_2')">Splicing</button>
+            <button onclick="onAnswer('Jump to', 'Knockdown', 'q6_1_3_2_1')">Knockdown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2324,6 +2386,9 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked dominant - Unknown pathomechanism</p>
         <h2> Eligibility: Unable to assess</h2>
         <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2336,9 +2401,9 @@
         <h2>What is the pathomechanism of the variant under assessment?</h2>
         <p>For guidance on how to determine the pathomechanism of a given variant, please read “Step 2” of the N1C consensus guidelines.</p>
         <div class="buttons">
-            <button onclick="showPage('q7_4_1')">Loss of function</button>
-            <button onclick="showPage('q7_4_2')">Gain of function</button>
-            <button onclick="showPage('a5_4_3')">Unknown</button>
+            <button onclick="onAnswer('Pathomechanism', 'Loss of function', 'q7_4_1')">Loss of function</button>
+            <button onclick="onAnswer('Pathomechanism', 'Gain of function','q7_4_2')">Gain of function</button>
+            <button onclick="onAnswer('Pathomechanism', 'Unknown', 'a5_4_3')">Unknown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2350,14 +2415,14 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked recessive - Loss of function</p>
         <h2>What is the variant type?</h2>
         <div class="buttons">
-            <button onclick="showPage('q7_1_1_4')">Nonsense</button>
-            <button onclick="showPage('q7_1_1_4')">Frameshift</button>
-            <button onclick="showPage('q7_2_1_3')">Missense</button>
-            <button onclick="showPage('q7_2_1_3')">Small, in-frame indel</button>
-            <button onclick="showPage('q7_1_1_2')">Synonymous</button>
-            <button onclick="showPage('q7_2_1_1')">Intronic</button>
-            <button onclick="showPage('q7_2_1_5')">Whole exon deletion</button>
-            <button onclick="showPage('a7_2_1_6')">Whole exon duplication</button>
+            <button onclick="onAnswer('Variant type', 'Nonsense', 'q7_1_1_4')">Nonsense</button>
+            <button onclick="onAnswer('Variant type', 'Frameshift', 'q7_1_1_4')">Frameshift</button>
+            <button onclick="onAnswer('Variant type', 'Missense', 'q7_2_1_3')">Missense</button>
+            <button onclick="onAnswer('Variant type', 'Small, in-frame indel', 'q7_2_1_3')">Small, in-frame indel</button>
+            <button onclick="onAnswer('Variant type', 'Synonymous', 'q7_1_1_2')">Synonymous</button>
+            <button onclick="onAnswer('Variant type', 'Intronic', 'q7_2_1_1')">Intronic</button>
+            <button onclick="onAnswer('Variant type', 'Whole exon deletion', 'q7_2_1_5')">Whole exon deletion</button>
+            <button onclick="onAnswer('Variant type', 'Whole exon duplication','a7_2_1_6')">Whole exon duplication</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2369,8 +2434,8 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked recessive - Gain of function</p>
         <h2> Gain of function variants can be analyzed using the assessment for splice correction or for knockdown. In rare circumstances, also an exon skipping approach can be employed. We recommend to review “Section A” of the N1C guidelines to identify in which cases GoF variants can be targeted with an exon skipping approach. Please choose your preferred assessment:</h2>
         <div class="buttons">
-            <button onclick="showPage('q7_2')">Splicing</button>
-            <button onclick="showPage('q7_1_2_2')">Knockdown</button>
+            <button onclick="onAnswer('Jump to', 'Splicing', 'q7_2')">Splicing</button>
+            <button onclick="onAnswer('Jump to', 'Knockdown', 'q7_1_2_2')">Knockdown</button>
         </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
@@ -2382,6 +2447,9 @@
         <p class="decision-path">Step 2 - Pathomechanism - X-linked recessive - Unknown pathomechanism</p>
         <h2> Eligibility: Unable to assess.</h2>
         <p>Please obtain further evidence to determine pathomechanism.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2394,6 +2462,9 @@
         <p class="decision-path">Step 1 - Inheritance pattern - Mitochondrial</p>
         <h2>Eligibility: Unable to assess</h2>
         <p>Mitochondrially inherited disorders cannot be analyzed using these guidelines. </p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
@@ -2405,6 +2476,9 @@
         <p class="decision-path">Step 1 - Inheritance pattern - Unknown</p>
         <h2>Eligibility: Unable to assess</h2>
         <p>Please check with referring clinician or patient (family) on more information regarding the inheritance pattern.</p>
+        <div class="buttons">
+            <button onclick="recordFinalDecision('Eligibility: Unable to assess.')">Finish</button>
+        </div>
         <div class="navigation-buttons">
             <button onclick="goBack()">Back</button>
             <button onclick="showPage('startPage')">Back to Start</button>
